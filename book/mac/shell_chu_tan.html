@@ -1,0 +1,459 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>shell 初探 | 玩转 Mac</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="./shell.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.1"
+        data-chapter-title="shell 初探"
+        data-filepath="shell_chu_tan.md"
+        data-basepath="."
+        data-revision="Sun Jan 17 2016 17:14:49 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        写在前面
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter1.html">
+            
+                
+                    <a href="./chapter1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        开发工具颜色搭配
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="dev-tools/index.html">
+            
+                
+                    <a href="./dev-tools/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        常用开发工具盘点
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="dev-tools/iTerm2.html">
+            
+                
+                    <a href="./dev-tools/iTerm2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        iTerm2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" >
+            
+            <span><b>2.2.</b> oh my zsh</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" >
+            
+            <span><b>2.3.</b> brew</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" >
+            
+            <span><b>2.4.</b> nvm</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" >
+            
+            <span><b>2.5.</b> dash</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" >
+            
+            <span><b>2.6.</b> idea &amp; sublime</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="dev-tools/vim.html">
+            
+                
+                    <a href="./dev-tools/vim.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        vim
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="keymap.html">
+            
+                
+                    <a href="./keymap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.1.</b>
+                        
+                        快捷键
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> 其他工具盘点</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" >
+            
+            <span><b>3.1.</b> Alfred</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" >
+            
+            <span><b>3.2.</b> moom</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" >
+            
+            <span><b>3.3.</b> 印象工具 &amp; 马克飞象</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" >
+            
+            <span><b>3.4.</b> shadowsocksX</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" >
+            
+            <span><b>3.5.</b> go2shell</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" >
+            
+            <span><b>3.6.</b> CheetSheet</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" >
+            
+            <span><b>3.7.</b> bartender</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" >
+            
+            <span><b>3.8.</b> popclip</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="shell.html">
+            
+                
+                    <a href="./shell.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        shell
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="4.1" data-path="shell_chu_tan.html">
+            
+                
+                    <a href="./shell_chu_tan.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        shell 初探
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+            <span><b>4.2.</b> 终端常用命令盘点</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" >
+            
+            <span><b>4.2.1.</b> grep</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" >
+            
+            <span><b>4.2.2.</b> ls</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" >
+            
+            <span><b>4.2.3.</b> netstat</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >玩转 Mac</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="shell-&#x521D;&#x63A2;">shell &#x521D;&#x63A2;</h1>
+<h2 id="shell-&#x7684;&#x542B;&#x4E49;">shell &#x7684;&#x542B;&#x4E49;</h2>
+<p><code>shell</code> &#xFF0C;&#x82F1;&#x6587;&#x7684;&#x542B;&#x4E49;&#x662F;&#x201C;&#x58F3;&#x201D;&#xFF0C;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x4E2D;&#xFF0C;&#x662F;&#x6307;&#x201C;&#x4E3A;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x7528;&#x6237;&#x754C;&#x9762;&#x201D;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x901A;&#x5E38;&#x6307;&#x7684;&#x662F;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#x7684;&#x89E3;&#x6790;&#x5668;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x610F;&#x4E49;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BCD;&#x6307;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x63D0;&#x4F9B;&#x8BBF;&#x95EE;&#x5185;&#x6838;&#x6240;&#x63D0;&#x4F9B;&#x4E4B;&#x670D;&#x52A1;&#x7684;&#x7A0B;&#x5E8F;&#xFF0C;&#x56E0;&#x6B64;&#x9664;&#x4E86; <code>CLI</code>&#xFF0C;shell &#x4E5F;&#x5305;&#x542B; GUI &#x7684;&#x6982;&#x5FF5;&#xFF0C;<code>Windows Explorer</code> &#x662F;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x56FE;&#x5F62;&#x754C;&#x9762;Shell&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x672C;&#x6587;&#x53EA;&#x5173;&#x6CE8; <code>CLI</code> &#x3002;</p>
+<p><code>mac</code> &#x6E90;&#x81EA; <code>unix</code> &#x7CFB;&#x7EDF;&#xFF0C;&#x6240;&#x4EE5;&#x5176; <code>shell</code> &#x548C; <code>unix</code> &#x4E00;&#x8109;&#x76F8;&#x627F;&#x3002;</p>
+<h3 id="shell-&#x811A;&#x672C;">shell &#x811A;&#x672C;</h3>
+<p><code>shell</code> &#x672C;&#x8EAB;&#x7684;&#x6982;&#x5FF5;&#x5176;&#x5B9E;&#x5DF2;&#x7ECF;&#x5173;&#x6CE8;&#x7684;&#x5F88;&#x5C11;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x6700;&#x539F;&#x59CB;&#x7684;&#x5370;&#x8C61;&#xFF0C;<code>shell</code> &#x662F;&#x4E00;&#x95E8;&#x811A;&#x672C;&#x8BED;&#x8A00;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x7F16;&#x7A0B;&#x3002;</p>
+<p>&#x201C;shell &#x811A;&#x672C;&#x201D;&#xFF0C;&#x53C8;&#x79F0; Shell &#x547D;&#x4EE4;&#x7A3F;&#x3001;&#x7A0B;&#x5E8F;&#x5316;&#x811A;&#x672C;&#xFF0C;&#x6587;&#x672C;&#x6587;&#x4EF6;&#xFF0C;&#x7531;&#x4E00;&#x8FDE;&#x4E32;&#x7684; <code>shell</code> &#x547D;&#x4EE4;&#x7EC4;&#x6210;&#xFF0C;&#x7ECF;&#x7531; <code>Unix Shell</code>&#x6267;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x3001;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x7B49;&#x3002;</p>
+<h2 id="&#x73AF;&#x5883;">&#x73AF;&#x5883;</h2>
+<p>&#x5F53;&#x524D;&#x4E3B;&#x6D41;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x90FD;&#x652F;&#x6301; <code>shell</code> &#x7F16;&#x7A0B;&#xFF0C;&#x672C;&#x7CFB;&#x5217;&#x6240;&#x63A2;&#x7A76;&#x7684; <code>shell</code> &#x7F16;&#x7A0B;&#x662F;&#x6307; Linux &#x4E0B;&#x7684; <code>shell</code>&#xFF0C;&#x8BB2;&#x7684;&#x57FA;&#x672C;&#x90FD;&#x662F; POSIX &#x6807;&#x51C6;&#x4E0B;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x4E5F;&#x9002;&#x7528;&#x4E8E; Unix&#x53CA; BSD&#xFF08;&#x5982;Mac OS&#xFF09;&#x3002;</p>
+<h3 id="os">OS</h3>
+<h4 id="linux">Linux</h4>
+<p>Linux &#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x5C31;&#x5E26;&#x4E86; shell &#x89E3;&#x91CA;&#x5668;&#x3002;</p>
+<h4 id="mac-os">Mac OS</h4>
+<p>Mac OS &#x4E0D;&#x4EC5;&#x5E26;&#x4E86; sh&#x3001;bash &#x8FD9;&#x4E24;&#x4E2A;&#x6700;&#x57FA;&#x7840;&#x7684;&#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x8FD8;&#x5185;&#x7F6E;&#x4E86; ksh&#x3001;csh&#x3001;zsh &#x7B49;&#x4E0D;&#x5E38;&#x7528;&#x7684;&#x89E3;&#x91CA;&#x5668;&#x3002;</p>
+<p>&#x6211;&#x4E2A;&#x4EBA;&#x5012;&#x662F;&#x63A8;&#x8350; <code>zsh</code> &#xFF0C;<code>zsh</code> &#x4F1A;&#x4E13;&#x95E8;&#x6765;&#x7BC7;&#x6587;&#x7AE0;&#x4ECB;&#x7ECD;&#x3002;</p>
+<h4 id="windows">Windows</h4>
+<p>windows &#x51FA;&#x5382;&#x65F6;&#x6CA1;&#x6709;&#x5185;&#x7F6E; shell &#x89E3;&#x91CA;&#x5668;&#x2026;&#x2026;&#x53EA;&#x80FD;&#x88C5;&#x6A21;&#x62DF;&#x5668;&#xFF0C;&#x6BD4;&#x5982; <code>cygwin</code> &#x3002;</p>
+<p>&#x5F53;&#x7136; windows &#x4E0A;&#x7684; <code>PowerShell</code> &#x4E5F;&#x662F;&#x4E0D;&#x4FD7;&#x7684;&#x811A;&#x672C;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E5F;&#x4F1A;&#x4E13;&#x95E8;&#x6765;&#x4E2A;&#x7CFB;&#x5217;&#x4ECB;&#x7ECD;&#x3002;</p>
+<h3 id="&#x811A;&#x672C;&#x89E3;&#x91CA;&#x5668;">&#x811A;&#x672C;&#x89E3;&#x91CA;&#x5668;</h3>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x811A;&#x672C;&#x89E3;&#x91CA;&#x5668;&#x4E94;&#x82B1;&#x516B;&#x95E8;&#xFF0C;&#x4E0B;&#x9762;&#x5C31;&#x6311;&#x9009;&#x4E9B;&#x5178;&#x578B;&#x7684;&#x8BF4;&#x4E0B;&#x3002;</p>
+<h4 id="sh">sh</h4>
+<p>&#x5373; Bourne shell&#xFF0C;POSIX&#xFF08;Portable Operating System Interface&#xFF09;&#x6807;&#x51C6;&#x7684; shell &#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x5B83;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x901A;&#x5E38;&#x662F; <code>/bin/sh</code>&#xFF0C;&#x7531; Bell Labs &#x5F00;&#x53D1;&#x3002;</p>
+<h4 id="bash">bash</h4>
+<p>Bash &#x662F; Bourne shell &#x7684;&#x66FF;&#x4EE3;&#x54C1;&#xFF0C;&#x5C5E; GNU Project&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x901A;&#x5E38;&#x662F; <code>/bin/bash</code>&#x3002;&#x4E1A;&#x754C;&#x901A;&#x5E38;&#x6DF7;&#x7528; <code>bash</code>&#x3001;<code>sh</code>&#x3001;&#x548C; <code>shell</code>&#xFF0C;&#x6BD4;&#x5982;&#x4F60;&#x4F1A;&#x7ECF;&#x5E38;&#x5728;&#x62DB;&#x8058;&#x8FD0;&#x7EF4;&#x5DE5;&#x7A0B;&#x5E08;&#x7684;&#x6587;&#x6848;&#x4E2D;&#x89C1;&#x5230;&#xFF1A;&#x719F;&#x6089; Linux Bash &#x7F16;&#x7A0B;&#xFF0C;&#x7CBE;&#x901A; Shell &#x7F16;&#x7A0B;&#x3002;</p>
+<h4 id="zsh">zsh</h4>
+<p>Z Shell(Zsh) &#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x79CD; Bourne shell &#x7684;&#x6269;&#x5C55;&#xFF0C;&#x5E26;&#x6709;&#x6570;&#x91CF;&#x5E9E;&#x5927;&#x7684;&#x6539;&#x8FDB;&#xFF0C;&#x5305;&#x62EC;&#x4E00;&#x4E9B;bash&#x3001;ksh&#x3001;tcsh&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<h4 id="&#x9AD8;&#x7EA7;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;">&#x9AD8;&#x7EA7;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;</h4>
+<p>&#x7406;&#x8BBA;&#x4E0A;&#x8BB2;&#xFF0C;&#x53EA;&#x8981;&#x4E00;&#x95E8;&#x8BED;&#x8A00;&#x63D0;&#x4F9B;&#x4E86;&#x89E3;&#x91CA;&#x5668;&#xFF08;&#x800C;&#x4E0D;&#x4EC5;&#x662F;&#x7F16;&#x8BD1;&#x5668;&#xFF09;&#xFF0C;&#x8FD9;&#x95E8;&#x8BED;&#x8A00;&#x5C31;&#x53EF;&#x4EE5;&#x80DC;&#x4EFB;&#x811A;&#x672C;&#x7F16;&#x7A0B;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x7528;&#x4F5C;&#x811A;&#x672C;&#x7F16;&#x7A0B;&#x7684;&#xFF0C;&#x5982;&#xFF1A;Perl&#x3001;Tcl&#x3001;Python&#x3001;PHP&#x3001;Ruby&#x3001;Nodejs&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;">&#x53C2;&#x8003;&#x8D44;&#x6599;</h2>
+<ul>
+<li><a href="https://github.com/qinjx/30min_guides/blob/master/shell.md" target="_blank">Shell&#x811A;&#x672C;&#x7F16;&#x7A0B;30&#x5206;&#x949F;&#x5165;&#x95E8;</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4" target="_blank">shell</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/Shell%E8%84%9A%E6%9C%AC" target="_blank">Shell&#x811A;&#x672C;</a></li>
+<li><a href="Z shell">Z shell</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./shell.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: shell"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

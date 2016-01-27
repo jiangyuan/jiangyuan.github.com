@@ -1,0 +1,809 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/blog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/blog/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="bash,mac,shell," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="源小神写字的地方" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="对一个编程脚本来说，最最基础的当然是变量。
+对大多数开发者来说，变量也是最不值得的大说特说的。
+但 bash 里的变量有一些特别的地方值得说说，谨防跌坑。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变量和参数">
+<meta property="og:url" content="http://jiangyuan.me/2016/01/27/bash-variables-and-parameters/index.html">
+<meta property="og:site_name" content="源小神写字的地方">
+<meta property="og:description" content="对一个编程脚本来说，最最基础的当然是变量。
+对大多数开发者来说，变量也是最不值得的大说特说的。
+但 bash 里的变量有一些特别的地方值得说说，谨防跌坑。">
+<meta property="og:updated_time" content="2016-01-27T13:18:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="变量和参数">
+<meta name="twitter:description" content="对一个编程脚本来说，最最基础的当然是变量。
+对大多数开发者来说，变量也是最不值得的大说特说的。
+但 bash 里的变量有一些特别的地方值得说说，谨防跌坑。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 变量和参数 | 源小神写字的地方 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?33c8eb4a2fcb200a008043f87ea2557c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">源小神写字的地方</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mac">
+          <a href="/book/mac/" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            玩转mac
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rss">
+          <a href="/blog/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                变量和参数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-27T15:15:54+08:00" content="2016-01-27">
+              2016-01-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/01/27/bash-variables-and-parameters/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/bash-variables-and-parameters/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对一个编程脚本来说，最最基础的当然是变量。</p>
+<p>对大多数开发者来说，变量也是最不值得的大说特说的。</p>
+<p>但 <code>bash</code> 里的变量有一些特别的地方值得说说，谨防跌坑。<br><a id="more"></a></p>
+<h2 id="u57FA_u672C_u884C_u4E3A"><a href="#u57FA_u672C_u884C_u4E3A" class="headerlink" title="基本行为"></a>基本行为</h2><h3 id="u8D4B_u503C"><a href="#u8D4B_u503C" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 赋值</span></span><br><span class="line">keng = <span class="string">'坑'</span> <span class="comment"># 等号两边空格？</span></span><br><span class="line">variableName=<span class="string">"value"</span></span><br><span class="line">a=<span class="string">'1'</span></span><br><span class="line">b= <span class="comment"># 空</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$b</span>; <span class="comment"># b 和下面根本没出现过的 c 的区别？</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$c</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="u7B49_u53F7_u4E24_u8FB9_u7A7A_u683C_uFF1F"><a href="#u7B49_u53F7_u4E24_u8FB9_u7A7A_u683C_uFF1F" class="headerlink" title="等号两边空格？"></a>等号两边空格？</h4><p>我的 <code>bash</code> 生涯第一坑。<code>bash</code> 中，赋值 <code>=</code> 两边<strong>不能有空格</strong>。<br>有空格又会怎样？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VARIABLE =value</span><br><span class="line"><span class="comment"># 脚本将会尝试运行带参数 "=value" 的 "VARIABLE " 命令。</span></span><br><span class="line"></span><br><span class="line">VARIABLE= value</span><br><span class="line"><span class="comment"># 脚本将会尝试运行 "value" 命令，同时设置环境变量 "VARIABLE" 为 ""。</span></span><br></pre></td></tr></table></figure>
+<h4 id="u4E0A_u9762__24b__u548C__24c__u7684_u533A_u522B_uFF1F"><a href="#u4E0A_u9762__24b__u548C__24c__u7684_u533A_u522B_uFF1F" class="headerlink" title="上面 $b 和 $c 的区别？"></a>上面 <code>$b</code> 和 <code>$c</code> 的区别？</h4><p>实际应用的角度来说，基本没区别，都是空值。技术的角度加以区别的话，如下：</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$b</span>"</span> <span class="operator">-a</span> <span class="string">"<span class="variable">$&#123;bxxx&#125;</span>"</span> = <span class="string">"xxx"</span> ] <span class="comment"># 这里的判断会有单独的文章介绍</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">'b is set but empty'</span>; <span class="comment"># 设置但为空</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">'b is not set'</span>; <span class="comment"># 没设置，如 c</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="u53D8_u91CF_u4E2D_u7684_u7A7A_u683C"><a href="#u53D8_u91CF_u4E2D_u7684_u7A7A_u683C" class="headerlink" title="变量中的空格"></a>变量中的空格</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e=<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="comment"># 报错，变量中间当然不能有空格</span></span><br><span class="line">e=<span class="string">'1 2 3'</span>;</span><br><span class="line">f=<span class="string">'1  2   3'</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$e</span>; <span class="comment"># 1 2 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$f</span>; <span class="comment"># ?</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$f</span>"</span>; <span class="comment"># ?</span></span><br></pre></td></tr></table></figure>
+<p>上述最后两行的结果？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$f</span>; <span class="comment"># '1 2 3'</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$f</span>"</span>; <span class="comment"># '1  2   3'，空格会保留。</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果在变量中出现空格，那么必须进行引用。</strong></p>
+<h4 id="u547D_u4EE4_u66FF_u6362"><a href="#u547D_u4EE4_u66FF_u6362" class="headerlink" title="命令替换"></a>命令替换</h4><p>命令替换就是将一个命令的结果赋值给变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">g=`<span class="built_in">echo</span> hello`</span><br><span class="line">h=$(<span class="built_in">echo</span> hello) <span class="comment"># 这两种语法等价</span></span><br><span class="line"></span><br><span class="line">i=`ls <span class="operator">-l</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$i</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$i</span>"</span>; <span class="comment"># 和上一行的不同？想想上面的空格</span></span><br></pre></td></tr></table></figure>
+<h3 id="u66FF_u6362"><a href="#u66FF_u6362" class="headerlink" title="替换"></a>替换</h3><p>bash 里面引用一个变量的过程称为 Variable Substitution，字面意思即为变量替换。和大多数的语言叫法不同，但实际用起来没啥区别。</p>
+<p>其实上面的赋值就有不少替换了，这里我们更进一步。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 替换，必须有美元符号</span></span><br><span class="line">variableName=<span class="string">"value"</span></span><br><span class="line">a=<span class="string">'1'</span></span><br><span class="line">b=</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$variableName</span>; <span class="comment"># value</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span>; <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;a&#125;</span> <span class="comment"># 1   实际上 $variable 是 $&#123;variable&#125; 的简化形式。</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$b</span>; <span class="comment">#</span></span><br><span class="line"><span class="built_in">echo</span> foo <span class="variable">$a</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'foo $a'</span>; <span class="comment"># ? 单引号，强引用，所有字符字面量显示</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"foo <span class="variable">$a</span>"</span>; <span class="comment"># ? 双引号，弱引用，变量会被替换</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"foo \$a"</span>; <span class="comment"># ? 转义，变量不会被替换</span></span><br></pre></td></tr></table></figure>
+<h2 id="u53D8_u91CF_u7C7B_u578B"><a href="#u53D8_u91CF_u7C7B_u578B" class="headerlink" title="变量类型"></a>变量类型</h2><p> 这里当然不是说字符串、整形什么的，其实 <code>bash</code> 中的变量都可以理解为字符串。<br> <code>bash</code> 中有四种类型的变量，它们是环境变量、本地变量、位置变量和特殊变量。</p>
+<h3 id="u73AF_u5883_u53D8_u91CF"><a href="#u73AF_u5883_u53D8_u91CF" class="headerlink" title="环境变量"></a>环境变量</h3><p>参看维基百科的<a href="https://zh.wikipedia.org/wiki/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" target="_blank" rel="external">环境变量</a>，这里不做赘述。</p>
+<h3 id="u672C_u5730_u53D8_u91CF"><a href="#u672C_u5730_u53D8_u91CF" class="headerlink" title="本地变量"></a>本地变量</h3><p>我们上面的那么多的例子其实就是本地变量。<br>本地变量的作用域为当前脚本。有一个子类，局部变量，作用域是当前代码块，比如函数中的变量。</p>
+<h3 id="u4F4D_u7F6E_u53D8_u91CF"><a href="#u4F4D_u7F6E_u53D8_u91CF" class="headerlink" title="位置变量"></a>位置变量</h3><p>其实就是我们说的参数了，也是特殊变量的一种，因为常用，单独拿出。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$n</span> <span class="comment"># n 为自然数，1、2、3……</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例</span></span><br><span class="line">./test.sh foo bar</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span>; <span class="comment"># foo</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$2</span>; <span class="comment"># bar</span></span><br></pre></td></tr></table></figure>
+<p><strong>大于 <code>$9</code> 的参数必须被放在大括号中</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;10&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="u7279_u6B8A_u53D8_u91CF"><a href="#u7279_u6B8A_u53D8_u91CF" class="headerlink" title="特殊变量"></a>特殊变量</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$$</td>
+<td style="text-align:left">表示当前 Shell 进程的 ID ，即 pid , <code>echo $$</code></td>
+</tr>
+<tr>
+<td style="text-align:left">$n</td>
+<td style="text-align:left">上述位置变量</td>
+</tr>
+<tr>
+<td style="text-align:left">$#</td>
+<td style="text-align:left">传递给脚本或函数的参数个数</td>
+</tr>
+<tr>
+<td style="text-align:left">$*</td>
+<td style="text-align:left">传递给脚本或函数的所有参数</td>
+</tr>
+<tr>
+<td style="text-align:left">$@</td>
+<td style="text-align:left">传递给脚本或函数的所有参数 <code>?</code> <em>见下方</em></td>
+</tr>
+<tr>
+<td style="text-align:left">$？</td>
+<td style="text-align:left">上个命令的退出状态，或函数的返回值 <code>?</code> <em>见下方</em></td>
+</tr>
+<tr>
+<td style="text-align:left">$0</td>
+<td style="text-align:left">当前脚本的文件名</td>
+</tr>
+</tbody>
+</table>
+<h4 id="24*__u548C__24@__u7684_u533A_u522B"><a href="#24*__u548C__24@__u7684_u533A_u522B" class="headerlink" title="$* 和 $@ 的区别"></a><code>$*</code> 和 <code>$@</code> 的区别</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $*;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span>;  </span><br><span class="line"><span class="comment"># 没有双引号，两者一样，都以"$1" "$2" … "$n" 的形式输出所有参数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"$*"</span>;</span><br><span class="line"><span class="comment"># 会将所有的参数作为一个整体，以"$1 $2 … $n"的形式输出所有参数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$@</span>"</span>;</span><br><span class="line"><span class="comment"># 会将各个参数分开，以"$1" "$2" … "$n" 的形式输出所有参数</span></span><br></pre></td></tr></table></figure>
+<h4 id="u9000_u51FA_u4E0E_u9000_u51FA_u72B6_u6001"><a href="#u9000_u51FA_u4E0E_u9000_u51FA_u72B6_u6001" class="headerlink" title="退出与退出状态"></a>退出与退出状态</h4><p>请查看<a href="https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/06_exit_and_exit_status.html" target="_blank" rel="external">退出与退出状态</a> 。</p>
+<p><br><br><br></p>
+<h2 id="u53C2_u8003_u6587_u7AE0"><a href="#u53C2_u8003_u6587_u7AE0" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://lovelace.blog.51cto.com/1028430/1211141" target="_blank" rel="external">bash shell学习之变量</a></li>
+<li><a href="http://c.biancheng.net/cpp/view/6999.html" target="_blank" rel="external">Shell变量</a></li>
+<li><a href="http://stackoverflow.com/questions/228544/how-to-tell-if-a-string-is-not-defined-in-a-bash-shell-script" target="_blank" rel="external">How to tell if a string is not defined in a bash shell script?</a></li>
+<li><a href="http://tldp.org/LDP/abs/html/variables.html" target="_blank" rel="external">Introduction to Variables and Parameters</a></li>
+<li><a href="https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/04_introduction_to_variables_and_parameters.html" target="_blank" rel="external">变量与参数</a></li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/bash/" rel="tag">#bash</a>
+          
+            <a href="/blog/tags/mac/" rel="tag">#mac</a>
+          
+            <a href="/blog/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/12/31/bash-the-beginning/" rel="next" title="bash 初探">
+                <i class="fa fa-chevron-left"></i> bash 初探
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/27/bash-variables-and-parameters/"
+           data-title="变量和参数" data-url="http://jiangyuan.me/2016/01/27/bash-variables-and-parameters/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/2785681"
+               alt="源小神" />
+          <p class="site-author-name" itemprop="name">源小神</p>
+          <p class="site-description motion-element" itemprop="description">左手代码右手诗。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives/">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u672C_u884C_u4E3A"><span class="nav-number">1.</span> <span class="nav-text">基本行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8D4B_u503C"><span class="nav-number">1.1.</span> <span class="nav-text">赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7B49_u53F7_u4E24_u8FB9_u7A7A_u683C_uFF1F"><span class="nav-number">1.1.1.</span> <span class="nav-text">等号两边空格？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0A_u9762__24b__u548C__24c__u7684_u533A_u522B_uFF1F"><span class="nav-number">1.1.2.</span> <span class="nav-text">上面 $b 和 $c 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u53D8_u91CF_u4E2D_u7684_u7A7A_u683C"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量中的空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u547D_u4EE4_u66FF_u6362"><span class="nav-number">1.1.4.</span> <span class="nav-text">命令替换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u66FF_u6362"><span class="nav-number">1.2.</span> <span class="nav-text">替换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53D8_u91CF_u7C7B_u578B"><span class="nav-number">2.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u73AF_u5883_u53D8_u91CF"><span class="nav-number">2.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u672C_u5730_u53D8_u91CF"><span class="nav-number">2.2.</span> <span class="nav-text">本地变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F4D_u7F6E_u53D8_u91CF"><span class="nav-number">2.3.</span> <span class="nav-text">位置变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7279_u6B8A_u53D8_u91CF"><span class="nav-number">2.4.</span> <span class="nav-text">特殊变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#24*__u548C__24@__u7684_u533A_u522B"><span class="nav-number">2.4.1.</span> <span class="nav-text">$* 和 $@ 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u9000_u51FA_u4E0E_u9000_u51FA_u72B6_u6001"><span class="nav-number">2.4.2.</span> <span class="nav-text">退出与退出状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u6587_u7AE0"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">源小神</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/blog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/blog/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/blog/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/blog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/blog/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jero"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-72571043-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>

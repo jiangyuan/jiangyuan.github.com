@@ -287,28 +287,28 @@
       
 
       
-        <h2 id="shell__u7684_u542B_u4E49"><a href="#shell__u7684_u542B_u4E49" class="headerlink" title="shell 的含义"></a>shell 的含义</h2><p><code>shell</code> ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。</p>
+        <h2 id="shell-的含义"><a href="#shell-的含义" class="headerlink" title="shell 的含义"></a>shell 的含义</h2><p><code>shell</code> ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。</p>
 <p>一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 <code>CLI</code>，shell 也包含 GUI 的概念，<code>Windows Explorer</code> 是一个典型的图形界面Shell。</p>
 <p>当然，本文只关注 <code>CLI</code> 。<br><a id="more"></a></p>
 <p><code>mac</code> 源自 <code>unix</code> 系统，所以其 <code>shell</code> 和 <code>unix</code> 一脉相承。</p>
-<h3 id="shell__u811A_u672C"><a href="#shell__u811A_u672C" class="headerlink" title="shell 脚本"></a>shell 脚本</h3><p><code>shell</code> 本身的概念其实已经关注的很少，我们的最原始的印象，<code>shell</code> 是一门脚本语言，可用于编程。</p>
+<h3 id="shell-脚本"><a href="#shell-脚本" class="headerlink" title="shell 脚本"></a>shell 脚本</h3><p><code>shell</code> 本身的概念其实已经关注的很少，我们的最原始的印象，<code>shell</code> 是一门脚本语言，可用于编程。</p>
 <p>“shell 脚本”，又称 Shell 命令稿、程序化脚本，文本文件，由一连串的 <code>shell</code> 命令组成，经由 <code>Unix Shell</code>执行，可以进行系统管理、文件操作等。</p>
-<h2 id="u73AF_u5883"><a href="#u73AF_u5883" class="headerlink" title="环境"></a>环境</h2><p>当前主流的操作系统都支持 <code>shell</code> 编程，本系列所探究的 <code>shell</code> 编程是指 Linux 下的 <code>shell</code>，讲的基本都是 POSIX 标准下的功能，所以，也适用于 Unix及 BSD（如Mac OS）。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>当前主流的操作系统都支持 <code>shell</code> 编程，本系列所探究的 <code>shell</code> 编程是指 Linux 下的 <code>shell</code>，讲的基本都是 POSIX 标准下的功能，所以，也适用于 Unix及 BSD（如Mac OS）。</p>
 <h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>Linux 默认安装就带了 shell 解释器。</p>
-<h4 id="Mac_OS"><a href="#Mac_OS" class="headerlink" title="Mac OS"></a>Mac OS</h4><p>Mac OS 不仅带了 sh、bash 这两个最基础的解释器，还内置了 ksh、csh、zsh 等不常用的解释器。</p>
+<h4 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h4><p>Mac OS 不仅带了 sh、bash 这两个最基础的解释器，还内置了 ksh、csh、zsh 等不常用的解释器。</p>
 <p>我个人倒是推荐 <code>zsh</code> ，<code>zsh</code> 会专门来篇文章介绍。</p>
 <h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>windows 出厂时没有内置 shell 解释器……只能装模拟器，比如 <code>cygwin</code> 。</p>
 <p>当然 windows 上的 <code>PowerShell</code> 也是不俗的脚本，这个也会专门来个系列介绍。</p>
-<h3 id="u811A_u672C_u89E3_u91CA_u5668"><a href="#u811A_u672C_u89E3_u91CA_u5668" class="headerlink" title="脚本解释器"></a>脚本解释器</h3><p>当然，脚本解释器五花八门，下面就挑选些典型的说下。</p>
+<h3 id="脚本解释器"><a href="#脚本解释器" class="headerlink" title="脚本解释器"></a>脚本解释器</h3><p>当然，脚本解释器五花八门，下面就挑选些典型的说下。</p>
 <h4 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h4><p>即 Bourne shell，POSIX（Portable Operating System Interface）标准的 shell 解释器，它的二进制文件路径通常是 <code>/bin/sh</code>，由 Bell Labs 开发。</p>
 <h4 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h4><p>Bash 是 Bourne shell 的替代品，属 GNU Project，二进制文件路径通常是 <code>/bin/bash</code>。业界通常混用 <code>bash</code>、<code>sh</code>、和 <code>shell</code>，比如你会经常在招聘运维工程师的文案中见到：熟悉 Linux Bash 编程，精通 Shell 编程。</p>
 <h4 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h4><p>Z Shell(Zsh) 以认为是一种 Bourne shell 的扩展，带有数量庞大的改进，包括一些bash、ksh、tcsh的功能。</p>
-<h4 id="u9AD8_u7EA7_u7F16_u7A0B_u8BED_u8A00"><a href="#u9AD8_u7EA7_u7F16_u7A0B_u8BED_u8A00" class="headerlink" title="高级编程语言"></a>高级编程语言</h4><p>理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby、Nodejs。</p>
-<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<h4 id="高级编程语言"><a href="#高级编程语言" class="headerlink" title="高级编程语言"></a>高级编程语言</h4><p>理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby、Nodejs。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://github.com/qinjx/30min_guides/blob/master/shell.md" target="_blank" rel="external">Shell脚本编程30分钟入门</a></li>
 <li><a href="https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4" target="_blank" rel="external">shell</a></li>
 <li><a href="https://zh.wikipedia.org/wiki/Shell%E8%84%9A%E6%9C%AC" target="_blank" rel="external">Shell脚本</a></li>
-<li><a href="/blog/Z%20shell">Z shell</a></li>
+<li><a href="Z%20shell">Z shell</a></li>
 </ul>
 
       
@@ -413,7 +413,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives/">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -466,7 +466,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell__u7684_u542B_u4E49"><span class="nav-number">1.</span> <span class="nav-text">shell 的含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell__u811A_u672C"><span class="nav-number">1.1.</span> <span class="nav-text">shell 脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u73AF_u5883"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS"><span class="nav-number">2.1.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac_OS"><span class="nav-number">2.1.2.</span> <span class="nav-text">Mac OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u811A_u672C_u89E3_u91CA_u5668"><span class="nav-number">2.2.</span> <span class="nav-text">脚本解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bash"><span class="nav-number">2.2.2.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh"><span class="nav-number">2.2.3.</span> <span class="nav-text">zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u9AD8_u7EA7_u7F16_u7A0B_u8BED_u8A00"><span class="nav-number">2.2.4.</span> <span class="nav-text">高级编程语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-的含义"><span class="nav-number">1.</span> <span class="nav-text">shell 的含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell-脚本"><span class="nav-number">1.1.</span> <span class="nav-text">shell 脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS"><span class="nav-number">2.1.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac-OS"><span class="nav-number">2.1.2.</span> <span class="nav-text">Mac OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本解释器"><span class="nav-number">2.2.</span> <span class="nav-text">脚本解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bash"><span class="nav-number">2.2.2.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh"><span class="nav-number">2.2.3.</span> <span class="nav-text">zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级编程语言"><span class="nav-number">2.2.4.</span> <span class="nav-text">高级编程语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

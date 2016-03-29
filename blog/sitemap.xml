@@ -2,28 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jiangyuan.me/blog/2016/01/27/bash-variables-and-parameters/</loc>
+    <loc>http://jiangyuan.me/2016/03/29/bash-string-and-array/</loc>
+    
+    <lastmod>2016-03-29T07:12:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jiangyuan.me/2016/01/27/bash-variables-and-parameters/</loc>
+    
     <lastmod>2016-01-27T14:02:38.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://jiangyuan.me/blog/2015/12/31/bash-the-beginning/</loc>
+    <loc>http://jiangyuan.me/2015/12/31/bash-the-beginning/</loc>
+    
     <lastmod>2016-01-27T13:17:39.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://jiangyuan.me/blog/2013/05/15/crossdomain/</loc>
+    <loc>http://jiangyuan.me/2013/05/15/crossdomain/</loc>
+    
     <lastmod>2016-01-18T08:57:41.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://jiangyuan.me/blog/tags/index.html</loc>
+    <loc>http://jiangyuan.me/tags/index.html</loc>
+    
     <lastmod>2016-01-18T08:55:02.000Z</lastmod>
+    
   </url>
   
   <url>
-    <loc>http://jiangyuan.me/blog/2013/03/21/browser-cache/</loc>
+    <loc>http://jiangyuan.me/2013/03/21/browser-cache/</loc>
+    
     <lastmod>2016-01-18T08:43:55.000Z</lastmod>
+    
   </url>
   
 </urlset>

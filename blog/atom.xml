@@ -1,410 +1,579 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[源小神写字的地方]]></title>
+  <title>源小神写字的地方</title>
   
   <link href="/blog/atom.xml" rel="self"/>
-  <link href="http://jiangyuan.me/blog/"/>
-  <updated>2016-01-27T14:02:38.000Z</updated>
-  <id>http://jiangyuan.me/blog/</id>
+  
+  <link href="http://jiangyuan.me/"/>
+  <updated>2016-03-29T07:12:06.000Z</updated>
+  <id>http://jiangyuan.me/</id>
   
   <author>
-    <name><![CDATA[源小神]]></name>
+    <name>源小神</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[bash 的变量和参数]]></title>
-    <link href="http://jiangyuan.me/blog/2016/01/27/bash-variables-and-parameters/"/>
-    <id>http://jiangyuan.me/blog/2016/01/27/bash-variables-and-parameters/</id>
+    <title>bash 的字符串和数组</title>
+    <link href="http://jiangyuan.me/2016/03/29/bash-string-and-array/"/>
+    <id>http://jiangyuan.me/2016/03/29/bash-string-and-array/</id>
+    <published>2016-03-29T07:15:54.000Z</published>
+    <updated>2016-03-29T07:12:06.000Z</updated>
+    
+    <content type="html">&lt;p&gt;回顾下自己接触过的编程语言，&lt;strong&gt;字符串&lt;/strong&gt;和&lt;strong&gt;数组&lt;/strong&gt;真是基础中的基础。也因此，在接触一门新的语言的时候，非常有必要去熟悉该语言的&lt;strong&gt;字符串&lt;/strong&gt;和&lt;strong&gt;数组&lt;/strong&gt;。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h2&gt;&lt;h3 id=&quot;声明和赋值&quot;&gt;&lt;a href=&quot;#声明和赋值&quot; class=&quot;headerlink&quot; title=&quot;声明和赋值&quot;&gt;&lt;/a&gt;声明和赋值&lt;/h3&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;name=&lt;span class=&quot;string&quot;&gt;&#39;jero&#39;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 单引号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;hellojero=&lt;span class=&quot;string&quot;&gt;&quot;hello, &lt;span class=&quot;variable&quot;&gt;$name&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 双引号，可以引用变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;再看看复杂点的操作。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;变量 &lt;code&gt;var&lt;/code&gt; 的值，与 &lt;code&gt;$var&lt;/code&gt; 相同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var-DEFAULT}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没有被声明，那么就以 &lt;code&gt;$DEFAULT&lt;/code&gt; 作为其值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var:-DEFAULT}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没有被声明, 或者其值为空, 那么就以   &lt;code&gt;$DEFAULT&lt;/code&gt; 作为其值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var=DEFAULT}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没有被声明，那么就以 &lt;code&gt;$DEFAULT&lt;/code&gt; 作为其值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var:=DEFAULT}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没有被声明, 或者其值为空, 那么就以   &lt;code&gt;$DEFAULT&lt;/code&gt; 作为其值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var+OTHER}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 声明了, 那么其值就是 &lt;code&gt;$OTHER&lt;/code&gt;, 否则就为 &lt;code&gt;null&lt;/code&gt; 字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var:+OTHER}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 被设置了, 那么其值就是 &lt;code&gt;$OTHER&lt;/code&gt;, 否则就为 &lt;code&gt;null&lt;/code&gt; 字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var?ERR_MSG}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没被声明, 那么就打印 &lt;code&gt;$ERR_MSG&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${var:?ERR_MSG}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;var&lt;/code&gt; 没被设置, 那么就打印 &lt;code&gt;$ERR_MSG&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${!varprefix*}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;匹配之前所有以 &lt;code&gt;varprefix&lt;/code&gt; 开头进行声明的变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${!varprefix@}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;var-DEFAULT-vs-var-DEFAULT&quot;&gt;&lt;a href=&quot;#var-DEFAULT-vs-var-DEFAULT&quot; class=&quot;headerlink&quot; title=&quot;${var:-DEFAULT} vs ${var:=DEFAULT}&quot;&gt;&lt;/a&gt;&lt;code&gt;${var:-DEFAULT}&lt;/code&gt; vs &lt;code&gt;${var:=DEFAULT}&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;这两个真的非常像，那么它们的区别是什么呢？&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;foo1=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;bar1:-&#39;abc&#39;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$foo1&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$bar1&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 空&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;foo2=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;bar2:=&#39;abc&#39;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$foo2&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$bar2&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 区别很明显了，bar1 没有赋值， bar2 被赋值了&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;操作&quot;&gt;&lt;a href=&quot;#操作&quot; class=&quot;headerlink&quot; title=&quot;操作&quot;&gt;&lt;/a&gt;操作&lt;/h3&gt;&lt;h4 id=&quot;长度&quot;&gt;&lt;a href=&quot;#长度&quot; class=&quot;headerlink&quot; title=&quot;长度&quot;&gt;&lt;/a&gt;长度&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;#name&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;#4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 有些资料上会有如下方式：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; `expr length &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$name&lt;/span&gt;&quot;&lt;/span&gt;`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 在 mac(10.11.4) 上，会 `syntax error`&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 这是因为 GUN 的 expr 和 BSD 的 expr 有很大的不同，用的时候一定要慎重&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 具体可参考 https://discussions.apple.com/thread/923299&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 可做如下尝试：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; `expr &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$name&lt;/span&gt;&quot;&lt;/span&gt; : &lt;span class=&quot;string&quot;&gt;&#39;.*&#39;&lt;/span&gt;` &lt;span class=&quot;comment&quot;&gt;# 4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;拼接&quot;&gt;&lt;a href=&quot;#拼接&quot; class=&quot;headerlink&quot; title=&quot;拼接&quot;&gt;&lt;/a&gt;拼接&lt;/h4&gt;&lt;p&gt;拼接就比较灵活了，但不外乎如下几种方式。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hei=&lt;span class=&quot;string&quot;&gt;&quot;hei, &lt;span class=&quot;variable&quot;&gt;$name&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 利用双引号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;family=&lt;span class=&quot;string&quot;&gt;&#39;jiang&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$hei&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$family&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# hei, jero jiang&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$hei&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$family&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 当然也可以不用双引号，但是可读性降低了&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;子字符串&quot;&gt;&lt;a href=&quot;#子字符串&quot; class=&quot;headerlink&quot; title=&quot;子字符串&quot;&gt;&lt;/a&gt;子字符串&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string:position}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;在 &lt;code&gt;$string&lt;/code&gt; 中, 从位置 &lt;code&gt;$position&lt;/code&gt; 开始提取子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string:position:length}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;在 &lt;code&gt;$string&lt;/code&gt; 中, 从位置 &lt;code&gt;$position&lt;/code&gt; 开始提取长度为 &lt;code&gt;$length&lt;/code&gt; 的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string#substring}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从变量 &lt;code&gt;$string&lt;/code&gt; 的开头, 删除最短匹配 &lt;code&gt;$substring&lt;/code&gt; 的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string##substring}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从变量 &lt;code&gt;$string&lt;/code&gt; 的开头, 删除最长匹配 &lt;code&gt;$substring&lt;/code&gt; 的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string%substring}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从变量 &lt;code&gt;$string&lt;/code&gt; 的结尾, 删除最短匹配 &lt;code&gt;$substring&lt;/code&gt; 的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string%%substring}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从变量 &lt;code&gt;$string&lt;/code&gt; 的结尾, 删除最长匹配 &lt;code&gt;$substring&lt;/code&gt; 的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string/substring/replacement}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;使用 &lt;code&gt;$replacement&lt;/code&gt;, 来代替第一个匹配的 &lt;code&gt;$substring&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string//substring/replacement}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;使用 &lt;code&gt;$replacement&lt;/code&gt;, 代替所有匹配的 &lt;code&gt;$substring&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string/#substring/replacement}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;$string&lt;/code&gt; 的前面数位匹配 &lt;code&gt;$substring&lt;/code&gt;, 那么就用 &lt;code&gt;$replacement&lt;/code&gt; 来代替匹配到的 &lt;code&gt;$substring&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;${string/%substring/replacement}&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;如果 &lt;code&gt;$string&lt;/code&gt; 的后面数位匹配 &lt;code&gt;$substring&lt;/code&gt;, 那么就用 &lt;code&gt;$replacement&lt;/code&gt; 来代替匹配到的 &lt;code&gt;$substring&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;&lt;code&gt;substring&lt;/code&gt; 可以是正则。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;下面来个实例。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;long=&lt;span class=&quot;string&quot;&gt;&#39;123456789abcdefg123456789abcdefg123456789&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;#long&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 41，长度&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long:3&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 456789abcdefg123456789abcdefg123456789，从第三位开始截取&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long:3:6&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 456789，从第三位开始截取长度为 6 的子串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long#*a&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# bcdefg123456789abcdefg123456789，从头删除最短匹配&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long##*a&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# bcdefg123456789，从头删除最长匹配&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long%a*&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 123456789abcdefg123456789，从尾开始删除最短匹配&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long%%a*&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 123456789，从尾开始删除最长匹配&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long/abc/ABC&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 123456789ABCdefg123456789abcdefg123456789，替换首次出现的子字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long//abc/ABC&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 123456789ABCdefg123456789ABCdefg123456789，全局替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long/#123/ABC&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# ABC456789abcdefg123456789abcdefg123456789，字符串的前面数位和 123 匹配，替换之&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;long/%789/ABC&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 123456789abcdefg123456789abcdefg123456ABC，字符串的后面数位和 789 匹配，替换之&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;数组&quot;&gt;&lt;a href=&quot;#数组&quot; class=&quot;headerlink&quot; title=&quot;数组&quot;&gt;&lt;/a&gt;数组&lt;/h2&gt;&lt;p&gt;&lt;code&gt;bash&lt;/code&gt; 支持一维数组，下标从 &lt;code&gt;0&lt;/code&gt; 开始。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-a&lt;/span&gt; array_name &lt;span class=&quot;comment&quot;&gt;# 声明一个数组，但并没人这么用&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;arr1=(value0 value1 value2 value3 value)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 或者&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;arr1=(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	value0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	value1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	value2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	value3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	value4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;) &lt;span class=&quot;comment&quot;&gt;# ！！！元素之间没有逗号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 数组元素不用连续&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;arr2[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;]=v0,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;arr2[&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;]=v100&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 取数组元素，必须用大括号模式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;arr1[3]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# value2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;arr2[100]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# v100&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 使用 `@` 或 `*` 可以获取数组中的所有元素&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;arr1[*]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# value0 value1 value2 value3 value4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;arr2[@]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# v1 v100&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 获取数组的长度&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;#arr1[*]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 5&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;#arr2[@]&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/string-manipulation.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tldp.org/LDP/abs/html/string-manipulation.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_10_02.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_10_02.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/arrays.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tldp.org/LDP/abs/html/arrays.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://c.biancheng.net/cpp/view/7001.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shell字符串&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://c.biancheng.net/cpp/view/7002.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shell数组：shell数组的定义、数组长度&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://lovelace.blog.51cto.com/1028430/1211141&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bash shell学习之变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/chengmo/archive/2010/10/02/1841355.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/chengmo/archive/2010/10/02/1841355.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/17404696/what-is-the-difference-between-var-var-word-and-var-var-word&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/17404696/what-is-the-difference-between-var-var-word-and-var-var-word&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://discussions.apple.com/thread/923299&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://discussions.apple.com/thread/923299&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/chengmo/archive/2010/10/02/1841355.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/chengmo/archive/2010/10/02/1841355.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;回顾下自己接触过的编程语言，&lt;strong&gt;字符串&lt;/strong&gt;和&lt;strong&gt;数组&lt;/strong&gt;真是基础中的基础。也因此，在接触一门新的语言的时候，非常有必要去熟悉该语言的&lt;strong&gt;字符串&lt;/strong&gt;和&lt;strong&gt;数组&lt;/strong&gt;。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="bash" scheme="http://jiangyuan.me/tags/bash/"/>
+    
+      <category term="mac" scheme="http://jiangyuan.me/tags/mac/"/>
+    
+      <category term="shell" scheme="http://jiangyuan.me/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bash 的变量和参数</title>
+    <link href="http://jiangyuan.me/2016/01/27/bash-variables-and-parameters/"/>
+    <id>http://jiangyuan.me/2016/01/27/bash-variables-and-parameters/</id>
     <published>2016-01-27T07:15:54.000Z</published>
     <updated>2016-01-27T14:02:38.000Z</updated>
-    <content type="html"><![CDATA[<p>对一个编程脚本来说，最最基础的当然是变量。</p>
-<p>对大多数开发者来说，变量也是最不值得的大说特说的。</p>
-<p>但 <code>bash</code> 里的变量有一些特别的地方值得说说，谨防跌坑。<br><a id="more"></a></p>
-<h2 id="u57FA_u672C_u884C_u4E3A"><a href="#u57FA_u672C_u884C_u4E3A" class="headerlink" title="基本行为"></a>基本行为</h2><h3 id="u8D4B_u503C"><a href="#u8D4B_u503C" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 赋值</span></span><br><span class="line">keng = <span class="string">'坑'</span> <span class="comment"># 等号两边空格？</span></span><br><span class="line">variableName=<span class="string">"value"</span></span><br><span class="line">a=<span class="string">'1'</span></span><br><span class="line">b= <span class="comment"># 空</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$b</span>; <span class="comment"># b 和下面根本没出现过的 c 的区别？</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$c</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="u7B49_u53F7_u4E24_u8FB9_u7A7A_u683C_uFF1F"><a href="#u7B49_u53F7_u4E24_u8FB9_u7A7A_u683C_uFF1F" class="headerlink" title="等号两边空格？"></a>等号两边空格？</h4><p>我的 <code>bash</code> 生涯第一坑。<code>bash</code> 中，赋值 <code>=</code> 两边<strong>不能有空格</strong>。<br>有空格又会怎样？</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VARIABLE =value</span><br><span class="line"><span class="comment"># 脚本将会尝试运行带参数 "=value" 的 "VARIABLE " 命令。</span></span><br><span class="line"></span><br><span class="line">VARIABLE= value</span><br><span class="line"><span class="comment"># 脚本将会尝试运行 "value" 命令，同时设置环境变量 "VARIABLE" 为 ""。</span></span><br></pre></td></tr></table></figure>
-<h4 id="u4E0A_u9762__24b__u548C__24c__u7684_u533A_u522B_uFF1F"><a href="#u4E0A_u9762__24b__u548C__24c__u7684_u533A_u522B_uFF1F" class="headerlink" title="上面 $b 和 $c 的区别？"></a>上面 <code>$b</code> 和 <code>$c</code> 的区别？</h4><p>实际应用的角度来说，基本没区别，都是空值。技术的角度加以区别的话，如下：</p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">"<span class="variable">$b</span>"</span> <span class="operator">-a</span> <span class="string">"<span class="variable">$&#123;bxxx&#125;</span>"</span> = <span class="string">"xxx"</span> ] <span class="comment"># 这里的判断会有单独的文章介绍</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">'b is set but empty'</span>; <span class="comment"># 设置但为空</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">'b is not set'</span>; <span class="comment"># 没设置，如 c</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="u53D8_u91CF_u4E2D_u7684_u7A7A_u683C"><a href="#u53D8_u91CF_u4E2D_u7684_u7A7A_u683C" class="headerlink" title="变量中的空格"></a>变量中的空格</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e=<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="comment"># 报错，变量中间当然不能有空格</span></span><br><span class="line">e=<span class="string">'1 2 3'</span>;</span><br><span class="line">f=<span class="string">'1  2   3'</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$e</span>; <span class="comment"># 1 2 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$f</span>; <span class="comment"># ?</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$f</span>"</span>; <span class="comment"># ?</span></span><br></pre></td></tr></table></figure>
-<p>上述最后两行的结果？</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$f</span>; <span class="comment"># '1 2 3'</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$f</span>"</span>; <span class="comment"># '1  2   3'，空格会保留。</span></span><br></pre></td></tr></table></figure>
-<p><strong>如果在变量中出现空格，那么必须进行引用。</strong></p>
-<h4 id="u547D_u4EE4_u66FF_u6362"><a href="#u547D_u4EE4_u66FF_u6362" class="headerlink" title="命令替换"></a>命令替换</h4><p>命令替换就是将一个命令的结果赋值给变量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">g=`<span class="built_in">echo</span> hello`</span><br><span class="line">h=$(<span class="built_in">echo</span> hello) <span class="comment"># 这两种语法等价</span></span><br><span class="line"></span><br><span class="line">i=`ls <span class="operator">-l</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$i</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$i</span>"</span>; <span class="comment"># 和上一行的不同？想想上面的空格</span></span><br></pre></td></tr></table></figure>
-<h3 id="u66FF_u6362"><a href="#u66FF_u6362" class="headerlink" title="替换"></a>替换</h3><p>bash 里面引用一个变量的过程称为 Variable Substitution，字面意思即为变量替换。和大多数的语言叫法不同，但实际用起来没啥区别。</p>
-<p>其实上面的赋值就有不少替换了，这里我们更进一步。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 替换，必须有美元符号</span></span><br><span class="line">variableName=<span class="string">"value"</span></span><br><span class="line">a=<span class="string">'1'</span></span><br><span class="line">b=</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$variableName</span>; <span class="comment"># value</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span>; <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;a&#125;</span> <span class="comment"># 1   实际上 $variable 是 $&#123;variable&#125; 的简化形式。</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$b</span>; <span class="comment">#</span></span><br><span class="line"><span class="built_in">echo</span> foo <span class="variable">$a</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'foo $a'</span>; <span class="comment"># ? 单引号，强引用，所有字符字面量显示</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"foo <span class="variable">$a</span>"</span>; <span class="comment"># ? 双引号，弱引用，变量会被替换</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"foo \$a"</span>; <span class="comment"># ? 转义，变量不会被替换</span></span><br></pre></td></tr></table></figure>
-<h2 id="u53D8_u91CF_u7C7B_u578B"><a href="#u53D8_u91CF_u7C7B_u578B" class="headerlink" title="变量类型"></a>变量类型</h2><p> 这里当然不是说字符串、整形什么的，其实 <code>bash</code> 中的变量都可以理解为字符串。<br> <code>bash</code> 中有四种类型的变量，它们是环境变量、本地变量、位置变量和特殊变量。</p>
-<h3 id="u73AF_u5883_u53D8_u91CF"><a href="#u73AF_u5883_u53D8_u91CF" class="headerlink" title="环境变量"></a>环境变量</h3><p>参看维基百科的<a href="https://zh.wikipedia.org/wiki/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" target="_blank" rel="external">环境变量</a>，这里不做赘述。</p>
-<h3 id="u672C_u5730_u53D8_u91CF"><a href="#u672C_u5730_u53D8_u91CF" class="headerlink" title="本地变量"></a>本地变量</h3><p>我们上面的那么多的例子其实就是本地变量。<br>本地变量的作用域为当前脚本。有一个子类，局部变量，作用域是当前代码块，比如函数中的变量。</p>
-<h3 id="u4F4D_u7F6E_u53D8_u91CF"><a href="#u4F4D_u7F6E_u53D8_u91CF" class="headerlink" title="位置变量"></a>位置变量</h3><p>其实就是我们说的参数了，也是特殊变量的一种，因为常用，单独拿出。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$n</span> <span class="comment"># n 为自然数，1、2、3……</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例</span></span><br><span class="line">./test.sh foo bar</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span>; <span class="comment"># foo</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$2</span>; <span class="comment"># bar</span></span><br></pre></td></tr></table></figure>
-<p><strong>大于 <code>$9</code> 的参数必须被放在大括号中</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;10&#125;</span>"</span></span><br></pre></td></tr></table></figure>
-<h3 id="u7279_u6B8A_u53D8_u91CF"><a href="#u7279_u6B8A_u53D8_u91CF" class="headerlink" title="特殊变量"></a>特殊变量</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">变量</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">$$</td>
-<td style="text-align:left">表示当前 Shell 进程的 ID ，即 pid , <code>echo $$</code></td>
-</tr>
-<tr>
-<td style="text-align:left">$n</td>
-<td style="text-align:left">上述位置变量</td>
-</tr>
-<tr>
-<td style="text-align:left">$#</td>
-<td style="text-align:left">传递给脚本或函数的参数个数</td>
-</tr>
-<tr>
-<td style="text-align:left">$*</td>
-<td style="text-align:left">传递给脚本或函数的所有参数</td>
-</tr>
-<tr>
-<td style="text-align:left">$@</td>
-<td style="text-align:left">传递给脚本或函数的所有参数 <code>?</code> <em>见下方</em></td>
-</tr>
-<tr>
-<td style="text-align:left">$？</td>
-<td style="text-align:left">上个命令的退出状态，或函数的返回值 <code>?</code> <em>见下方</em></td>
-</tr>
-<tr>
-<td style="text-align:left">$0</td>
-<td style="text-align:left">当前脚本的文件名</td>
-</tr>
-</tbody>
-</table>
-<h4 id="24*__u548C__24@__u7684_u533A_u522B"><a href="#24*__u548C__24@__u7684_u533A_u522B" class="headerlink" title="$* 和 $@ 的区别"></a><code>$*</code> 和 <code>$@</code> 的区别</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $*;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span>;  </span><br><span class="line"><span class="comment"># 没有双引号，两者一样，都以"$1" "$2" … "$n" 的形式输出所有参数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"$*"</span>;</span><br><span class="line"><span class="comment"># 会将所有的参数作为一个整体，以"$1 $2 … $n"的形式输出所有参数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$@</span>"</span>;</span><br><span class="line"><span class="comment"># 会将各个参数分开，以"$1" "$2" … "$n" 的形式输出所有参数</span></span><br></pre></td></tr></table></figure>
-<h4 id="u9000_u51FA_u4E0E_u9000_u51FA_u72B6_u6001"><a href="#u9000_u51FA_u4E0E_u9000_u51FA_u72B6_u6001" class="headerlink" title="退出与退出状态"></a>退出与退出状态</h4><p>请查看<a href="https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/06_exit_and_exit_status.html" target="_blank" rel="external">退出与退出状态</a> 。</p>
-<p><br><br><br></p>
-<h2 id="u53C2_u8003_u6587_u7AE0"><a href="#u53C2_u8003_u6587_u7AE0" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="http://lovelace.blog.51cto.com/1028430/1211141" target="_blank" rel="external">bash shell学习之变量</a></li>
-<li><a href="http://c.biancheng.net/cpp/view/6999.html" target="_blank" rel="external">Shell变量</a></li>
-<li><a href="http://stackoverflow.com/questions/228544/how-to-tell-if-a-string-is-not-defined-in-a-bash-shell-script" target="_blank" rel="external">How to tell if a string is not defined in a bash shell script?</a></li>
-<li><a href="http://tldp.org/LDP/abs/html/variables.html" target="_blank" rel="external">Introduction to Variables and Parameters</a></li>
-<li><a href="https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/04_introduction_to_variables_and_parameters.html" target="_blank" rel="external">变量与参数</a></li>
-</ul>
-]]></content>
+    
+    <content type="html">&lt;p&gt;对一个编程脚本来说，最最基础的当然是变量。&lt;/p&gt;
+&lt;p&gt;对大多数开发者来说，变量也是最不值得的大说特说的。&lt;/p&gt;
+&lt;p&gt;但 &lt;code&gt;bash&lt;/code&gt; 里的变量有一些特别的地方值得说说，谨防跌坑。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;基本行为&quot;&gt;&lt;a href=&quot;#基本行为&quot; class=&quot;headerlink&quot; title=&quot;基本行为&quot;&gt;&lt;/a&gt;基本行为&lt;/h2&gt;&lt;h3 id=&quot;赋值&quot;&gt;&lt;a href=&quot;#赋值&quot; class=&quot;headerlink&quot; title=&quot;赋值&quot;&gt;&lt;/a&gt;赋值&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 赋值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;keng = &lt;span class=&quot;string&quot;&gt;&#39;坑&#39;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 等号两边空格？&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;variableName=&lt;span class=&quot;string&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a=&lt;span class=&quot;string&quot;&gt;&#39;1&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;b= &lt;span class=&quot;comment&quot;&gt;# 空&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$b&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# b 和下面根本没出现过的 c 的区别？&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$c&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;等号两边空格？&quot;&gt;&lt;a href=&quot;#等号两边空格？&quot; class=&quot;headerlink&quot; title=&quot;等号两边空格？&quot;&gt;&lt;/a&gt;等号两边空格？&lt;/h4&gt;&lt;p&gt;我的 &lt;code&gt;bash&lt;/code&gt; 生涯第一坑。&lt;code&gt;bash&lt;/code&gt; 中，赋值 &lt;code&gt;=&lt;/code&gt; 两边&lt;strong&gt;不能有空格&lt;/strong&gt;。&lt;br&gt;有空格又会怎样？&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;VARIABLE =value&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 脚本将会尝试运行带参数 &quot;=value&quot; 的 &quot;VARIABLE &quot; 命令。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VARIABLE= value&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 脚本将会尝试运行 &quot;value&quot; 命令，同时设置环境变量 &quot;VARIABLE&quot; 为 &quot;&quot;。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;上面-b-和-c-的区别？&quot;&gt;&lt;a href=&quot;#上面-b-和-c-的区别？&quot; class=&quot;headerlink&quot; title=&quot;上面 $b 和 $c 的区别？&quot;&gt;&lt;/a&gt;上面 &lt;code&gt;$b&lt;/code&gt; 和 &lt;code&gt;$c&lt;/code&gt; 的区别？&lt;/h4&gt;&lt;p&gt;实际应用的角度来说，基本没区别，都是空值。技术的角度加以区别的话，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; [ -z &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$b&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$&amp;#123;bxxx&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt; = &lt;span class=&quot;string&quot;&gt;&quot;xxx&quot;&lt;/span&gt; ] &lt;span class=&quot;comment&quot;&gt;# 这里的判断会有单独的文章介绍&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;b is set but empty&#39;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 设置但为空&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;b is not set&#39;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 没设置，如 c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;变量中的空格&quot;&gt;&lt;a href=&quot;#变量中的空格&quot; class=&quot;headerlink&quot; title=&quot;变量中的空格&quot;&gt;&lt;/a&gt;变量中的空格&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;e=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 报错，变量中间当然不能有空格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;e=&lt;span class=&quot;string&quot;&gt;&#39;1 2 3&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;f=&lt;span class=&quot;string&quot;&gt;&#39;1  2   3&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$e&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 1 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$f&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# ?&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$f&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# ?&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上述最后两行的结果？&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$f&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# &#39;1 2 3&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$f&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# &#39;1  2   3&#39;，空格会保留。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;如果在变量中出现空格，那么必须进行引用。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;命令替换&quot;&gt;&lt;a href=&quot;#命令替换&quot; class=&quot;headerlink&quot; title=&quot;命令替换&quot;&gt;&lt;/a&gt;命令替换&lt;/h4&gt;&lt;p&gt;命令替换就是将一个命令的结果赋值给变量。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;g=`&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; hello`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;h=$(&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; hello) &lt;span class=&quot;comment&quot;&gt;# 这两种语法等价&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;i=`ls &lt;span class=&quot;operator&quot;&gt;-l&lt;/span&gt;`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$i&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$i&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 和上一行的不同？想想上面的空格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;替换&quot;&gt;&lt;a href=&quot;#替换&quot; class=&quot;headerlink&quot; title=&quot;替换&quot;&gt;&lt;/a&gt;替换&lt;/h3&gt;&lt;p&gt;bash 里面引用一个变量的过程称为 Variable Substitution，字面意思即为变量替换。和大多数的语言叫法不同，但实际用起来没啥区别。&lt;/p&gt;
+&lt;p&gt;其实上面的赋值就有不少替换了，这里我们更进一步。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 替换，必须有美元符号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;variableName=&lt;span class=&quot;string&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a=&lt;span class=&quot;string&quot;&gt;&#39;1&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;b=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$variableName&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# value&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$&amp;#123;a&amp;#125;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# 1   实际上 $variable 是 $&amp;#123;variable&amp;#125; 的简化形式。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$b&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; foo &lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;foo $a&#39;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# ? 单引号，强引用，所有字符字面量显示&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;foo &lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;&quot;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# ? 双引号，弱引用，变量会被替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;foo \$a&quot;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# ? 转义，变量不会被替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;变量类型&quot;&gt;&lt;a href=&quot;#变量类型&quot; class=&quot;headerlink&quot; title=&quot;变量类型&quot;&gt;&lt;/a&gt;变量类型&lt;/h2&gt;&lt;p&gt; 这里当然不是说字符串、整形什么的，其实 &lt;code&gt;bash&lt;/code&gt; 中的变量都可以理解为字符串。&lt;br&gt; &lt;code&gt;bash&lt;/code&gt; 中有四种类型的变量，它们是环境变量、本地变量、位置变量和特殊变量。&lt;/p&gt;
+&lt;h3 id=&quot;环境变量&quot;&gt;&lt;a href=&quot;#环境变量&quot; class=&quot;headerlink&quot; title=&quot;环境变量&quot;&gt;&lt;/a&gt;环境变量&lt;/h3&gt;&lt;p&gt;参看维基百科的&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;环境变量&lt;/a&gt;，这里不做赘述。&lt;/p&gt;
+&lt;h3 id=&quot;本地变量&quot;&gt;&lt;a href=&quot;#本地变量&quot; class=&quot;headerlink&quot; title=&quot;本地变量&quot;&gt;&lt;/a&gt;本地变量&lt;/h3&gt;&lt;p&gt;我们上面的那么多的例子其实就是本地变量。&lt;br&gt;本地变量的作用域为当前脚本。有一个子类，局部变量，作用域是当前代码块，比如函数中的变量。&lt;/p&gt;
+&lt;h3 id=&quot;位置变量&quot;&gt;&lt;a href=&quot;#位置变量&quot; class=&quot;headerlink&quot; title=&quot;位置变量&quot;&gt;&lt;/a&gt;位置变量&lt;/h3&gt;&lt;p&gt;其实就是我们说的参数了，也是特殊变量的一种，因为常用，单独拿出。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$n&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# n 为自然数，1、2、3……&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 实例&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./test.sh foo bar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# foo&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$2&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;# bar&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;大于 &lt;code&gt;$9&lt;/code&gt; 的参数必须被放在大括号中&lt;/strong&gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$&amp;#123;10&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;特殊变量&quot;&gt;&lt;a href=&quot;#特殊变量&quot; class=&quot;headerlink&quot; title=&quot;特殊变量&quot;&gt;&lt;/a&gt;特殊变量&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;变量&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$$&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;表示当前 Shell 进程的 ID ，即 pid , &lt;code&gt;echo $$&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$n&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;上述位置变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$#&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;传递给脚本或函数的参数个数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$*&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;传递给脚本或函数的所有参数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$@&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;传递给脚本或函数的所有参数 &lt;code&gt;?&lt;/code&gt; &lt;em&gt;见下方&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$？&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;上个命令的退出状态，或函数的返回值 &lt;code&gt;?&lt;/code&gt; &lt;em&gt;见下方&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;$0&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;当前脚本的文件名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;和-的区别&quot;&gt;&lt;a href=&quot;#和-的区别&quot; class=&quot;headerlink&quot; title=&quot;$* 和 $@ 的区别&quot;&gt;&lt;/a&gt;&lt;code&gt;$*&lt;/code&gt; 和 &lt;code&gt;$@&lt;/code&gt; 的区别&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$@&lt;/span&gt;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 没有双引号，两者一样，都以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;$*&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 会将所有的参数作为一个整体，以&quot;$1 $2 … $n&quot;的形式输出所有参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$@&lt;/span&gt;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 会将各个参数分开，以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;退出与退出状态&quot;&gt;&lt;a href=&quot;#退出与退出状态&quot; class=&quot;headerlink&quot; title=&quot;退出与退出状态&quot;&gt;&lt;/a&gt;退出与退出状态&lt;/h4&gt;&lt;p&gt;请查看&lt;a href=&quot;https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/06_exit_and_exit_status.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;退出与退出状态&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://lovelace.blog.51cto.com/1028430/1211141&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bash shell学习之变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://c.biancheng.net/cpp/view/6999.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shell变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/228544/how-to-tell-if-a-string-is-not-defined-in-a-bash-shell-script&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to tell if a string is not defined in a bash shell script?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/variables.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Introduction to Variables and Parameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://imcmy.gitbooks.io/advanced-bash-scripting-guide-in-chinese/content/source/part2/04_introduction_to_variables_and_parameters.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;变量与参数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
     <summary type="html">
-    <![CDATA[<p>对一个编程脚本来说，最最基础的当然是变量。</p>
-<p>对大多数开发者来说，变量也是最不值得的大说特说的。</p>
-<p>但 <code>bash</code> 里的变量有一些特别的地方值得说说，谨防跌坑。<br>]]>
+    
+      &lt;p&gt;对一个编程脚本来说，最最基础的当然是变量。&lt;/p&gt;
+&lt;p&gt;对大多数开发者来说，变量也是最不值得的大说特说的。&lt;/p&gt;
+&lt;p&gt;但 &lt;code&gt;bash&lt;/code&gt; 里的变量有一些特别的地方值得说说，谨防跌坑。&lt;br&gt;
     
     </summary>
     
-      <category term="bash" scheme="http://jiangyuan.me/blog/tags/bash/"/>
     
-      <category term="mac" scheme="http://jiangyuan.me/blog/tags/mac/"/>
+      <category term="bash" scheme="http://jiangyuan.me/tags/bash/"/>
     
-      <category term="shell" scheme="http://jiangyuan.me/blog/tags/shell/"/>
+      <category term="mac" scheme="http://jiangyuan.me/tags/mac/"/>
+    
+      <category term="shell" scheme="http://jiangyuan.me/tags/shell/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[bash 初探]]></title>
-    <link href="http://jiangyuan.me/blog/2015/12/31/bash-the-beginning/"/>
-    <id>http://jiangyuan.me/blog/2015/12/31/bash-the-beginning/</id>
+    <title>bash 初探</title>
+    <link href="http://jiangyuan.me/2015/12/31/bash-the-beginning/"/>
+    <id>http://jiangyuan.me/2015/12/31/bash-the-beginning/</id>
     <published>2015-12-31T15:21:54.000Z</published>
     <updated>2016-01-27T13:17:39.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="shell__u7684_u542B_u4E49"><a href="#shell__u7684_u542B_u4E49" class="headerlink" title="shell 的含义"></a>shell 的含义</h2><p><code>shell</code> ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。</p>
-<p>一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 <code>CLI</code>，shell 也包含 GUI 的概念，<code>Windows Explorer</code> 是一个典型的图形界面Shell。</p>
-<p>当然，本文只关注 <code>CLI</code> 。<br><a id="more"></a></p>
-<p><code>mac</code> 源自 <code>unix</code> 系统，所以其 <code>shell</code> 和 <code>unix</code> 一脉相承。</p>
-<h3 id="shell__u811A_u672C"><a href="#shell__u811A_u672C" class="headerlink" title="shell 脚本"></a>shell 脚本</h3><p><code>shell</code> 本身的概念其实已经关注的很少，我们的最原始的印象，<code>shell</code> 是一门脚本语言，可用于编程。</p>
-<p>“shell 脚本”，又称 Shell 命令稿、程序化脚本，文本文件，由一连串的 <code>shell</code> 命令组成，经由 <code>Unix Shell</code>执行，可以进行系统管理、文件操作等。</p>
-<h2 id="u73AF_u5883"><a href="#u73AF_u5883" class="headerlink" title="环境"></a>环境</h2><p>当前主流的操作系统都支持 <code>shell</code> 编程，本系列所探究的 <code>shell</code> 编程是指 Linux 下的 <code>shell</code>，讲的基本都是 POSIX 标准下的功能，所以，也适用于 Unix及 BSD（如Mac OS）。</p>
-<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>Linux 默认安装就带了 shell 解释器。</p>
-<h4 id="Mac_OS"><a href="#Mac_OS" class="headerlink" title="Mac OS"></a>Mac OS</h4><p>Mac OS 不仅带了 sh、bash 这两个最基础的解释器，还内置了 ksh、csh、zsh 等不常用的解释器。</p>
-<p>我个人倒是推荐 <code>zsh</code> ，<code>zsh</code> 会专门来篇文章介绍。</p>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>windows 出厂时没有内置 shell 解释器……只能装模拟器，比如 <code>cygwin</code> 。</p>
-<p>当然 windows 上的 <code>PowerShell</code> 也是不俗的脚本，这个也会专门来个系列介绍。</p>
-<h3 id="u811A_u672C_u89E3_u91CA_u5668"><a href="#u811A_u672C_u89E3_u91CA_u5668" class="headerlink" title="脚本解释器"></a>脚本解释器</h3><p>当然，脚本解释器五花八门，下面就挑选些典型的说下。</p>
-<h4 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h4><p>即 Bourne shell，POSIX（Portable Operating System Interface）标准的 shell 解释器，它的二进制文件路径通常是 <code>/bin/sh</code>，由 Bell Labs 开发。</p>
-<h4 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h4><p>Bash 是 Bourne shell 的替代品，属 GNU Project，二进制文件路径通常是 <code>/bin/bash</code>。业界通常混用 <code>bash</code>、<code>sh</code>、和 <code>shell</code>，比如你会经常在招聘运维工程师的文案中见到：熟悉 Linux Bash 编程，精通 Shell 编程。</p>
-<h4 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h4><p>Z Shell(Zsh) 以认为是一种 Bourne shell 的扩展，带有数量庞大的改进，包括一些bash、ksh、tcsh的功能。</p>
-<h4 id="u9AD8_u7EA7_u7F16_u7A0B_u8BED_u8A00"><a href="#u9AD8_u7EA7_u7F16_u7A0B_u8BED_u8A00" class="headerlink" title="高级编程语言"></a>高级编程语言</h4><p>理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby、Nodejs。</p>
-<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://github.com/qinjx/30min_guides/blob/master/shell.md" target="_blank" rel="external">Shell脚本编程30分钟入门</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4" target="_blank" rel="external">shell</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/Shell%E8%84%9A%E6%9C%AC" target="_blank" rel="external">Shell脚本</a></li>
-<li><a href="/blog/Z%20shell">Z shell</a></li>
-</ul>
-]]></content>
+    
+    <content type="html">&lt;h2 id=&quot;shell-的含义&quot;&gt;&lt;a href=&quot;#shell-的含义&quot; class=&quot;headerlink&quot; title=&quot;shell 的含义&quot;&gt;&lt;/a&gt;shell 的含义&lt;/h2&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。&lt;/p&gt;
+&lt;p&gt;一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 &lt;code&gt;CLI&lt;/code&gt;，shell 也包含 GUI 的概念，&lt;code&gt;Windows Explorer&lt;/code&gt; 是一个典型的图形界面Shell。&lt;/p&gt;
+&lt;p&gt;当然，本文只关注 &lt;code&gt;CLI&lt;/code&gt; 。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mac&lt;/code&gt; 源自 &lt;code&gt;unix&lt;/code&gt; 系统，所以其 &lt;code&gt;shell&lt;/code&gt; 和 &lt;code&gt;unix&lt;/code&gt; 一脉相承。&lt;/p&gt;
+&lt;h3 id=&quot;shell-脚本&quot;&gt;&lt;a href=&quot;#shell-脚本&quot; class=&quot;headerlink&quot; title=&quot;shell 脚本&quot;&gt;&lt;/a&gt;shell 脚本&lt;/h3&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 本身的概念其实已经关注的很少，我们的最原始的印象，&lt;code&gt;shell&lt;/code&gt; 是一门脚本语言，可用于编程。&lt;/p&gt;
+&lt;p&gt;“shell 脚本”，又称 Shell 命令稿、程序化脚本，文本文件，由一连串的 &lt;code&gt;shell&lt;/code&gt; 命令组成，经由 &lt;code&gt;Unix Shell&lt;/code&gt;执行，可以进行系统管理、文件操作等。&lt;/p&gt;
+&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;p&gt;当前主流的操作系统都支持 &lt;code&gt;shell&lt;/code&gt; 编程，本系列所探究的 &lt;code&gt;shell&lt;/code&gt; 编程是指 Linux 下的 &lt;code&gt;shell&lt;/code&gt;，讲的基本都是 POSIX 标准下的功能，所以，也适用于 Unix及 BSD（如Mac OS）。&lt;/p&gt;
+&lt;h3 id=&quot;OS&quot;&gt;&lt;a href=&quot;#OS&quot; class=&quot;headerlink&quot; title=&quot;OS&quot;&gt;&lt;/a&gt;OS&lt;/h3&gt;&lt;h4 id=&quot;Linux&quot;&gt;&lt;a href=&quot;#Linux&quot; class=&quot;headerlink&quot; title=&quot;Linux&quot;&gt;&lt;/a&gt;Linux&lt;/h4&gt;&lt;p&gt;Linux 默认安装就带了 shell 解释器。&lt;/p&gt;
+&lt;h4 id=&quot;Mac-OS&quot;&gt;&lt;a href=&quot;#Mac-OS&quot; class=&quot;headerlink&quot; title=&quot;Mac OS&quot;&gt;&lt;/a&gt;Mac OS&lt;/h4&gt;&lt;p&gt;Mac OS 不仅带了 sh、bash 这两个最基础的解释器，还内置了 ksh、csh、zsh 等不常用的解释器。&lt;/p&gt;
+&lt;p&gt;我个人倒是推荐 &lt;code&gt;zsh&lt;/code&gt; ，&lt;code&gt;zsh&lt;/code&gt; 会专门来篇文章介绍。&lt;/p&gt;
+&lt;h4 id=&quot;Windows&quot;&gt;&lt;a href=&quot;#Windows&quot; class=&quot;headerlink&quot; title=&quot;Windows&quot;&gt;&lt;/a&gt;Windows&lt;/h4&gt;&lt;p&gt;windows 出厂时没有内置 shell 解释器……只能装模拟器，比如 &lt;code&gt;cygwin&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;当然 windows 上的 &lt;code&gt;PowerShell&lt;/code&gt; 也是不俗的脚本，这个也会专门来个系列介绍。&lt;/p&gt;
+&lt;h3 id=&quot;脚本解释器&quot;&gt;&lt;a href=&quot;#脚本解释器&quot; class=&quot;headerlink&quot; title=&quot;脚本解释器&quot;&gt;&lt;/a&gt;脚本解释器&lt;/h3&gt;&lt;p&gt;当然，脚本解释器五花八门，下面就挑选些典型的说下。&lt;/p&gt;
+&lt;h4 id=&quot;sh&quot;&gt;&lt;a href=&quot;#sh&quot; class=&quot;headerlink&quot; title=&quot;sh&quot;&gt;&lt;/a&gt;sh&lt;/h4&gt;&lt;p&gt;即 Bourne shell，POSIX（Portable Operating System Interface）标准的 shell 解释器，它的二进制文件路径通常是 &lt;code&gt;/bin/sh&lt;/code&gt;，由 Bell Labs 开发。&lt;/p&gt;
+&lt;h4 id=&quot;bash&quot;&gt;&lt;a href=&quot;#bash&quot; class=&quot;headerlink&quot; title=&quot;bash&quot;&gt;&lt;/a&gt;bash&lt;/h4&gt;&lt;p&gt;Bash 是 Bourne shell 的替代品，属 GNU Project，二进制文件路径通常是 &lt;code&gt;/bin/bash&lt;/code&gt;。业界通常混用 &lt;code&gt;bash&lt;/code&gt;、&lt;code&gt;sh&lt;/code&gt;、和 &lt;code&gt;shell&lt;/code&gt;，比如你会经常在招聘运维工程师的文案中见到：熟悉 Linux Bash 编程，精通 Shell 编程。&lt;/p&gt;
+&lt;h4 id=&quot;zsh&quot;&gt;&lt;a href=&quot;#zsh&quot; class=&quot;headerlink&quot; title=&quot;zsh&quot;&gt;&lt;/a&gt;zsh&lt;/h4&gt;&lt;p&gt;Z Shell(Zsh) 以认为是一种 Bourne shell 的扩展，带有数量庞大的改进，包括一些bash、ksh、tcsh的功能。&lt;/p&gt;
+&lt;h4 id=&quot;高级编程语言&quot;&gt;&lt;a href=&quot;#高级编程语言&quot; class=&quot;headerlink&quot; title=&quot;高级编程语言&quot;&gt;&lt;/a&gt;高级编程语言&lt;/h4&gt;&lt;p&gt;理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby、Nodejs。&lt;/p&gt;
+&lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/qinjx/30min_guides/blob/master/shell.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shell脚本编程30分钟入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;shell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/Shell%E8%84%9A%E6%9C%AC&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shell脚本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;Z%20shell&quot;&gt;Z shell&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
     <summary type="html">
-    <![CDATA[<h2 id="shell__u7684_u542B_u4E49"><a href="#shell__u7684_u542B_u4E49" class="headerlink" title="shell 的含义"></a>shell 的含义</h2><p><code>shell</code> ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。</p>
-<p>一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 <code>CLI</code>，shell 也包含 GUI 的概念，<code>Windows Explorer</code> 是一个典型的图形界面Shell。</p>
-<p>当然，本文只关注 <code>CLI</code> 。<br>]]>
+    
+      &lt;h2 id=&quot;shell-的含义&quot;&gt;&lt;a href=&quot;#shell-的含义&quot; class=&quot;headerlink&quot; title=&quot;shell 的含义&quot;&gt;&lt;/a&gt;shell 的含义&lt;/h2&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。&lt;/p&gt;
+&lt;p&gt;一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 &lt;code&gt;CLI&lt;/code&gt;，shell 也包含 GUI 的概念，&lt;code&gt;Windows Explorer&lt;/code&gt; 是一个典型的图形界面Shell。&lt;/p&gt;
+&lt;p&gt;当然，本文只关注 &lt;code&gt;CLI&lt;/code&gt; 。&lt;br&gt;
     
     </summary>
     
-      <category term="bash" scheme="http://jiangyuan.me/blog/tags/bash/"/>
     
-      <category term="mac" scheme="http://jiangyuan.me/blog/tags/mac/"/>
+      <category term="bash" scheme="http://jiangyuan.me/tags/bash/"/>
     
-      <category term="shell" scheme="http://jiangyuan.me/blog/tags/shell/"/>
+      <category term="mac" scheme="http://jiangyuan.me/tags/mac/"/>
+    
+      <category term="shell" scheme="http://jiangyuan.me/tags/shell/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[javascript 的跨域问题]]></title>
-    <link href="http://jiangyuan.me/blog/2013/05/15/crossdomain/"/>
-    <id>http://jiangyuan.me/blog/2013/05/15/crossdomain/</id>
+    <title>javascript 的跨域问题</title>
+    <link href="http://jiangyuan.me/2013/05/15/crossdomain/"/>
+    <id>http://jiangyuan.me/2013/05/15/crossdomain/</id>
     <published>2013-05-15T15:21:54.000Z</published>
     <updated>2016-01-18T08:57:41.000Z</updated>
-    <content type="html"><![CDATA[<p>最近有不少人问到了我跨域问题，也有不少问题是因为跨域引起的，加上我本人对跨域的方法和每种方法背后的机制都不胜了解，<br>所以就有做个笔记的必要了。</p>
-<p>还是那句话，只有亲自敲击了才能理解深刻。</p>
-<p>下面就是 javascript 跨域的几个办法：</p>
-<ul>
-<li><p>document.domain</p>
-</li>
-<li><p>jsonp</p>
-</li>
-<li><p>利用 iframe 和 location.hash</p>
-</li>
-<li><p>windown.name 实现的跨域数据传输</p>
-</li>
-<li><p>HTML5 postMessage</p>
-</li>
-<li><p>ajax2 中的跨域资源共享 (CORS: cross-orgin resource sharing)</p>
-</li>
-<li><p>flash</p>
-</li>
-</ul>
-<a id="more"></a>
-<h2 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h2><p>修改 document.domain 方法可能是最简单的跨域方法。</p>
-<p>假如有两个页面</p>
-<pre><code>http://www.a.com/a.html
+    
+    <content type="html">&lt;p&gt;最近有不少人问到了我跨域问题，也有不少问题是因为跨域引起的，加上我本人对跨域的方法和每种方法背后的机制都不胜了解，&lt;br&gt;所以就有做个笔记的必要了。&lt;/p&gt;
+&lt;p&gt;还是那句话，只有亲自敲击了才能理解深刻。&lt;/p&gt;
+&lt;p&gt;下面就是 javascript 跨域的几个办法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;document.domain&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;jsonp&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用 iframe 和 location.hash&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;windown.name 实现的跨域数据传输&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTML5 postMessage&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ajax2 中的跨域资源共享 (CORS: cross-orgin resource sharing)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;flash&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;document-domain&quot;&gt;&lt;a href=&quot;#document-domain&quot; class=&quot;headerlink&quot; title=&quot;document.domain&quot;&gt;&lt;/a&gt;document.domain&lt;/h2&gt;&lt;p&gt;修改 document.domain 方法可能是最简单的跨域方法。&lt;/p&gt;
+&lt;p&gt;假如有两个页面&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://www.a.com/a.html
 http://script.a.com/b.html
-</code></pre><p>要做跨域通信，那么就可以在 a.html 页面上加上代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.domain = <span class="string">"a.com"</span>;</span><br></pre></td></tr></table></figure>
-<p>相应的 b 页面上也加上上述代码。</p>
-<p>a.html 部分 html 如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">src</span>=<span class="value">"http://script.a.com/b.html"</span> &gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>上面 a 页面是可以顺利的和 b 页面交互的，也就是跨域交互。</p>
-<p>这个方法简单是简单，但是局限很大：</p>
-<ol>
-<li><p>主域名必须相同，上面两个域名的主域名都是 a.com ，如果主域名不相同，趁早放弃这种方法。</p>
-</li>
-<li><p>安全性，b 被攻击， a 也很有可能出现漏洞。</p>
-</li>
-<li><p>引入多个 iframe 的时候，代码量大且芜杂，性能直线下降。</p>
-</li>
-</ol>
-<h2 id="u5173_u4E8E_jsonp"><a href="#u5173_u4E8E_jsonp" class="headerlink" title="关于 jsonp"></a>关于 jsonp</h2><p>参考文章：</p>
-<ol>
-<li><p><a href="http://www.cnblogs.com/lemontea/archive/2012/12/11/2812268.html" target="_blank" rel="external">jsonp详解</a></p>
-</li>
-<li><p><a href="https://github.com/lifesinger/lifesinger.github.com/issues/118" target="_blank" rel="external">聊聊 JSONP 的 P</a></p>
-</li>
-</ol>
-<p>这个年头，似乎不扯几下 jsonp 就显不出自己的水平似得，唉……</p>
-<p>上面两篇文章，第一篇适合入门，第二篇是加深理解。</p>
-<p>jsonp， JSON With Padding。</p>
-<p>基础是 script 标签的跨域能力。</p>
-<p>script 标签加载完成就会执行其中的代码，因此其内容必须合乎 javascript 语法，如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    id: <span class="number">1</span>,</span><br><span class="line">    name: <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码肯定要跪掉，因此必须这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;</span><br><span class="line">    id: <span class="number">1</span>,</span><br><span class="line">    name: <span class="number">2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>callback 可以在发送请求时放在 url 后传过去，当然，当前页面也必须有 callback 函数。</p>
-<p>OK，这就是 jsonp 。</p>
-<h2 id="u5229_u7528_iframe__u548C_location-hash"><a href="#u5229_u7528_iframe__u548C_location-hash" class="headerlink" title="利用 iframe 和 location.hash"></a>利用 iframe 和 location.hash</h2><p>就我个人而言，这个方法实在是有些蛋疼，但也不失为解决跨域的方法。</p>
-<p>需求如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.com 下 有页面 a.html ，主页面，需要和</span><br><span class="line">b.com 下 页面 b.html 通信</span><br></pre></td></tr></table></figure>
-<p>先说说 location.hash ，这段 url</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.html#data</span><br></pre></td></tr></table></figure>
-<p>中的 #data 就是 location.hash 。</p>
-<p>经常使用锚点的同学应该很熟悉，这个东东可以将页面定位到 id 为 data 的元素位置。</p>
-<p>除此之外，改变 hash 会改变浏览器的历史记录但是不刷新或者跳转页面，并且，在高级浏览器（IE8+）中你可以通过</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onhashchange</span><br></pre></td></tr></table></figure>
-<p>事件来监听这个变化，当然，如果你想兼容所有浏览器(IE6+)又懒得自己动手，<br>可以参考 <a href="http://benalman.com/projects/jquery-hashchange-plugin/" target="_blank" rel="external">jQuery hashchange event</a> 。<br>利用这个事件，可以来做 <a href="http://www.impressivewebs.com/deep-linking-javascript-ajax/" target="_blank" rel="external">deeplink</a> 。</p>
-<p>当然，我们这里是要做跨域，差点跑题了。</p>
-<p>上面的需求可以概括为， a.com 下的 a.html 想跨域获取 b.com 下的 b.html 页面上的数据。</p>
-<p>大体思路：</p>
-<p>a.html 中创建 iframe 指向 b.html 并利用 hash 传递数据</p>
-<p>b.html 拿到参数，修改 a.html 页面的 hash 来传递数据</p>
-<p>a.html 通过 onhashchange 事件监听自身的 hash 变化，获取数据</p>
-<p>代码：</p>
-<p>首先在 a.html 页面中创建一个 iframe ，并指向 b.html ，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#35831;&#27714; b.html&#10;function request() &#123;&#10;    var iframe = document.createElement( &#34;iframe&#34; )&#10;    iframe.style.display = &#34;none&#34;;&#10;    iframe.src = &#34;http://b.com/b.html#data&#34;;    // &#27880;&#24847; hash&#10;    document.body.appendChild( iframe );&#10;&#125;&#10;&#10;&#10;// &#30417;&#21548; hash&#10;window.onhashchange = function() &#123;&#10;    var data = location.hash ? location.hash.substring(1) : &#34;&#34;;&#10;    console.log( &#34;Now the data is &#34; + data ) ;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>b.html 页面中的代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模拟一个简单的参数处理操作</span></span><br><span class="line"><span class="keyword">switch</span>( location.hash )&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">        callBack();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'#data2'</span>:</span><br><span class="line">        <span class="comment">//do something……</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callBack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        parent.location.hash = <span class="string">"somedata"</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="comment">// ie、chrome 的安全机制（不同域）无法修改 parent.location.hash，</span></span><br><span class="line">        <span class="comment">// 所以要利用一个中间的 a.com 域下的代理 iframe</span></span><br><span class="line">        <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement( <span class="string">"iframe"</span> );</span><br><span class="line">        iframe.style.display = <span class="string">"none"</span>;</span><br><span class="line">        iframe.src = <span class="string">"http://a.com/a2.html#somedata"</span>;    <span class="comment">// 注意该文件在"a.com"域下</span></span><br><span class="line">        <span class="built_in">document</span>.body.appendChild( iframe );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在知道我为什么说这种方法蛋痛了吧，第三个页面 (a.com 下的 a2.html) 出现了，其中代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parent.parent 就是 a.html</span></span><br><span class="line"><span class="comment">// 因为parent.parent和自身属于同一个域，所以可以改变其location.hash的值</span></span><br><span class="line">parent.parent.location.hash = location.hash.substring(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>跨域是搞定了，但是这个方法的缺陷也很明显：数据直接暴露在了url中，数据容量和类型都有限等……</p>
-<p>整个方法就是这样了，这个方法的出现充分证明了 javascript 跨域实在是，坑爹！</p>
-<hr>
-<p>时间隔的有点久了</p>
-<hr>
-<h2 id="window-name__u8DE8_u57DF"><a href="#window-name__u8DE8_u57DF" class="headerlink" title="window.name 跨域"></a>window.name 跨域</h2><p>上面的 location.hash 确实问题很多，数据暴露、数据容量小等等，老实说，如果能解决这些问题，还是不错的。</p>
-<p>庆幸的是，有一种方法能有达到上述效果，那就是利用 window.name 。</p>
-<p>这篇文章写得很清楚，<a href="http://www.planabc.net/2008/09/01/window_name_transport/" target="_blank" rel="external">使用 window.name 解决跨域问题</a>。</p>
-<p>当然，别人写那还是别人的，自己必须要研究一遍啊。</p>
-<p>window.name 的跨域的机制是：</p>
-<blockquote>
-<p>name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB）。</p>
-</blockquote>
-<p>比如在 a 页面设置了 window.name 的值，如果 a 跳转到 b 页面，该 name 值仍旧存在，所以思路也就出来了……</p>
-<p>看我的代码，<a href="https://github.com/jiangyuan/playjs/tree/master/crossdomain/name" target="_blank" rel="external">点击</a>：</p>
-<p>3000.html 是发起请求的页面，希望获取 3001.html 上的数据，那么——</p>
-<ol>
-<li><p>3000.html 中放一个 iframe ，指向 3001.html ，并监听 iframe 的 load 事件。</p>
-</li>
-<li><p>3001.html 操作自己的 window.name ，以此传送数据。</p>
-</li>
-<li><p>3000.html 当然不能直接访问 3001.html ，所有 3000proxy.html 就有存在的必要。</p>
-<p> 3001.html 第一次加载完成后，使 iframe 跳转到 3000proxy，此时 window.name 仍旧存在，并且 iframe 和其父页面同域，可互相访问，<br> 跨域获取数据完成。</p>
-</li>
-</ol>
-<p>就是那么简单，这个方法可以说是 loacation.hash 的升级版。</p>
-<p>个人觉得，这个方法可以非常好地解决 javascript 跨域问题，推荐使用。</p>
-<h2 id="HTML5_postMessage"><a href="#HTML5_postMessage" class="headerlink" title="HTML5 postMessage"></a>HTML5 postMessage</h2><p>html5 的 postMessage ，可以在不同的 window 之间、甚至在不同域的 window 之间传递数据。<br>现阶段唯一的问题是浏览器的兼容问题， postMessage 支持 IE8+ 和其他现代浏览器。</p>
-<p>可以参照这个<a href="https://github.com/jiangyuan/playjs/tree/master/crossdomain/name" target="_blank" rel="external">例子</a>。</p>
-<p>postMessage 的使用语法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.postMessage( data, targetOrigin)</span><br><span class="line"></span><br><span class="line"><span class="comment">// window 是目标 window 对象，可以为 iframe 的 contentWindow，或者 window.open 的返回值……</span></span><br><span class="line"><span class="comment">// data 是要传递的数据，字符串类型，可以将复杂的类型序列化为字符串传送</span></span><br><span class="line"><span class="comment">// targetOrigin 是目标域，假如设为 `http://a.com` 那么 `http://b.com` 就不会收到传送的数据</span></span><br></pre></td></tr></table></figure>
-<p>知道用法，那么思路就很清楚了——</p>
-<p>3000 端口下的页面 <code>postMessage.html</code> 需要从 3001 端口下的 <code>postMessageTarget.html</code> 获取数据：</p>
-<p>postMessage.html 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这个文件运行在端口 3000 下 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 向端口 3001 传递参数，以期获得数据 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">src</span>=<span class="value">"http://localhost:3001/crossdomain/postMessage/postMessageTarget.html"</span> <span class="attribute">frameborder</span>=<span class="value">"0"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="keyword">var</span> ifr = <span class="built_in">document</span>.getElementsByTagName( <span class="string">"iframe"</span> )[<span class="number">0</span>];</span><br><span class="line">    ifr.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 传送参数</span></span><br><span class="line">        ifr.contentWindow.postMessage( <span class="string">"post data"</span>, <span class="string">"*"</span> );        </span><br><span class="line">    &#125;, <span class="literal">false</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取返回的数据</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener( <span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( <span class="string">"the response data is: "</span> + e.data );</span><br><span class="line">    &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>postMessageTarget.html 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="comment">// 此页面运行在 3001 端口下</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依据传入的 message 返回响应的数据</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener( <span class="string">"message"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//console.log( "the post data is: " + e.data );</span></span><br><span class="line">        <span class="keyword">if</span> ( e.data ) &#123;</span><br><span class="line">            e.source.postMessage( <span class="string">"response data"</span>, <span class="string">"*"</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>整个过程很清楚，完全没有多余的步骤。</p>
-<p>唉，跨域问题在 html5 的面前就是如此简单。</p>
-]]></content>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要做跨域通信，那么就可以在 a.html 页面上加上代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.domain = &lt;span class=&quot;string&quot;&gt;&quot;a.com&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;相应的 b 页面上也加上上述代码。&lt;/p&gt;
+&lt;p&gt;a.html 部分 html 如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;iframe&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://script.a.com/b.html&quot;&lt;/span&gt; &amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;iframe&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面 a 页面是可以顺利的和 b 页面交互的，也就是跨域交互。&lt;/p&gt;
+&lt;p&gt;这个方法简单是简单，但是局限很大：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;主域名必须相同，上面两个域名的主域名都是 a.com ，如果主域名不相同，趁早放弃这种方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安全性，b 被攻击， a 也很有可能出现漏洞。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;引入多个 iframe 的时候，代码量大且芜杂，性能直线下降。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;关于-jsonp&quot;&gt;&lt;a href=&quot;#关于-jsonp&quot; class=&quot;headerlink&quot; title=&quot;关于 jsonp&quot;&gt;&lt;/a&gt;关于 jsonp&lt;/h2&gt;&lt;p&gt;参考文章：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/lemontea/archive/2012/12/11/2812268.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jsonp详解&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lifesinger/lifesinger.github.com/issues/118&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;聊聊 JSONP 的 P&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个年头，似乎不扯几下 jsonp 就显不出自己的水平似得，唉……&lt;/p&gt;
+&lt;p&gt;上面两篇文章，第一篇适合入门，第二篇是加深理解。&lt;/p&gt;
+&lt;p&gt;jsonp， JSON With Padding。&lt;/p&gt;
+&lt;p&gt;基础是 script 标签的跨域能力。&lt;/p&gt;
+&lt;p&gt;script 标签加载完成就会执行其中的代码，因此其内容必须合乎 javascript 语法，如下&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    id: &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    name: &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;代码肯定要跪掉，因此必须这样：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;callback(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    id: &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    name: &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;callback 可以在发送请求时放在 url 后传过去，当然，当前页面也必须有 callback 函数。&lt;/p&gt;
+&lt;p&gt;OK，这就是 jsonp 。&lt;/p&gt;
+&lt;h2 id=&quot;利用-iframe-和-location-hash&quot;&gt;&lt;a href=&quot;#利用-iframe-和-location-hash&quot; class=&quot;headerlink&quot; title=&quot;利用 iframe 和 location.hash&quot;&gt;&lt;/a&gt;利用 iframe 和 location.hash&lt;/h2&gt;&lt;p&gt;就我个人而言，这个方法实在是有些蛋疼，但也不失为解决跨域的方法。&lt;/p&gt;
+&lt;p&gt;需求如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a.com 下 有页面 a.html ，主页面，需要和&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;b.com 下 页面 b.html 通信&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;先说说 location.hash ，这段 url&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a.html#data&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;中的 #data 就是 location.hash 。&lt;/p&gt;
+&lt;p&gt;经常使用锚点的同学应该很熟悉，这个东东可以将页面定位到 id 为 data 的元素位置。&lt;/p&gt;
+&lt;p&gt;除此之外，改变 hash 会改变浏览器的历史记录但是不刷新或者跳转页面，并且，在高级浏览器（IE8+）中你可以通过&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.onhashchange&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;事件来监听这个变化，当然，如果你想兼容所有浏览器(IE6+)又懒得自己动手，&lt;br&gt;可以参考 &lt;a href=&quot;http://benalman.com/projects/jquery-hashchange-plugin/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jQuery hashchange event&lt;/a&gt; 。&lt;br&gt;利用这个事件，可以来做 &lt;a href=&quot;http://www.impressivewebs.com/deep-linking-javascript-ajax/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;deeplink&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;当然，我们这里是要做跨域，差点跑题了。&lt;/p&gt;
+&lt;p&gt;上面的需求可以概括为， a.com 下的 a.html 想跨域获取 b.com 下的 b.html 页面上的数据。&lt;/p&gt;
+&lt;p&gt;大体思路：&lt;/p&gt;
+&lt;p&gt;a.html 中创建 iframe 指向 b.html 并利用 hash 传递数据&lt;/p&gt;
+&lt;p&gt;b.html 拿到参数，修改 a.html 页面的 hash 来传递数据&lt;/p&gt;
+&lt;p&gt;a.html 通过 onhashchange 事件监听自身的 hash 变化，获取数据&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;p&gt;首先在 a.html 页面中创建一个 iframe ，并指向 b.html ，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// &amp;#35831;&amp;#27714; b.html&amp;#10;function request() &amp;#123;&amp;#10;    var iframe = document.createElement( &amp;#34;iframe&amp;#34; )&amp;#10;    iframe.style.display = &amp;#34;none&amp;#34;;&amp;#10;    iframe.src = &amp;#34;http://b.com/b.html#data&amp;#34;;    // &amp;#27880;&amp;#24847; hash&amp;#10;    document.body.appendChild( iframe );&amp;#10;&amp;#125;&amp;#10;&amp;#10;&amp;#10;// &amp;#30417;&amp;#21548; hash&amp;#10;window.onhashchange = function() &amp;#123;&amp;#10;    var data = location.hash ? location.hash.substring(1) : &amp;#34;&amp;#34;;&amp;#10;    console.log( &amp;#34;Now the data is &amp;#34; + data ) ;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;b.html 页面中的代码&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//模拟一个简单的参数处理操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;switch&lt;/span&gt;( location.hash )&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;#data&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        callBack();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;#data2&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//do something……&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;callBack&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        parent.location.hash = &lt;span class=&quot;string&quot;&gt;&quot;somedata&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (e) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// ie、chrome 的安全机制（不同域）无法修改 parent.location.hash，&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 所以要利用一个中间的 a.com 域下的代理 iframe&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; iframe = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.createElement( &lt;span class=&quot;string&quot;&gt;&quot;iframe&quot;&lt;/span&gt; );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        iframe.style.display = &lt;span class=&quot;string&quot;&gt;&quot;none&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        iframe.src = &lt;span class=&quot;string&quot;&gt;&quot;http://a.com/a2.html#somedata&quot;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;// 注意该文件在&quot;a.com&quot;域下&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.body.appendChild( iframe );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;现在知道我为什么说这种方法蛋痛了吧，第三个页面 (a.com 下的 a2.html) 出现了，其中代码&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// parent.parent 就是 a.html&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 因为parent.parent和自身属于同一个域，所以可以改变其location.hash的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;parent.parent.location.hash = location.hash.substring(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;跨域是搞定了，但是这个方法的缺陷也很明显：数据直接暴露在了url中，数据容量和类型都有限等……&lt;/p&gt;
+&lt;p&gt;整个方法就是这样了，这个方法的出现充分证明了 javascript 跨域实在是，坑爹！&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;时间隔的有点久了&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;window-name-跨域&quot;&gt;&lt;a href=&quot;#window-name-跨域&quot; class=&quot;headerlink&quot; title=&quot;window.name 跨域&quot;&gt;&lt;/a&gt;window.name 跨域&lt;/h2&gt;&lt;p&gt;上面的 location.hash 确实问题很多，数据暴露、数据容量小等等，老实说，如果能解决这些问题，还是不错的。&lt;/p&gt;
+&lt;p&gt;庆幸的是，有一种方法能有达到上述效果，那就是利用 window.name 。&lt;/p&gt;
+&lt;p&gt;这篇文章写得很清楚，&lt;a href=&quot;http://www.planabc.net/2008/09/01/window_name_transport/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;使用 window.name 解决跨域问题&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;当然，别人写那还是别人的，自己必须要研究一遍啊。&lt;/p&gt;
+&lt;p&gt;window.name 的跨域的机制是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;比如在 a 页面设置了 window.name 的值，如果 a 跳转到 b 页面，该 name 值仍旧存在，所以思路也就出来了……&lt;/p&gt;
+&lt;p&gt;看我的代码，&lt;a href=&quot;https://github.com/jiangyuan/playjs/tree/master/crossdomain/name&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击&lt;/a&gt;：&lt;/p&gt;
+&lt;p&gt;3000.html 是发起请求的页面，希望获取 3001.html 上的数据，那么——&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;3000.html 中放一个 iframe ，指向 3001.html ，并监听 iframe 的 load 事件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3001.html 操作自己的 window.name ，以此传送数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3000.html 当然不能直接访问 3001.html ，所有 3000proxy.html 就有存在的必要。&lt;/p&gt;
+&lt;p&gt; 3001.html 第一次加载完成后，使 iframe 跳转到 3000proxy，此时 window.name 仍旧存在，并且 iframe 和其父页面同域，可互相访问，&lt;br&gt; 跨域获取数据完成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;就是那么简单，这个方法可以说是 loacation.hash 的升级版。&lt;/p&gt;
+&lt;p&gt;个人觉得，这个方法可以非常好地解决 javascript 跨域问题，推荐使用。&lt;/p&gt;
+&lt;h2 id=&quot;HTML5-postMessage&quot;&gt;&lt;a href=&quot;#HTML5-postMessage&quot; class=&quot;headerlink&quot; title=&quot;HTML5 postMessage&quot;&gt;&lt;/a&gt;HTML5 postMessage&lt;/h2&gt;&lt;p&gt;html5 的 postMessage ，可以在不同的 window 之间、甚至在不同域的 window 之间传递数据。&lt;br&gt;现阶段唯一的问题是浏览器的兼容问题， postMessage 支持 IE8+ 和其他现代浏览器。&lt;/p&gt;
+&lt;p&gt;可以参照这个&lt;a href=&quot;https://github.com/jiangyuan/playjs/tree/master/crossdomain/name&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;postMessage 的使用语法：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.postMessage( data, targetOrigin)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// window 是目标 window 对象，可以为 iframe 的 contentWindow，或者 window.open 的返回值……&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// data 是要传递的数据，字符串类型，可以将复杂的类型序列化为字符串传送&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// targetOrigin 是目标域，假如设为 `http://a.com` 那么 `http://b.com` 就不会收到传送的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;知道用法，那么思路就很清楚了——&lt;/p&gt;
+&lt;p&gt;3000 端口下的页面 &lt;code&gt;postMessage.html&lt;/code&gt; 需要从 3001 端口下的 &lt;code&gt;postMessageTarget.html&lt;/code&gt; 获取数据：&lt;/p&gt;
+&lt;p&gt;postMessage.html 代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 这个文件运行在端口 3000 下 --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 向端口 3001 传递参数，以期获得数据 --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;iframe&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://localhost:3001/crossdomain/postMessage/postMessageTarget.html&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;frameborder&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;0&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;iframe&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; ifr = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementsByTagName( &lt;span class=&quot;string&quot;&gt;&quot;iframe&quot;&lt;/span&gt; )[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ifr.addEventListener( &lt;span class=&quot;string&quot;&gt;&quot;load&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 传送参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ifr.contentWindow.postMessage( &lt;span class=&quot;string&quot;&gt;&quot;post data&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;*&quot;&lt;/span&gt; );        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;, &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 获取返回的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.addEventListener( &lt;span class=&quot;string&quot;&gt;&quot;message&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;e&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log( &lt;span class=&quot;string&quot;&gt;&quot;the response data is: &quot;&lt;/span&gt; + e.data );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;postMessageTarget.html 代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 此页面运行在 3001 端口下&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 依据传入的 message 返回响应的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.addEventListener( &lt;span class=&quot;string&quot;&gt;&quot;message&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;e&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;//console.log( &quot;the post data is: &quot; + e.data );&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; ( e.data ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            e.source.postMessage( &lt;span class=&quot;string&quot;&gt;&quot;response data&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;*&quot;&lt;/span&gt; );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;, &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;整个过程很清楚，完全没有多余的步骤。&lt;/p&gt;
+&lt;p&gt;唉，跨域问题在 html5 的面前就是如此简单。&lt;/p&gt;
+</content>
+    
     <summary type="html">
-    <![CDATA[<p>最近有不少人问到了我跨域问题，也有不少问题是因为跨域引起的，加上我本人对跨域的方法和每种方法背后的机制都不胜了解，<br>所以就有做个笔记的必要了。</p>
-<p>还是那句话，只有亲自敲击了才能理解深刻。</p>
-<p>下面就是 javascript 跨域的几个办法：</p>
-<ul>
-<li><p>document.domain</p>
-</li>
-<li><p>jsonp</p>
-</li>
-<li><p>利用 iframe 和 location.hash</p>
-</li>
-<li><p>windown.name 实现的跨域数据传输</p>
-</li>
-<li><p>HTML5 postMessage</p>
-</li>
-<li><p>ajax2 中的跨域资源共享 (CORS: cross-orgin resource sharing)</p>
-</li>
-<li><p>flash</p>
-</li>
-</ul>]]>
+    
+      &lt;p&gt;最近有不少人问到了我跨域问题，也有不少问题是因为跨域引起的，加上我本人对跨域的方法和每种方法背后的机制都不胜了解，&lt;br&gt;所以就有做个笔记的必要了。&lt;/p&gt;
+&lt;p&gt;还是那句话，只有亲自敲击了才能理解深刻。&lt;/p&gt;
+&lt;p&gt;下面就是 javascript 跨域的几个办法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;document.domain&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;jsonp&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用 iframe 和 location.hash&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;windown.name 实现的跨域数据传输&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTML5 postMessage&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ajax2 中的跨域资源共享 (CORS: cross-orgin resource sharing)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;flash&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
-      <category term="jsonp" scheme="http://jiangyuan.me/blog/tags/jsonp/"/>
     
-      <category term="跨域" scheme="http://jiangyuan.me/blog/tags/%E8%B7%A8%E5%9F%9F/"/>
+      <category term="jsonp" scheme="http://jiangyuan.me/tags/jsonp/"/>
+    
+      <category term="跨域" scheme="http://jiangyuan.me/tags/%E8%B7%A8%E5%9F%9F/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[浏览器缓存]]></title>
-    <link href="http://jiangyuan.me/blog/2013/03/21/browser-cache/"/>
-    <id>http://jiangyuan.me/blog/2013/03/21/browser-cache/</id>
+    <title>浏览器缓存</title>
+    <link href="http://jiangyuan.me/2013/03/21/browser-cache/"/>
+    <id>http://jiangyuan.me/2013/03/21/browser-cache/</id>
     <published>2013-03-21T15:19:45.000Z</published>
     <updated>2016-01-18T08:43:55.000Z</updated>
-    <content type="html"><![CDATA[<p>在读 Yahoo! 前端优化时，有下面这两条规则：</p>
-<blockquote>
-<p>Add an Expires or a Cache-Control Header 设置头文件过期或者静态缓存</p>
-<p>Make JavaScript and CSS External 将JS和CSS外链</p>
-</blockquote>
-<p>都是和缓存有关系的。</p>
-<p>在调试 javascript 时，发现有时候刷新没有效果，但是代码明明改了，这也和缓存有关。</p>
-<p>http 状态码是 304 时，表示请求的资源没有变化，这个和缓存<strong>没有</strong>关系。</p>
-<p>最重要的是，面试的时候碰到了关于<strong>缓存</strong>的问题，我却不是很了解。</p>
-<p>于是有了这个笔记。</p>
-<a id="more"></a>
-<p>当然，当我准备动手写时，看到了这篇文章，《<a href="http://fastfood.sinaapp.com/?p=1092" target="_blank" rel="external">浏览器缓存机制</a>》，于是就不用写了……</p>
-<p>2013-03-31 不动手写还是理解不深啊。</p>
-<h2 id="u975E_http__u7F13_u5B58"><a href="#u975E_http__u7F13_u5B58" class="headerlink" title="非 http 缓存"></a>非 http 缓存</h2><p>浏览器缓存机制，其实主要的还是 http 协议的缓存机制。</p>
-<p>当然也有非 http 协议缓存，如</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"pragma"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面这行的作用是让页面不缓存，每次都去服务器加载。</p>
-<p>又比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"30 Apr 2013"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这个可以缓存该页面。</p>
-<p>值得说明的是 pragma 这个值在 IE5 之后就没有浏览器支持了，至于 expires …… 可用，但是如果是<br>代理的话，就无效了，代理服务器不处理 html 。</p>
-<h2 id="http__u534F_u8BAE_u7684_u7F13_u5B58_u673A_u5236"><a href="#http__u534F_u8BAE_u7684_u7F13_u5B58_u673A_u5236" class="headerlink" title="http 协议的缓存机制"></a>http 协议的缓存机制</h2><p>http 协议的缓存，都是通过响应头，以此来告知浏览器是否缓存、怎么缓存。</p>
-<h3 id="Expires__u7B56_u7565"><a href="#Expires__u7B56_u7565" class="headerlink" title="Expires 策略"></a>Expires 策略</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires=<span class="string">"Mon,31 Dec 2001 04:25:57GMT"</span></span><br></pre></td></tr></table></figure>
-<p>没什么好说的，给 http 响应头加上 Expires 字段。</p>
-<p>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。</p>
-<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>相比于 Expires ，Cache-Control 的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires ，其值可以是：</p>
-<ul>
-<li><p>Public  指示响应可被任何缓存区缓存</p>
-</li>
-<li><p>Private  指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。<br>  这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。</p>
-</li>
-<li><p>no-cache  指示请求或响应消息不能缓存。</p>
-</li>
-<li><p>no-store  用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。</p>
-</li>
-<li><p>max-age  指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。</p>
-</li>
-<li><p>min-fresh  指示客户机可以接收响应时间小于当前时间加上指定时间的响应。</p>
-</li>
-<li><p>max-stale  指示客户机可以接收超出超时期间的响应消息。<br>  如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</p>
-</li>
-</ul>
-<h3 id="Last-Modified/If-Modified-Since"><a href="#Last-Modified/If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h3><p>Last-Modified/If-Modified-Since 要配合 Cache-Control 使用。</p>
-<ul>
-<li><p>Last-Modified： 表示这个响应资源的最后修改时间。web 服务器响应请求时，告诉浏览器资源的最后修改时间。</p>
-</li>
-<li><p>If-Modified-Since： 当资源过期时（使用Cache-Control标识的max-age），发现资源具有Last-Modified声明，</p>
-<pre><code>则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。
-</code></pre><p>  web服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。<br>  若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内），HTTP 200；</p>
-<pre><code>若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache。
-</code></pre></li>
-</ul>
-<h3 id="Etag/If-None-Match"><a href="#Etag/If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>Etag/If-None-Match 也要配合 Catch-Control 来使用。</p>
-<ul>
-<li><p>Etag： web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。</p>
-<pre><code>Apache中，ETag的值，默认是对文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的。
-</code></pre></li>
-<li><p>If-None-Match：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，<br>  则再次向web服务器请求时带上头If-None-Match （Etag的值）。<br>  web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决定返回200或304。</p>
-</li>
-</ul>
-<h3 id="Etag/If-None-Match__u4E0E_Last-Modified/If-Modified-Since"><a href="#Etag/If-None-Match__u4E0E_Last-Modified/If-Modified-Since" class="headerlink" title="Etag/If-None-Match 与  Last-Modified/If-Modified-Since"></a>Etag/If-None-Match 与  Last-Modified/If-Modified-Since</h3><p>使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？<br>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
-<ul>
-<li><p>Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间。</p>
-</li>
-<li><p>如果某些文件会被定期生成，当有时内容并没有任何变化，但Last-Modified却改变了，导致文件没法使用缓存。</p>
-</li>
-<li><p>有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形。</p>
-</li>
-</ul>
-<p>Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存。<br>Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。</p>
-<h3 id="u7528_u6237_u884C_u4E3A_u4E0E_u7F13_u5B58"><a href="#u7528_u6237_u884C_u4E3A_u4E0E_u7F13_u5B58" class="headerlink" title="用户行为与缓存"></a>用户行为与缓存</h3><table><br>    <tr><br>        <th>用户操作</th><br>        <th>Expires/Cache-Control</th><br>        <th>Last-Modified/Etag</th><br>    </tr><br>    <tr><br>        <td>地址栏回车</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>页面链接跳转</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>新开窗口</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>前进、后退</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>F5 刷新</td><br>        <td>无效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>Ctrl+F5 刷新</td><br>        <td>无效</td><br>        <td>无效</td><br>    </tr><br></table>
+    
+    <content type="html">&lt;p&gt;在读 Yahoo! 前端优化时，有下面这两条规则：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Add an Expires or a Cache-Control Header 设置头文件过期或者静态缓存&lt;/p&gt;
+&lt;p&gt;Make JavaScript and CSS External 将JS和CSS外链&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;都是和缓存有关系的。&lt;/p&gt;
+&lt;p&gt;在调试 javascript 时，发现有时候刷新没有效果，但是代码明明改了，这也和缓存有关。&lt;/p&gt;
+&lt;p&gt;http 状态码是 304 时，表示请求的资源没有变化，这个和缓存&lt;strong&gt;没有&lt;/strong&gt;关系。&lt;/p&gt;
+&lt;p&gt;最重要的是，面试的时候碰到了关于&lt;strong&gt;缓存&lt;/strong&gt;的问题，我却不是很了解。&lt;/p&gt;
+&lt;p&gt;于是有了这个笔记。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;当然，当我准备动手写时，看到了这篇文章，《&lt;a href=&quot;http://fastfood.sinaapp.com/?p=1092&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;浏览器缓存机制&lt;/a&gt;》，于是就不用写了……&lt;/p&gt;
+&lt;p&gt;2013-03-31 不动手写还是理解不深啊。&lt;/p&gt;
+&lt;h2 id=&quot;非-http-缓存&quot;&gt;&lt;a href=&quot;#非-http-缓存&quot; class=&quot;headerlink&quot; title=&quot;非 http 缓存&quot;&gt;&lt;/a&gt;非 http 缓存&lt;/h2&gt;&lt;p&gt;浏览器缓存机制，其实主要的还是 http 协议的缓存机制。&lt;/p&gt;
+&lt;p&gt;当然也有非 http 协议缓存，如&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;pragma&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;no-cache&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面这行的作用是让页面不缓存，每次都去服务器加载。&lt;/p&gt;
+&lt;p&gt;又比如：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;expires&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;30 Apr 2013&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这个可以缓存该页面。&lt;/p&gt;
+&lt;p&gt;值得说明的是 pragma 这个值在 IE5 之后就没有浏览器支持了，至于 expires …… 可用，但是如果是&lt;br&gt;代理的话，就无效了，代理服务器不处理 html 。&lt;/p&gt;
+&lt;h2 id=&quot;http-协议的缓存机制&quot;&gt;&lt;a href=&quot;#http-协议的缓存机制&quot; class=&quot;headerlink&quot; title=&quot;http 协议的缓存机制&quot;&gt;&lt;/a&gt;http 协议的缓存机制&lt;/h2&gt;&lt;p&gt;http 协议的缓存，都是通过响应头，以此来告知浏览器是否缓存、怎么缓存。&lt;/p&gt;
+&lt;h3 id=&quot;Expires-策略&quot;&gt;&lt;a href=&quot;#Expires-策略&quot; class=&quot;headerlink&quot; title=&quot;Expires 策略&quot;&gt;&lt;/a&gt;Expires 策略&lt;/h3&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Expires=&lt;span class=&quot;string&quot;&gt;&quot;Mon,31 Dec 2001 04:25:57GMT&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;没什么好说的，给 http 响应头加上 Expires 字段。&lt;/p&gt;
+&lt;p&gt;不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。&lt;/p&gt;
+&lt;h3 id=&quot;Cache-Control&quot;&gt;&lt;a href=&quot;#Cache-Control&quot; class=&quot;headerlink&quot; title=&quot;Cache-Control&quot;&gt;&lt;/a&gt;Cache-Control&lt;/h3&gt;&lt;p&gt;相比于 Expires ，Cache-Control 的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires ，其值可以是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Public  指示响应可被任何缓存区缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Private  指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。&lt;br&gt;  这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;no-cache  指示请求或响应消息不能缓存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;no-store  用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;max-age  指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;min-fresh  指示客户机可以接收响应时间小于当前时间加上指定时间的响应。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;max-stale  指示客户机可以接收超出超时期间的响应消息。&lt;br&gt;  如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Last-Modified-If-Modified-Since&quot;&gt;&lt;a href=&quot;#Last-Modified-If-Modified-Since&quot; class=&quot;headerlink&quot; title=&quot;Last-Modified/If-Modified-Since&quot;&gt;&lt;/a&gt;Last-Modified/If-Modified-Since&lt;/h3&gt;&lt;p&gt;Last-Modified/If-Modified-Since 要配合 Cache-Control 使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Last-Modified： 表示这个响应资源的最后修改时间。web 服务器响应请求时，告诉浏览器资源的最后修改时间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If-Modified-Since： 当资源过期时（使用Cache-Control标识的max-age），发现资源具有Last-Modified声明，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  web服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。&lt;br&gt;  若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内），HTTP 200；&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Etag-If-None-Match&quot;&gt;&lt;a href=&quot;#Etag-If-None-Match&quot; class=&quot;headerlink&quot; title=&quot;Etag/If-None-Match&quot;&gt;&lt;/a&gt;Etag/If-None-Match&lt;/h3&gt;&lt;p&gt;Etag/If-None-Match 也要配合 Catch-Control 来使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Etag： web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Apache中，ETag的值，默认是对文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If-None-Match：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，&lt;br&gt;  则再次向web服务器请求时带上头If-None-Match （Etag的值）。&lt;br&gt;  web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决定返回200或304。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Etag-If-None-Match-与-Last-Modified-If-Modified-Since&quot;&gt;&lt;a href=&quot;#Etag-If-None-Match-与-Last-Modified-If-Modified-Since&quot; class=&quot;headerlink&quot; title=&quot;Etag/If-None-Match 与  Last-Modified/If-Modified-Since&quot;&gt;&lt;/a&gt;Etag/If-None-Match 与  Last-Modified/If-Modified-Since&lt;/h3&gt;&lt;p&gt;使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？&lt;br&gt;HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果某些文件会被定期生成，当有时内容并没有任何变化，但Last-Modified却改变了，导致文件没法使用缓存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存。&lt;br&gt;Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。&lt;/p&gt;
+&lt;h3 id=&quot;用户行为与缓存&quot;&gt;&lt;a href=&quot;#用户行为与缓存&quot; class=&quot;headerlink&quot; title=&quot;用户行为与缓存&quot;&gt;&lt;/a&gt;用户行为与缓存&lt;/h3&gt;&lt;table&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;th&gt;用户操作&lt;/th&gt;&lt;br&gt;        &lt;th&gt;Expires/Cache-Control&lt;/th&gt;&lt;br&gt;        &lt;th&gt;Last-Modified/Etag&lt;/th&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;地址栏回车&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;页面链接跳转&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;新开窗口&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;前进、后退&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;F5 刷新&lt;/td&gt;&lt;br&gt;        &lt;td&gt;无效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;有效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;Ctrl+F5 刷新&lt;/td&gt;&lt;br&gt;        &lt;td&gt;无效&lt;/td&gt;&lt;br&gt;        &lt;td&gt;无效&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;&lt;/table&gt;
 
 
-<hr>
-<p>20130508</p>
-<p><a href="http://www.cnblogs.com/phphuaibei/archive/2011/09/27/2192817.html" target="_blank" rel="external">浏览器缓存技术</a></p>
-]]></content>
+&lt;hr&gt;
+&lt;p&gt;20130508&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/phphuaibei/archive/2011/09/27/2192817.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;浏览器缓存技术&lt;/a&gt;&lt;/p&gt;
+</content>
+    
     <summary type="html">
-    <![CDATA[<p>在读 Yahoo! 前端优化时，有下面这两条规则：</p>
-<blockquote>
-<p>Add an Expires or a Cache-Control Header 设置头文件过期或者静态缓存</p>
-<p>Make JavaScript and CSS External 将JS和CSS外链</p>
-</blockquote>
-<p>都是和缓存有关系的。</p>
-<p>在调试 javascript 时，发现有时候刷新没有效果，但是代码明明改了，这也和缓存有关。</p>
-<p>http 状态码是 304 时，表示请求的资源没有变化，这个和缓存<strong>没有</strong>关系。</p>
-<p>最重要的是，面试的时候碰到了关于<strong>缓存</strong>的问题，我却不是很了解。</p>
-<p>于是有了这个笔记。</p>]]>
+    
+      &lt;p&gt;在读 Yahoo! 前端优化时，有下面这两条规则：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Add an Expires or a Cache-Control Header 设置头文件过期或者静态缓存&lt;/p&gt;
+&lt;p&gt;Make JavaScript and CSS External 将JS和CSS外链&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;都是和缓存有关系的。&lt;/p&gt;
+&lt;p&gt;在调试 javascript 时，发现有时候刷新没有效果，但是代码明明改了，这也和缓存有关。&lt;/p&gt;
+&lt;p&gt;http 状态码是 304 时，表示请求的资源没有变化，这个和缓存&lt;strong&gt;没有&lt;/strong&gt;关系。&lt;/p&gt;
+&lt;p&gt;最重要的是，面试的时候碰到了关于&lt;strong&gt;缓存&lt;/strong&gt;的问题，我却不是很了解。&lt;/p&gt;
+&lt;p&gt;于是有了这个笔记。&lt;/p&gt;
     
     </summary>
     
-      <category term="浏览器" scheme="http://jiangyuan.me/blog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+      <category term="浏览器" scheme="http://jiangyuan.me/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   

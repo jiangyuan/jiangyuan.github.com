@@ -315,7 +315,7 @@ http 状态码是 304 时，">
 <a id="more"></a>
 <p>当然，当我准备动手写时，看到了这篇文章，《<a href="http://fastfood.sinaapp.com/?p=1092" target="_blank" rel="external">浏览器缓存机制</a>》，于是就不用写了……</p>
 <p>2013-03-31 不动手写还是理解不深啊。</p>
-<h2 id="u975E_http__u7F13_u5B58"><a href="#u975E_http__u7F13_u5B58" class="headerlink" title="非 http 缓存"></a>非 http 缓存</h2><p>浏览器缓存机制，其实主要的还是 http 协议的缓存机制。</p>
+<h2 id="非-http-缓存"><a href="#非-http-缓存" class="headerlink" title="非 http 缓存"></a>非 http 缓存</h2><p>浏览器缓存机制，其实主要的还是 http 协议的缓存机制。</p>
 <p>当然也有非 http 协议缓存，如</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"pragma"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面这行的作用是让页面不缓存，每次都去服务器加载。</p>
@@ -323,8 +323,8 @@ http 状态码是 304 时，">
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"30 Apr 2013"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这个可以缓存该页面。</p>
 <p>值得说明的是 pragma 这个值在 IE5 之后就没有浏览器支持了，至于 expires …… 可用，但是如果是<br>代理的话，就无效了，代理服务器不处理 html 。</p>
-<h2 id="http__u534F_u8BAE_u7684_u7F13_u5B58_u673A_u5236"><a href="#http__u534F_u8BAE_u7684_u7F13_u5B58_u673A_u5236" class="headerlink" title="http 协议的缓存机制"></a>http 协议的缓存机制</h2><p>http 协议的缓存，都是通过响应头，以此来告知浏览器是否缓存、怎么缓存。</p>
-<h3 id="Expires__u7B56_u7565"><a href="#Expires__u7B56_u7565" class="headerlink" title="Expires 策略"></a>Expires 策略</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires=<span class="string">"Mon,31 Dec 2001 04:25:57GMT"</span></span><br></pre></td></tr></table></figure>
+<h2 id="http-协议的缓存机制"><a href="#http-协议的缓存机制" class="headerlink" title="http 协议的缓存机制"></a>http 协议的缓存机制</h2><p>http 协议的缓存，都是通过响应头，以此来告知浏览器是否缓存、怎么缓存。</p>
+<h3 id="Expires-策略"><a href="#Expires-策略" class="headerlink" title="Expires 策略"></a>Expires 策略</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires=<span class="string">"Mon,31 Dec 2001 04:25:57GMT"</span></span><br></pre></td></tr></table></figure>
 <p>没什么好说的，给 http 响应头加上 Expires 字段。</p>
 <p>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。</p>
 <h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>相比于 Expires ，Cache-Control 的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires ，其值可以是：</p>
@@ -344,7 +344,7 @@ http 状态码是 304 时，">
 <li><p>max-stale  指示客户机可以接收超出超时期间的响应消息。<br>  如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</p>
 </li>
 </ul>
-<h3 id="Last-Modified/If-Modified-Since"><a href="#Last-Modified/If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h3><p>Last-Modified/If-Modified-Since 要配合 Cache-Control 使用。</p>
+<h3 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h3><p>Last-Modified/If-Modified-Since 要配合 Cache-Control 使用。</p>
 <ul>
 <li><p>Last-Modified： 表示这个响应资源的最后修改时间。web 服务器响应请求时，告诉浏览器资源的最后修改时间。</p>
 </li>
@@ -354,7 +354,7 @@ http 状态码是 304 时，">
 <pre><code>若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache。
 </code></pre></li>
 </ul>
-<h3 id="Etag/If-None-Match"><a href="#Etag/If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>Etag/If-None-Match 也要配合 Catch-Control 来使用。</p>
+<h3 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag/If-None-Match"></a>Etag/If-None-Match</h3><p>Etag/If-None-Match 也要配合 Catch-Control 来使用。</p>
 <ul>
 <li><p>Etag： web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。</p>
 <pre><code>Apache中，ETag的值，默认是对文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的。
@@ -362,7 +362,7 @@ http 状态码是 304 时，">
 <li><p>If-None-Match：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，<br>  则再次向web服务器请求时带上头If-None-Match （Etag的值）。<br>  web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决定返回200或304。</p>
 </li>
 </ul>
-<h3 id="Etag/If-None-Match__u4E0E_Last-Modified/If-Modified-Since"><a href="#Etag/If-None-Match__u4E0E_Last-Modified/If-Modified-Since" class="headerlink" title="Etag/If-None-Match 与  Last-Modified/If-Modified-Since"></a>Etag/If-None-Match 与  Last-Modified/If-Modified-Since</h3><p>使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？<br>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
+<h3 id="Etag-If-None-Match-与-Last-Modified-If-Modified-Since"><a href="#Etag-If-None-Match-与-Last-Modified-If-Modified-Since" class="headerlink" title="Etag/If-None-Match 与  Last-Modified/If-Modified-Since"></a>Etag/If-None-Match 与  Last-Modified/If-Modified-Since</h3><p>使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？<br>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
 <ul>
 <li><p>Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间。</p>
 </li>
@@ -372,7 +372,7 @@ http 状态码是 304 时，">
 </li>
 </ul>
 <p>Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存。<br>Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。</p>
-<h3 id="u7528_u6237_u884C_u4E3A_u4E0E_u7F13_u5B58"><a href="#u7528_u6237_u884C_u4E3A_u4E0E_u7F13_u5B58" class="headerlink" title="用户行为与缓存"></a>用户行为与缓存</h3><table><br>    <tr><br>        <th>用户操作</th><br>        <th>Expires/Cache-Control</th><br>        <th>Last-Modified/Etag</th><br>    </tr><br>    <tr><br>        <td>地址栏回车</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>页面链接跳转</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>新开窗口</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>前进、后退</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>F5 刷新</td><br>        <td>无效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>Ctrl+F5 刷新</td><br>        <td>无效</td><br>        <td>无效</td><br>    </tr><br></table>
+<h3 id="用户行为与缓存"><a href="#用户行为与缓存" class="headerlink" title="用户行为与缓存"></a>用户行为与缓存</h3><table><br>    <tr><br>        <th>用户操作</th><br>        <th>Expires/Cache-Control</th><br>        <th>Last-Modified/Etag</th><br>    </tr><br>    <tr><br>        <td>地址栏回车</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>页面链接跳转</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>新开窗口</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>前进、后退</td><br>        <td>有效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>F5 刷新</td><br>        <td>无效</td><br>        <td>有效</td><br>    </tr><br>    <tr><br>        <td>Ctrl+F5 刷新</td><br>        <td>无效</td><br>        <td>无效</td><br>    </tr><br></table>
 
 
 <hr>
@@ -473,7 +473,7 @@ http 状态码是 304 时，">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives/">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -526,7 +526,7 @@ http 状态码是 304 时，">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u975E_http__u7F13_u5B58"><span class="nav-number">1.</span> <span class="nav-text">非 http 缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http__u534F_u8BAE_u7684_u7F13_u5B58_u673A_u5236"><span class="nav-number">2.</span> <span class="nav-text">http 协议的缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires__u7B56_u7565"><span class="nav-number">2.1.</span> <span class="nav-text">Expires 策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">2.2.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified/If-Modified-Since"><span class="nav-number">2.3.</span> <span class="nav-text">Last-Modified/If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag/If-None-Match"><span class="nav-number">2.4.</span> <span class="nav-text">Etag/If-None-Match</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag/If-None-Match__u4E0E_Last-Modified/If-Modified-Since"><span class="nav-number">2.5.</span> <span class="nav-text">Etag/If-None-Match 与  Last-Modified/If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7528_u6237_u884C_u4E3A_u4E0E_u7F13_u5B58"><span class="nav-number">2.6.</span> <span class="nav-text">用户行为与缓存</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#非-http-缓存"><span class="nav-number">1.</span> <span class="nav-text">非 http 缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-协议的缓存机制"><span class="nav-number">2.</span> <span class="nav-text">http 协议的缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires-策略"><span class="nav-number">2.1.</span> <span class="nav-text">Expires 策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">2.2.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified-If-Modified-Since"><span class="nav-number">2.3.</span> <span class="nav-text">Last-Modified/If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag-If-None-Match"><span class="nav-number">2.4.</span> <span class="nav-text">Etag/If-None-Match</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag-If-None-Match-与-Last-Modified-If-Modified-Since"><span class="nav-number">2.5.</span> <span class="nav-text">Etag/If-None-Match 与  Last-Modified/If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户行为与缓存"><span class="nav-number">2.6.</span> <span class="nav-text">用户行为与缓存</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

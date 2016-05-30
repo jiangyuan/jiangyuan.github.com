@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jiangyuan.me/2016/05/30/bash-test/</loc>
+    
+    <lastmod>2016-05-30T13:37:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiangyuan.me/2016/03/29/bash-string-and-array/</loc>
     
     <lastmod>2016-03-29T07:12:06.000Z</lastmod>

@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://jiangyuan.me/"/>
-  <updated>2016-03-29T07:12:06.000Z</updated>
+  <updated>2016-05-30T13:37:32.000Z</updated>
   <id>http://jiangyuan.me/</id>
   
   <author>
@@ -14,6 +14,127 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>bash 的 Test</title>
+    <link href="http://jiangyuan.me/2016/05/30/bash-test/"/>
+    <id>http://jiangyuan.me/2016/05/30/bash-test/</id>
+    <published>2016-05-30T13:38:54.000Z</published>
+    <updated>2016-05-30T13:37:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;code&gt;bash&lt;/code&gt; 中的 &lt;code&gt;test&lt;/code&gt; 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实际场景&quot;&gt;&lt;a href=&quot;#实际场景&quot; class=&quot;headerlink&quot; title=&quot;实际场景&quot;&gt;&lt;/a&gt;实际场景&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; NVM_DIR=&lt;span class=&quot;string&quot;&gt;&quot;/Users/jero/.nvm&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;operator&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$NVM_DIR&lt;/span&gt;/nvm.sh&quot;&lt;/span&gt; ] &amp;amp;&amp;amp; . &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$NVM_DIR&lt;/span&gt;/nvm.sh&quot;&lt;/span&gt;  &lt;span class=&quot;comment&quot;&gt;# This loads nvm&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面是我 &lt;code&gt;~/.zshrc&lt;/code&gt; 文件中的一段，作用是引入 &lt;code&gt;nvm&lt;/code&gt; 脚本。其中中括号的内容就是一个&lt;strong&gt;测试&lt;/strong&gt;。&lt;br&gt;再看一段：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; [ &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$(uname)&lt;/span&gt;&quot;&lt;/span&gt; == &lt;span class=&quot;string&quot;&gt;&#39;Darwin&#39;&lt;/span&gt; ]; &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  OS=&lt;span class=&quot;string&quot;&gt;&#39;Mac&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; [ &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$(expr substr $(uname -s)&lt;/span&gt; 1 5)&quot;&lt;/span&gt; == &lt;span class=&quot;string&quot;&gt;&#39;Linux&#39;&lt;/span&gt; ]; &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  OS=&lt;span class=&quot;string&quot;&gt;&#39;Linux&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Your platform (&lt;span class=&quot;variable&quot;&gt;$(uname -a)&lt;/span&gt;) is not supported.&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果使用过 &lt;code&gt;Atom&lt;/code&gt; 编辑器，那么会知道这是 &lt;code&gt;/usr/local/bin/atom&lt;/code&gt; 中的一段脚本，作用是判断你都机器是哪种系统。其中 &lt;code&gt;if&lt;/code&gt; 后面中括号的内容，就是测试。&lt;/p&gt;
+&lt;p&gt;从上面大致可以看出，测试就是其他语言中很常见的&lt;strong&gt;真假&lt;/strong&gt;判断。实际上， &lt;code&gt;[&lt;/code&gt; 是一个内置命令，你可以 &lt;code&gt;man [&lt;/code&gt; 查看使用说明。&lt;/p&gt;
+&lt;h2 id=&quot;test-和&quot;&gt;&lt;a href=&quot;#test-和&quot; class=&quot;headerlink&quot; title=&quot;test 和 [&quot;&gt;&lt;/a&gt;test 和 [&lt;/h2&gt;&lt;p&gt;&lt;code&gt;[&lt;/code&gt; 命令根据表达式 &lt;code&gt;expr&lt;/code&gt; 求值的结果返回 &lt;strong&gt;0（真）或 1 （假）&lt;/strong&gt;。注意返回的结果，写多了 &lt;code&gt;js&lt;/code&gt; 的人通常会在这里跑坑里去。&lt;br&gt;&lt;code&gt;expr&lt;/code&gt; 也是一个 &lt;code&gt;bash&lt;/code&gt; 命令，你可以 &lt;code&gt;man expr&lt;/code&gt; 来查看使用手册。简单的讲，这个命令执行表达式，并将结果写到标准输出。&lt;br&gt;&lt;code&gt;[ expr ]&lt;/code&gt; 和 &lt;code&gt;test expr&lt;/code&gt; 是等价的。&lt;br&gt;我们来几个实例：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-gt&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; True || &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; False &lt;span class=&quot;comment&quot;&gt;# False&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-gt&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; ] &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; True || &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; False &lt;span class=&quot;comment&quot;&gt;# False&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;string&quot;&gt;&#39;abc&#39;&lt;/span&gt; != &lt;span class=&quot;string&quot;&gt;&#39;def&#39;&lt;/span&gt; ]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;# 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$?&lt;/code&gt; 是上条命令的结果，不清楚的可以参见&lt;a href=&quot;http://jiangyuan.me/blog/2016/01/27/bash-variables-and-parameters/&quot;&gt;这篇文章&lt;/a&gt;。&lt;br&gt;&lt;code&gt;-gt&lt;/code&gt; 是比较操作符，表示大于。数值比较的相关操作，总结如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;操作符&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-gt&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;大于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-ge&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;大于等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-eq&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-ne&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;不等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-lt&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;小于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-le&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;小于等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;来看个例子：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-gt&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; ]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $?; &lt;span class=&quot;comment&quot;&gt;# 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; ]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $?; &lt;span class=&quot;comment&quot;&gt;# 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个当然是假的，但是用 &lt;code&gt;&amp;gt;&lt;/code&gt; 比较返回了 &lt;code&gt;0&lt;/code&gt; ，再看一组对比：&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[ 3 &amp;#62; 4 ]; echo $?; # 0&amp;#10;[[ 3 &amp;#62; 4 ]]; echo $?; # 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[[&lt;/code&gt; 的结果符合我们的预期，事实证明 &lt;code&gt;&amp;amp;&amp;amp;, ||, &amp;gt;, &amp;lt;&lt;/code&gt; 在 &lt;code&gt;[]&lt;/code&gt; 中有些问题，这也是为什么有 &lt;code&gt;[[&lt;/code&gt; 的原因。&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;[[&quot;&gt;&lt;/a&gt;&lt;code&gt;[[&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;[[&lt;/code&gt; 是关键字，而不是一个命令，它的操作更接近 C 系语言的风格。 &lt;code&gt;[[&lt;/code&gt; 的用法和 &lt;code&gt;[&lt;/code&gt; 差不多，来几组例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[[ (&lt;span class=&quot;operator&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;&quot;&lt;/span&gt;) &amp;amp;&amp;amp; ( -w &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;&quot;&lt;/span&gt;) ]]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $?; &lt;span class=&quot;comment&quot;&gt;#0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[[ (&lt;span class=&quot;operator&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;&quot;&lt;/span&gt;) &amp;amp;&amp;amp; ( -w &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;&quot;&lt;/span&gt;) ]] &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;home is a writable directory&#39;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# home is a writable directory&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[[ &lt;span class=&quot;string&quot;&gt;&quot;abc def .d,x--&quot;&lt;/span&gt; == a[abc]*\ ?d* ]]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[[ &lt;span class=&quot;string&quot;&gt;&quot;abc def c&quot;&lt;/span&gt; == a[abc]*\ ?d* ]]; &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的几个例子有字符串的匹配，有单目操作符的比较，比如 &lt;code&gt;-d&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;常见的单目操作符&quot;&gt;&lt;a href=&quot;#常见的单目操作符&quot; class=&quot;headerlink&quot; title=&quot;常见的单目操作符&quot;&gt;&lt;/a&gt;常见的单目操作符&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;操作符&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-z&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;测试 null 字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-n&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;字符串是否非空&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-d&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-e&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;存在&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-f&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;普通文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-r&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;可读&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-w&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;可写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;-N&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;从上次读取之后做过修改&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;除了 &lt;code&gt;-z&lt;/code&gt; 和 &lt;code&gt;-n&lt;/code&gt; ，其他都是和文件相关的操作。&lt;/p&gt;
+&lt;h2 id=&quot;-1&quot;&gt;&lt;a href=&quot;#-1&quot; class=&quot;headerlink&quot; title=&quot;(())&quot;&gt;&lt;/a&gt;&lt;code&gt;(())&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;这其实是一个相当强大的结构(structrue)，这里主要说说和测试相关的特性。&lt;br&gt;看组例子：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(( &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; )); &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(( &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; )); &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(( &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; )); &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(( &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; || &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; )); &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(( &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt; )); &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; $? &lt;span class=&quot;comment&quot;&gt;#1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;双括号结构一般都是用在数值的计算上，起返回的结果取决于计算的结果，结果为 0，返回 1（假）；结果为非 0，返回 0（真）。&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ibm.com/developerworks/cn/linux/l-bash-test.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.ibm.com/developerworks/cn/linux/l-bash-test.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/testconstructs.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tldp.org/LDP/abs/html/testconstructs.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/dblparens.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tldp.org/LDP/abs/html/dblparens.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;bash&lt;/code&gt; 中的 &lt;code&gt;test&lt;/code&gt; 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="bash" scheme="http://jiangyuan.me/tags/bash/"/>
+    
+      <category term="mac" scheme="http://jiangyuan.me/tags/mac/"/>
+    
+      <category term="shell" scheme="http://jiangyuan.me/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>bash 的字符串和数组</title>

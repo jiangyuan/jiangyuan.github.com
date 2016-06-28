@@ -1,0 +1,767 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/blog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/blog/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="bash,mac,shell," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="源小神写字的地方" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="条件语句和循环可以统称为流程控制，是一门语言最基础的部分。bash 的流程控制和大家熟悉的语言非常类似，所以这块上手应该很快。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bash 的条件和循环">
+<meta property="og:url" content="http://jiangyuan.me/2016/06/28/bash-for-and-condition/index.html">
+<meta property="og:site_name" content="源小神写字的地方">
+<meta property="og:description" content="条件语句和循环可以统称为流程控制，是一门语言最基础的部分。bash 的流程控制和大家熟悉的语言非常类似，所以这块上手应该很快。">
+<meta property="og:updated_time" content="2016-06-28T14:42:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bash 的条件和循环">
+<meta name="twitter:description" content="条件语句和循环可以统称为流程控制，是一门语言最基础的部分。bash 的流程控制和大家熟悉的语言非常类似，所以这块上手应该很快。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> bash 的条件和循环 | 源小神写字的地方 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?33c8eb4a2fcb200a008043f87ea2557c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">源小神写字的地方</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mac">
+          <a href="/book/mac/" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            玩转mac
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rss">
+          <a href="/blog/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                bash 的条件和循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-28T15:15:54+08:00" content="2016-06-28">
+              2016-06-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/28/bash-for-and-condition/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/bash-for-and-condition/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>条件语句和循环可以统称为流程控制，是一门语言最基础的部分。<br><code>bash</code> 的流程控制和大家熟悉的语言非常类似，所以这块上手应该很快。</p>
+<a id="more"></a>
+<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><p>条件这块建议先去瞧瞧《<a href="http://jiangyuan.me/blog/2016/05/30/bash-test/">bash 的 Test</a>》。<code>bash</code> 中的条件语句，基础就是 <code>Test</code> 。</p>
+<h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>先来个实例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$x</span> = <span class="number">5</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'x equals 5.'</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'x does not equal 5'</span>;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出： x equals 5.</span></span><br></pre></td></tr></table></figure></p>
+<p>和我们熟悉的语言非常相似，不妨抽象一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> commands; <span class="keyword">then</span></span><br><span class="line">	commands</span><br><span class="line">[<span class="keyword">elif</span> commands; <span class="keyword">then</span></span><br><span class="line">	commands...]</span><br><span class="line">[<span class="keyword">else</span></span><br><span class="line">	commands]</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<p>这就是 <code>if</code> 的基本语法，其中紧接在 <code>if</code> 和 <code>elif</code> 后面的 <code>commands</code> 多数时候为 <code>Test</code>  。<br>来个复杂一点的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">FILE=~/.zshrc <span class="comment"># 随便找个路径</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="operator">-e</span> <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span> <span class="comment"># -e 单目操作符</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="operator">-f</span> <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> is a regular file."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="operator">-d</span> <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> is a directory."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> is readable."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -w <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> is writable."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -x <span class="string">"<span class="variable">$FILE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> is executable/searchable."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> does not exist"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>这个例子中就有大量的 <code>Test</code> 。</p>
+<h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><p><code>case</code> 其实就是我们熟悉的那个 <code>swich</code> ，但语法形式上有很大的不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$variable</span>"</span> <span class="keyword">in</span></span><br><span class="line">	<span class="string">"<span class="variable">$condition1</span>"</span> )</span><br><span class="line">		command...</span><br><span class="line">	;;</span><br><span class="line">	<span class="string">"<span class="variable">$condition2</span>"</span> )</span><br><span class="line">		command...</span><br><span class="line">	;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>双引号包裹变量，这不是必须的</li>
+<li>每一个 <code>Test</code> 语句，必须以 <code>)</code> 结尾</li>
+<li>每一个条件区块，必须以 <code>;;</code> 结尾</li>
+<li>整个 <code>case</code> 区块，必须以 <code>esac</code> 结尾——<code>esac case spelled backwards</code></li>
+</ul>
+<p>来个例子。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$x</span> <span class="keyword">in</span></span><br><span class="line">    <span class="string">'a'</span> )</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"x 是 a"</span>;;</span><br><span class="line">    <span class="number">4</span> )</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"x 是 4"</span>;;</span><br><span class="line">    <span class="string">'b'</span> )</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"x 是 b"</span></span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># x 是 4</span></span><br></pre></td></tr></table></figure></p>
+<p>总得来说， <code>bash</code> 中的条件语句， <code>Test</code> 是核心，<code>if</code> 和 <code>case</code> 熟悉语法即可。</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><code>bash</code> 中有 <code>for</code> 和 <code>while</code> 两种常见的循环体，我们应该都很熟悉。</p>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>直接上实例，批量修改文件名。</p>
+<p>目录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#10;&#9500;&#9472;&#9472; error_400.html&#10;&#9500;&#9472;&#9472; error_403.html&#10;&#9500;&#9472;&#9472; error_404.html&#10;&#9500;&#9472;&#9472; error_500.html&#10;&#9492;&#9472;&#9472; error_503.html</span><br></pre></td></tr></table></figure></p>
+<p> bash 代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="variable">$i</span> <span class="keyword">in</span> `ls`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	mv <span class="variable">$i</span> <span class="variable">$&#123;i/html/ejs&#125;</span>;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p>语法其实很明朗：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> variable [<span class="keyword">in</span> words]; <span class="keyword">do</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>do</code> 可以另起一行，如果和 <code>for</code> 同行，那么 <code>for</code> 语句必须 <code>;</code> 结尾</li>
+<li>循环体必须 <code>done</code> 结尾</li>
+<li><code>[in words]</code> 取值很宽泛，可以是通配符，可以是一个命令(<code>ls</code>)，一句话，必须是数组形式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> *</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span>;</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 会打印当前目录下的所有文件名</span></span><br></pre></td></tr></table></figure>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>看个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">count=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> [ <span class="variable">$count</span> -le <span class="number">5</span> ]; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$count</span></span><br><span class="line">    count=$((count + <span class="number">1</span>))</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Finished."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 依次打印 1 - 5 和 finished</span></span><br></pre></td></tr></table></figure></p>
+<p>语法如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> commands; <span class="keyword">do</span> commands; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://wiki.jikexueyuan.com/project/linux-command/chap28.html" target="_blank" rel="external">http://wiki.jikexueyuan.com/project/linux-command/chap28.html</a></li>
+<li><a href="http://tldp.org/LDP/abs/html/testbranch.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/testbranch.html</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/linux-command/chap30.html" target="_blank" rel="external">http://wiki.jikexueyuan.com/project/linux-command/chap30.html</a></li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/bash/" rel="tag">#bash</a>
+          
+            <a href="/blog/tags/mac/" rel="tag">#mac</a>
+          
+            <a href="/blog/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/05/30/bash-test/" rel="next" title="bash 的 Test">
+                <i class="fa fa-chevron-left"></i> bash 的 Test
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/28/bash-for-and-condition/"
+           data-title="bash 的条件和循环" data-url="http://jiangyuan.me/2016/06/28/bash-for-and-condition/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/2785681"
+               alt="源小神" />
+          <p class="site-author-name" itemprop="name">源小神</p>
+          <p class="site-description motion-element" itemprop="description">左手代码右手诗。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives/">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句"><span class="nav-number">1.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-number">1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case"><span class="nav-number">1.2.</span> <span class="nav-text">case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">2.</span> <span class="nav-text">循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for"><span class="nav-number">2.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while"><span class="nav-number">2.2.</span> <span class="nav-text">while</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">源小神</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/blog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/blog/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/blog/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/blog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/blog/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jero"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-72571043-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>

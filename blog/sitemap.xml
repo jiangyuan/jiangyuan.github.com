@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jiangyuan.me/2016/06/28/bash-for-and-condition/</loc>
+    
+    <lastmod>2016-06-28T14:42:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jiangyuan.me/2016/05/30/bash-test/</loc>
     
     <lastmod>2016-05-30T13:37:32.000Z</lastmod>

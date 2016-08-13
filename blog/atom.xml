@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://jiangyuan.me/"/>
-  <updated>2016-06-28T14:42:30.000Z</updated>
+  <updated>2016-08-13T08:19:50.000Z</updated>
   <id>http://jiangyuan.me/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>babel</title>
+    <link href="http://jiangyuan.me/2016/08/13/babel/"/>
+    <id>http://jiangyuan.me/2016/08/13/babel/</id>
+    <published>2016-08-13T08:19:54.000Z</published>
+    <updated>2016-08-13T08:19:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近总算有点时间能系统的梳理下 &lt;code&gt;babel&lt;/code&gt; 。入门或者使用手册什么的直接查看“&lt;a href=&quot;#wafaha&quot;&gt;参考文章&lt;/a&gt;”即可，我只说说我的理解。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;插件&quot;&gt;&lt;a href=&quot;#插件&quot; class=&quot;headerlink&quot; title=&quot;插件&quot;&gt;&lt;/a&gt;插件&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Babel is built out of plugins.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;babel-core&lt;/code&gt; 只是个插件加载器，&lt;code&gt;presets&lt;/code&gt; 是一组插件，避免繁琐地一个一个安装插件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;preset&lt;/code&gt;&lt;a href=&quot;http://babeljs.io/docs/plugins/preset-es2015/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;es2015&lt;/a&gt; 可以很好的编译 &lt;code&gt;es6&lt;/code&gt; ，唯独对常用的 &lt;code&gt;class property&lt;/code&gt; 无能为力，快使用插件 &lt;a href=&quot;http://babeljs.io/docs/plugins/transform-class-properties/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Class properties transform&lt;/a&gt; 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;preset&lt;/code&gt; &lt;a href=&quot;http://babeljs.io/docs/plugins/preset-react/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;react&lt;/a&gt; 也是官方支撑的，有五个插件，其中 &lt;a href=&quot;https://flowtype.org/docs/quick-reference.html#_&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flow&lt;/a&gt; 是我下一篇文章的内容。传闻 React 团队抛弃了自己做的编译工具全力支持 &lt;code&gt;babel&lt;/code&gt; ，&lt;code&gt;eslint&lt;/code&gt; 的 &lt;code&gt;parser&lt;/code&gt; 主流也是 &lt;code&gt;babel&lt;/code&gt;，不知道 &lt;code&gt;typescript&lt;/code&gt; 是啥态度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;preset&lt;/code&gt; &lt;a href=&quot;http://babeljs.io/docs/plugins/preset-stage-0/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stage-0&lt;/a&gt;  其实包含了 stage-[1-3] ，也就是说你装了 &lt;code&gt;0&lt;/code&gt; ，其他三个默认就装了，别重复堆叠暴露底细。另外，[0-3] 是代表了不同阶段，但， &lt;code&gt;0&lt;/code&gt; 是代表刚开始讨论，而 &lt;code&gt;3&lt;/code&gt; 是代表快要成为标准规范了，切忌搞混，又暴露底细，虽然我也不知道 &lt;code&gt;async/wait&lt;/code&gt; 处在哪个阶段。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自定义 &lt;code&gt;preset&lt;/code&gt; 请参考&lt;a href=&quot;https://github.com/babel/babel/blob/master/packages/babel-preset-es2015/src/index.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;范本&lt;/a&gt;，其实很简单，但也别胡乱搞 &lt;code&gt;preset&lt;/code&gt; ，生态圈的质量取决于开发者的质量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自定义 &lt;code&gt;plugin&lt;/code&gt; 可以参考……没的参考，看样子你是个求知欲很强的人，看看这个，《&lt;a href=&quot;https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Babel 插件手册&lt;/a&gt;》，这是另一个世界，里面有抽象语法树、词法分析、语法分析等高阶词汇，装 ◻︎ 撩 ◻︎ 必备。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;sourceMaps ，单独说说 &lt;code&gt;sourcemap&lt;/code&gt; ，有两个坑。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一直很好奇，&lt;code&gt;babel&lt;/code&gt; 和 &lt;code&gt;ugilfy&lt;/code&gt; 两个 &lt;code&gt;sourcemap&lt;/code&gt; 打架，到底怎么处理？可以读读这个 &lt;a href=&quot;https://github.com/mishoo/UglifyJS2#composed-source-map&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Composed source map&lt;/a&gt; 。&lt;/li&gt;
+&lt;li&gt;坑！用 &lt;code&gt;babel-cli&lt;/code&gt; 的话，配置 &lt;code&gt;.babelrc&lt;/code&gt; 里面的 &lt;code&gt;sourceMaps&lt;/code&gt; 不会生成 &lt;code&gt;map&lt;/code&gt; 文件，你必须在命令行里指定 &lt;code&gt;--source-map&lt;/code&gt; ，因为写 &lt;code&gt;sourceMap&lt;/code&gt; 的操作是在 &lt;code&gt;babel-cli&lt;/code&gt; 里实现的，虽然生成 &lt;code&gt;sourceMap&lt;/code&gt; 是在 &lt;code&gt;babel-core&lt;/code&gt; 里。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;moduleXXX，比如 &lt;code&gt;moduleRoot&lt;/code&gt; 等，这一系列参数要配合 &lt;a href=&quot;https://babeljs.io/docs/plugins/transform-es2015-modules-amd/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;transform-es2015-modules-amd&lt;/a&gt; 。当然，实际项目中类似的事情可以交给其他工具去做，&lt;code&gt;babel&lt;/code&gt; 就保持单纯的 &lt;code&gt;parser&lt;/code&gt; 作用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;filename ，就是要编译文件的路径，说这个目的是源于 &lt;a href=&quot;https://github.com/fex-team/fis-parser-babel-5.x&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fis-parser-babel-5.x&lt;/a&gt; 。它是以这种 &lt;code&gt;/xx/xx/xx.js&lt;/code&gt; 绝对路径作为 &lt;code&gt;filename&lt;/code&gt; 传到 &lt;code&gt;babel&lt;/code&gt; 里，结果 &lt;code&gt;babel&lt;/code&gt; 找不到 &lt;code&gt;.babelrc&lt;/code&gt; 。&lt;code&gt;babel&lt;/code&gt; 是沿着目录往上查找 &lt;code&gt;.babelrc&lt;/code&gt; ，直到根目录，这种形式最后的结果是 &lt;code&gt;/.babelrc&lt;/code&gt; ，it’s not a  file ….&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;quiet ，不打印任何东西。这个设计很费解，默认是打印东西，但只有错误信息，编译流程的关键节点一个没有，&lt;code&gt;log&lt;/code&gt; 系统真的很弱。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;生成的代码&quot;&gt;&lt;a href=&quot;#生成的代码&quot; class=&quot;headerlink&quot; title=&quot;生成的代码&quot;&gt;&lt;/a&gt;生成的代码&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md#toc-babel-polyfill&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;babel-polyfill&lt;/a&gt;，就是个库，自己去看就好了。&lt;/li&gt;
+&lt;li&gt;一直担心的是几乎每个文件里面都有 &lt;code&gt;Class&lt;/code&gt; 的语法糖，代码严重冗余！我担心的别人当然也会担心，看看这个 &lt;a href=&quot;https://babeljs.io/docs/plugins/transform-runtime/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;babel-runtime&lt;/a&gt; 。虽说有官方的方案，但这块还是值得挖掘，是个微创新的点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;fis&quot;&gt;&lt;a href=&quot;#fis&quot; class=&quot;headerlink&quot; title=&quot;fis&quot;&gt;&lt;/a&gt;fis&lt;/h2&gt;&lt;p&gt;&lt;code&gt;fis&lt;/code&gt; 生态圈也是江河日下，&lt;code&gt;babel&lt;/code&gt; 的问题都不能妥善解决。&lt;br&gt;建议使用这个包 &lt;a href=&quot;https://www.npmjs.com/package/fis3-parser-babel-imweb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;parser-imweb&lt;/a&gt; ，将这个包和 &lt;code&gt;babel&lt;/code&gt; 相关的包都装在本地吧，否则会掉到坑里。&lt;br&gt;也许是时候换到 &lt;code&gt;webpack&lt;/code&gt; ？&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;wafaha&quot;&gt;参考文章&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2016/01/babel.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Babel 入门教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Babel 用户手册&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://babeljs.io/docs/plugins/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Plugins&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近总算有点时间能系统的梳理下 &lt;code&gt;babel&lt;/code&gt; 。入门或者使用手册什么的直接查看“&lt;a href=&quot;#wafaha&quot;&gt;参考文章&lt;/a&gt;”即可，我只说说我的理解。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="babel" scheme="http://jiangyuan.me/tags/babel/"/>
+    
+      <category term="es6" scheme="http://jiangyuan.me/tags/es6/"/>
+    
+      <category term="fis" scheme="http://jiangyuan.me/tags/fis/"/>
+    
+  </entry>
   
   <entry>
     <title>bash 的条件和循环</title>

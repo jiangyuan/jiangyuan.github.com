@@ -41,7 +41,7 @@
 <link href="/blog/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="bash,mac,shell," />
+  <meta name="keywords" content="babel,es6,fis," />
 
 
 
@@ -59,22 +59,16 @@
 
 
 
-<meta name="description" content="shell 的含义shell ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。
-一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 CLI，shell 也包含 GUI 的概念，Windows Explorer 是一个典型的图形界面Shell。
-当然，本文只关注 CLI 。">
+<meta name="description" content="最近总算有点时间能系统的梳理下 babel 。入门或者使用手册什么的直接查看“参考文章”即可，我只说说我的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bash 初探">
-<meta property="og:url" content="http://jiangyuan.me/2015/12/31/bash-the-beginning/index.html">
+<meta property="og:title" content="babel">
+<meta property="og:url" content="http://jiangyuan.me/2016/08/13/babel/index.html">
 <meta property="og:site_name" content="源小神写字的地方">
-<meta property="og:description" content="shell 的含义shell ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。
-一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 CLI，shell 也包含 GUI 的概念，Windows Explorer 是一个典型的图形界面Shell。
-当然，本文只关注 CLI 。">
-<meta property="og:updated_time" content="2016-01-27T13:17:39.000Z">
+<meta property="og:description" content="最近总算有点时间能系统的梳理下 babel 。入门或者使用手册什么的直接查看“参考文章”即可，我只说说我的理解。">
+<meta property="og:updated_time" content="2016-08-13T08:19:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bash 初探">
-<meta name="twitter:description" content="shell 的含义shell ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。
-一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 CLI，shell 也包含 GUI 的概念，Windows Explorer 是一个典型的图形界面Shell。
-当然，本文只关注 CLI 。">
+<meta name="twitter:title" content="babel">
+<meta name="twitter:description" content="最近总算有点时间能系统的梳理下 babel 。入门或者使用手册什么的直接查看“参考文章”即可，我只说说我的理解。">
 
 
 
@@ -92,7 +86,7 @@
   };
 </script>
 
-  <title> bash 初探 | 源小神写字的地方 </title>
+  <title> babel | 源小神写字的地方 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +236,7 @@
             
             
               
-                bash 初探
+                babel
               
             
           </h1>
@@ -254,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-31T23:21:54+08:00" content="2015-12-31">
-              2015-12-31
+            <time itemprop="dateCreated" datetime="2016-08-13T16:19:54+08:00" content="2016-08-13">
+              2016-08-13
             </time>
           </span>
 
@@ -265,8 +259,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2015/12/31/bash-the-beginning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/bash-the-beginning/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/08/13/babel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/babel/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,28 +281,49 @@
       
 
       
-        <h2 id="shell-的含义"><a href="#shell-的含义" class="headerlink" title="shell 的含义"></a>shell 的含义</h2><p><code>shell</code> ，英文的含义是“壳”，在计算机科学中，是指“为用户提供用户界面”的软件，通常指的是命令行界面的解析器。</p>
-<p>一般意义上，这个词指操作系统中提供访问内核所提供之服务的程序，因此除了 <code>CLI</code>，shell 也包含 GUI 的概念，<code>Windows Explorer</code> 是一个典型的图形界面Shell。</p>
-<p>当然，本文只关注 <code>CLI</code> 。<br><a id="more"></a></p>
-<p><code>mac</code> 源自 <code>unix</code> 系统，所以其 <code>shell</code> 和 <code>unix</code> 一脉相承。</p>
-<h3 id="shell-脚本"><a href="#shell-脚本" class="headerlink" title="shell 脚本"></a>shell 脚本</h3><p><code>shell</code> 本身的概念其实已经关注的很少，我们的最原始的印象，<code>shell</code> 是一门脚本语言，可用于编程。</p>
-<p>“shell 脚本”，又称 Shell 命令稿、程序化脚本，文本文件，由一连串的 <code>shell</code> 命令组成，经由 <code>Unix Shell</code>执行，可以进行系统管理、文件操作等。</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>当前主流的操作系统都支持 <code>shell</code> 编程，本系列所探究的 <code>shell</code> 编程是指 Linux 下的 <code>shell</code>，讲的基本都是 POSIX 标准下的功能，所以，也适用于 Unix及 BSD（如Mac OS）。</p>
-<h3 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>Linux 默认安装就带了 shell 解释器。</p>
-<h4 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h4><p>Mac OS 不仅带了 sh、bash 这两个最基础的解释器，还内置了 ksh、csh、zsh 等不常用的解释器。</p>
-<p>我个人倒是推荐 <code>zsh</code> ，<code>zsh</code> 会专门来篇文章介绍。</p>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>windows 出厂时没有内置 shell 解释器……只能装模拟器，比如 <code>cygwin</code> 。</p>
-<p>当然 windows 上的 <code>PowerShell</code> 也是不俗的脚本，这个也会专门来个系列介绍。</p>
-<h3 id="脚本解释器"><a href="#脚本解释器" class="headerlink" title="脚本解释器"></a>脚本解释器</h3><p>当然，脚本解释器五花八门，下面就挑选些典型的说下。</p>
-<h4 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h4><p>即 Bourne shell，POSIX（Portable Operating System Interface）标准的 shell 解释器，它的二进制文件路径通常是 <code>/bin/sh</code>，由 Bell Labs 开发。</p>
-<h4 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h4><p>Bash 是 Bourne shell 的替代品，属 GNU Project，二进制文件路径通常是 <code>/bin/bash</code>。业界通常混用 <code>bash</code>、<code>sh</code>、和 <code>shell</code>，比如你会经常在招聘运维工程师的文案中见到：熟悉 Linux Bash 编程，精通 Shell 编程。</p>
-<h4 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h4><p>Z Shell(Zsh) 以认为是一种 Bourne shell 的扩展，带有数量庞大的改进，包括一些bash、ksh、tcsh的功能。</p>
-<h4 id="高级编程语言"><a href="#高级编程语言" class="headerlink" title="高级编程语言"></a>高级编程语言</h4><p>理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby、Nodejs。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://github.com/qinjx/30min_guides/blob/master/shell.md" target="_blank" rel="external">Shell脚本编程30分钟入门</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4" target="_blank" rel="external">shell</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/Shell%E8%84%9A%E6%9C%AC" target="_blank" rel="external">Shell脚本</a></li>
-<li><a href="Z%20shell">Z shell</a></li>
+        <p>最近总算有点时间能系统的梳理下 <code>babel</code> 。入门或者使用手册什么的直接查看“<a href="#wafaha">参考文章</a>”即可，我只说说我的理解。</p>
+<a id="more"></a>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><blockquote>
+<p>Babel is built out of plugins.</p>
+</blockquote>
+<ul>
+<li><p><code>babel-core</code> 只是个插件加载器，<code>presets</code> 是一组插件，避免繁琐地一个一个安装插件。</p>
+</li>
+<li><p><code>preset</code><a href="http://babeljs.io/docs/plugins/preset-es2015/" target="_blank" rel="external">es2015</a> 可以很好的编译 <code>es6</code> ，唯独对常用的 <code>class property</code> 无能为力，快使用插件 <a href="http://babeljs.io/docs/plugins/transform-class-properties/" target="_blank" rel="external">Class properties transform</a> 。</p>
+</li>
+<li><p><code>preset</code> <a href="http://babeljs.io/docs/plugins/preset-react/" target="_blank" rel="external">react</a> 也是官方支撑的，有五个插件，其中 <a href="https://flowtype.org/docs/quick-reference.html#_" target="_blank" rel="external">flow</a> 是我下一篇文章的内容。传闻 React 团队抛弃了自己做的编译工具全力支持 <code>babel</code> ，<code>eslint</code> 的 <code>parser</code> 主流也是 <code>babel</code>，不知道 <code>typescript</code> 是啥态度。</p>
+</li>
+<li><p><code>preset</code> <a href="http://babeljs.io/docs/plugins/preset-stage-0/" target="_blank" rel="external">stage-0</a>  其实包含了 stage-[1-3] ，也就是说你装了 <code>0</code> ，其他三个默认就装了，别重复堆叠暴露底细。另外，[0-3] 是代表了不同阶段，但， <code>0</code> 是代表刚开始讨论，而 <code>3</code> 是代表快要成为标准规范了，切忌搞混，又暴露底细，虽然我也不知道 <code>async/wait</code> 处在哪个阶段。</p>
+</li>
+<li><p>自定义 <code>preset</code> 请参考<a href="https://github.com/babel/babel/blob/master/packages/babel-preset-es2015/src/index.js" target="_blank" rel="external">范本</a>，其实很简单，但也别胡乱搞 <code>preset</code> ，生态圈的质量取决于开发者的质量。</p>
+</li>
+<li><p>自定义 <code>plugin</code> 可以参考……没的参考，看样子你是个求知欲很强的人，看看这个，《<a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md" target="_blank" rel="external">Babel 插件手册</a>》，这是另一个世界，里面有抽象语法树、词法分析、语法分析等高阶词汇，装 ◻︎ 撩 ◻︎ 必备。</p>
+</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li><p>sourceMaps ，单独说说 <code>sourcemap</code> ，有两个坑。</p>
+<ul>
+<li>一直很好奇，<code>babel</code> 和 <code>ugilfy</code> 两个 <code>sourcemap</code> 打架，到底怎么处理？可以读读这个 <a href="https://github.com/mishoo/UglifyJS2#composed-source-map" target="_blank" rel="external">Composed source map</a> 。</li>
+<li>坑！用 <code>babel-cli</code> 的话，配置 <code>.babelrc</code> 里面的 <code>sourceMaps</code> 不会生成 <code>map</code> 文件，你必须在命令行里指定 <code>--source-map</code> ，因为写 <code>sourceMap</code> 的操作是在 <code>babel-cli</code> 里实现的，虽然生成 <code>sourceMap</code> 是在 <code>babel-core</code> 里。</li>
+</ul>
+</li>
+<li><p>moduleXXX，比如 <code>moduleRoot</code> 等，这一系列参数要配合 <a href="https://babeljs.io/docs/plugins/transform-es2015-modules-amd/" target="_blank" rel="external">transform-es2015-modules-amd</a> 。当然，实际项目中类似的事情可以交给其他工具去做，<code>babel</code> 就保持单纯的 <code>parser</code> 作用。</p>
+</li>
+<li><p>filename ，就是要编译文件的路径，说这个目的是源于 <a href="https://github.com/fex-team/fis-parser-babel-5.x" target="_blank" rel="external">fis-parser-babel-5.x</a> 。它是以这种 <code>/xx/xx/xx.js</code> 绝对路径作为 <code>filename</code> 传到 <code>babel</code> 里，结果 <code>babel</code> 找不到 <code>.babelrc</code> 。<code>babel</code> 是沿着目录往上查找 <code>.babelrc</code> ，直到根目录，这种形式最后的结果是 <code>/.babelrc</code> ，it’s not a  file ….</p>
+</li>
+<li><p>quiet ，不打印任何东西。这个设计很费解，默认是打印东西，但只有错误信息，编译流程的关键节点一个没有，<code>log</code> 系统真的很弱。</p>
+</li>
+</ul>
+<h2 id="生成的代码"><a href="#生成的代码" class="headerlink" title="生成的代码"></a>生成的代码</h2><ul>
+<li><a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md#toc-babel-polyfill" target="_blank" rel="external">babel-polyfill</a>，就是个库，自己去看就好了。</li>
+<li>一直担心的是几乎每个文件里面都有 <code>Class</code> 的语法糖，代码严重冗余！我担心的别人当然也会担心，看看这个 <a href="https://babeljs.io/docs/plugins/transform-runtime/" target="_blank" rel="external">babel-runtime</a> 。虽说有官方的方案，但这块还是值得挖掘，是个微创新的点。</li>
+</ul>
+<h2 id="fis"><a href="#fis" class="headerlink" title="fis"></a>fis</h2><p><code>fis</code> 生态圈也是江河日下，<code>babel</code> 的问题都不能妥善解决。<br>建议使用这个包 <a href="https://www.npmjs.com/package/fis3-parser-babel-imweb" target="_blank" rel="external">parser-imweb</a> ，将这个包和 <code>babel</code> 相关的包都装在本地吧，否则会掉到坑里。<br>也许是时候换到 <code>webpack</code> ？</p>
+<p></p><h2 id="wafaha">参考文章</h2><p></p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/01/babel.html" target="_blank" rel="external">Babel 入门教程</a></li>
+<li><a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md" target="_blank" rel="external">Babel 用户手册</a></li>
+<li><a href="http://babeljs.io/docs/plugins/" target="_blank" rel="external">Plugins</a></li>
 </ul>
 
       
@@ -318,11 +333,11 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/bash/" rel="tag">#bash</a>
+            <a href="/blog/tags/babel/" rel="tag">#babel</a>
           
-            <a href="/blog/tags/mac/" rel="tag">#mac</a>
+            <a href="/blog/tags/es6/" rel="tag">#es6</a>
           
-            <a href="/blog/tags/shell/" rel="tag">#shell</a>
+            <a href="/blog/tags/fis/" rel="tag">#fis</a>
           
         </div>
       
@@ -331,17 +346,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2013/05/15/crossdomain/" rel="next" title="javascript 的跨域问题">
-                <i class="fa fa-chevron-left"></i> javascript 的跨域问题
+              <a href="/blog/2016/06/28/bash-for-and-condition/" rel="next" title="bash 的条件和循环">
+                <i class="fa fa-chevron-left"></i> bash 的条件和循环
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/01/27/bash-variables-and-parameters/" rel="prev" title="bash 的变量和参数">
-                bash 的变量和参数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -367,8 +378,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/31/bash-the-beginning/"
-           data-title="bash 初探" data-url="http://jiangyuan.me/2015/12/31/bash-the-beginning/">
+      <div class="ds-thread" data-thread-key="2016/08/13/babel/"
+           data-title="babel" data-url="http://jiangyuan.me/2016/08/13/babel/">
       </div>
     
   </div>
@@ -466,7 +477,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-的含义"><span class="nav-number">1.</span> <span class="nav-text">shell 的含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell-脚本"><span class="nav-number">1.1.</span> <span class="nav-text">shell 脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS"><span class="nav-number">2.1.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac-OS"><span class="nav-number">2.1.2.</span> <span class="nav-text">Mac OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本解释器"><span class="nav-number">2.2.</span> <span class="nav-text">脚本解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bash"><span class="nav-number">2.2.2.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh"><span class="nav-number">2.2.3.</span> <span class="nav-text">zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级编程语言"><span class="nav-number">2.2.4.</span> <span class="nav-text">高级编程语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件"><span class="nav-number">1.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成的代码"><span class="nav-number">3.</span> <span class="nav-text">生成的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fis"><span class="nav-number">4.</span> <span class="nav-text">fis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wafaha"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

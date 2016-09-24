@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://jiangyuan.me/"/>
-  <updated>2016-08-13T08:19:50.000Z</updated>
+  <updated>2016-09-24T15:03:47.000Z</updated>
   <id>http://jiangyuan.me/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vs code 初上手</title>
+    <link href="http://jiangyuan.me/2016/09/24/vscode/"/>
+    <id>http://jiangyuan.me/2016/09/24/vscode/</id>
+    <published>2016-09-24T14:59:22.000Z</published>
+    <updated>2016-09-24T15:03:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;这是《小江品评编辑器》系列的开篇，当然想开个好头。&lt;br&gt;我 2012 年开始接触前端，从最开始的记事本，到 &lt;code&gt;Dreamweaver&lt;/code&gt; ，到 &lt;code&gt;notepad++&lt;/code&gt; ，到风头一时无两的 &lt;code&gt;Sublime Text&lt;/code&gt; ，到现在社区庞大的 &lt;code&gt;Atom&lt;/code&gt;，都使用过很长一段时间。&lt;br&gt;期间也抽空玩耍过 &lt;code&gt;Vim&lt;/code&gt;、&lt;code&gt;Emac&lt;/code&gt;和 &lt;code&gt;Brackets&lt;/code&gt; 等等，觉得智商不够浅尝辄止。&lt;br&gt;当然也不会放过 &lt;code&gt;IDE&lt;/code&gt; ，&lt;code&gt;Eclispe&lt;/code&gt;、&lt;code&gt;NetBeans&lt;/code&gt; 、&lt;code&gt;Aptana&lt;/code&gt; 都试过，现在专注 &lt;code&gt;jetbrains&lt;/code&gt; 三十年、&lt;code&gt;Webstorm&lt;/code&gt; 脑残粉……别胡思乱想了，我买了 &lt;code&gt;license&lt;/code&gt;。&lt;br&gt;扯这么多就是为了证明，&lt;strong&gt;品评编辑器&lt;/strong&gt;，我还真有这个资格。&lt;br&gt;今天要说的编辑器不是 &lt;code&gt;Sublime&lt;/code&gt; ，她很棒，但更新太缓慢，在这个各种技术井喷的时代，再不奋起直追，只会被淘汰。&lt;br&gt;也不是 &lt;code&gt;Atom&lt;/code&gt; ，他一样棒，意外的是启动时间要一个世纪。&lt;br&gt;&lt;code&gt;Webstorm&lt;/code&gt; 当然是压轴登场。&lt;br&gt;今天聊聊 &lt;code&gt;VS Code&lt;/code&gt; ，上镇楼图！&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/1.png&quot; alt=&quot;1.png&quot; title=&quot;&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;插件&lt;/a&gt;，当然，&lt;code&gt;code&lt;/code&gt; 内置的插件管理是所有编辑器里面最好用的（上图的图标那一列就我安装的插件），几乎不会访问这个站点&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Microsoft/vscode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我从 &lt;code&gt;0.x.x&lt;/code&gt; 时代就开始关注，除了 &lt;code&gt;autocomplete&lt;/code&gt; 和 &lt;code&gt;node debug&lt;/code&gt; 的噱头，连代码折叠的功能都没有。到现在，当前版本 &lt;code&gt;1.5.3&lt;/code&gt; ，终于有了些王者的样子，你值得拥有。&lt;/p&gt;
+&lt;h2 id=&quot;语言&quot;&gt;&lt;a href=&quot;#语言&quot; class=&quot;headerlink&quot; title=&quot;语言&quot;&gt;&lt;/a&gt;语言&lt;/h2&gt;&lt;p&gt;这里说的不是 &lt;code&gt;js&lt;/code&gt; 啊 &lt;code&gt;css&lt;/code&gt; 这种语言，而是 &lt;code&gt;Chinese&lt;/code&gt; &lt;code&gt;Eglish&lt;/code&gt; 这种语言。很难相信你安装完成后，菜单栏、状态栏等等你能看到的一切全都是中文！&lt;br&gt;当然你可以说这是第一个官方完整支持中文的编辑器，但我还是劝你&lt;strong&gt;使用英文版本&lt;/strong&gt;，否则你会像下面一样尴尬。&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/2.png&quot; alt=&quot;2.png&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/3.png&quot; alt=&quot;3.png&quot; title=&quot;&quot;&gt;
+&lt;h2 id=&quot;终端&quot;&gt;&lt;a href=&quot;#终端&quot; class=&quot;headerlink&quot; title=&quot;终端&quot;&gt;&lt;/a&gt;终端&lt;/h2&gt;&lt;p&gt;应该是 &lt;code&gt;1.4.0&lt;/code&gt; 加的特性，就是这个特性甩了 &lt;code&gt;Atom&lt;/code&gt; &lt;code&gt;Sublime&lt;/code&gt; 等几条街，和前端开发之神 &lt;code&gt;Webstorm&lt;/code&gt; 打成平手，这份荣耀，前无古人。&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/4.gif&quot; alt=&quot;4.gif&quot; title=&quot;&quot;&gt;
+&lt;h2 id=&quot;代码提示&quot;&gt;&lt;a href=&quot;#代码提示&quot; class=&quot;headerlink&quot; title=&quot;代码提示&quot;&gt;&lt;/a&gt;代码提示&lt;/h2&gt;&lt;p&gt;代码提示，&lt;code&gt;Visual Studio&lt;/code&gt; 敢说第二，没人敢说第一。&lt;br&gt;&lt;code&gt;VS Code&lt;/code&gt; 传承了这个特点，其体验甚至超过了 &lt;code&gt;Webstorm&lt;/code&gt; ！颤抖吧！&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/5.gif&quot; alt=&quot;5.gif&quot; title=&quot;&quot;&gt;
+&lt;p&gt;注意两点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/docs/languages/jsconfig&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jsconfig.json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/typings/typings&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;typings&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;node-debug&quot;&gt;&lt;a href=&quot;#node-debug&quot; class=&quot;headerlink&quot; title=&quot;node debug&quot;&gt;&lt;/a&gt;node debug&lt;/h2&gt;&lt;p&gt;体验没有 &lt;code&gt;Webstorm&lt;/code&gt; 好，但足以秒杀其他编辑器！&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/6.png&quot; alt=&quot;6.png&quot; title=&quot;&quot;&gt;
+&lt;h2 id=&quot;插件&quot;&gt;&lt;a href=&quot;#插件&quot; class=&quot;headerlink&quot; title=&quot;插件&quot;&gt;&lt;/a&gt;插件&lt;/h2&gt;&lt;p&gt;无脑安装，无须像 &lt;code&gt;Sublime&lt;/code&gt; 一样折腾。&lt;br&gt;当然，必须要贴下我安装的自己。&lt;/p&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/7.png&quot; alt=&quot;7.png&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/blog/2016/09/24/vscode/8.png&quot; alt=&quot;8.png&quot; title=&quot;&quot;&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是《小江品评编辑器》系列的开篇，当然想开个好头。&lt;br&gt;我 2012 年开始接触前端，从最开始的记事本，到 &lt;code&gt;Dreamweaver&lt;/code&gt; ，到 &lt;code&gt;notepad++&lt;/code&gt; ，到风头一时无两的 &lt;code&gt;Sublime Text&lt;/code&gt; ，到现在社区庞大的 &lt;code&gt;Atom&lt;/code&gt;，都使用过很长一段时间。&lt;br&gt;期间也抽空玩耍过 &lt;code&gt;Vim&lt;/code&gt;、&lt;code&gt;Emac&lt;/code&gt;和 &lt;code&gt;Brackets&lt;/code&gt; 等等，觉得智商不够浅尝辄止。&lt;br&gt;当然也不会放过 &lt;code&gt;IDE&lt;/code&gt; ，&lt;code&gt;Eclispe&lt;/code&gt;、&lt;code&gt;NetBeans&lt;/code&gt; 、&lt;code&gt;Aptana&lt;/code&gt; 都试过，现在专注 &lt;code&gt;jetbrains&lt;/code&gt; 三十年、&lt;code&gt;Webstorm&lt;/code&gt; 脑残粉……别胡思乱想了，我买了 &lt;code&gt;license&lt;/code&gt;。&lt;br&gt;扯这么多就是为了证明，&lt;strong&gt;品评编辑器&lt;/strong&gt;，我还真有这个资格。&lt;br&gt;今天要说的编辑器不是 &lt;code&gt;Sublime&lt;/code&gt; ，她很棒，但更新太缓慢，在这个各种技术井喷的时代，再不奋起直追，只会被淘汰。&lt;br&gt;也不是 &lt;code&gt;Atom&lt;/code&gt; ，他一样棒，意外的是启动时间要一个世纪。&lt;br&gt;&lt;code&gt;Webstorm&lt;/code&gt; 当然是压轴登场。&lt;br&gt;今天聊聊 &lt;code&gt;VS Code&lt;/code&gt; ，上镇楼图！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vscode" scheme="http://jiangyuan.me/tags/vscode/"/>
+    
+      <category term="编辑器" scheme="http://jiangyuan.me/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>babel</title>

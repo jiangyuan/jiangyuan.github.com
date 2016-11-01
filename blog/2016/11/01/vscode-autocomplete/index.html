@@ -41,7 +41,7 @@
 <link href="/blog/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="bash,mac,shell," />
+  <meta name="keywords" content="vscode,编辑器," />
 
 
 
@@ -59,16 +59,19 @@
 
 
 
-<meta name="description" content="bash 中的 test 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。">
+<meta name="description" content="vscode 1.6.x 发布了，有一系列的新特性，我个人比较开心见到 ts/js 语法着色有提升，我还专门搞了个 issue  吐槽过这个。当然今天不是扯 vscode 的更新节奏很快的梗，而是扒一扒它的自动完成，上一篇文章已经介绍过，自动完成和 typings 紧密相关。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bash 的 Test">
-<meta property="og:url" content="http://jiangyuan.me/2016/05/30/bash-test/index.html">
+<meta property="og:title" content="VS Code 中的自动完成">
+<meta property="og:url" content="http://jiangyuan.me/2016/11/01/vscode-autocomplete/index.html">
 <meta property="og:site_name" content="源小神写字的地方">
-<meta property="og:description" content="bash 中的 test 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。">
-<meta property="og:updated_time" content="2016-05-30T13:37:32.000Z">
+<meta property="og:description" content="vscode 1.6.x 发布了，有一系列的新特性，我个人比较开心见到 ts/js 语法着色有提升，我还专门搞了个 issue  吐槽过这个。当然今天不是扯 vscode 的更新节奏很快的梗，而是扒一扒它的自动完成，上一篇文章已经介绍过，自动完成和 typings 紧密相关。">
+<meta property="og:image" content="http://jiangyuan.me/blog/2016/11/01/vscode-autocomplete/1.png">
+<meta property="og:image" content="http://jiangyuan.me/blog/2016/11/01/vscode-autocomplete/2.png">
+<meta property="og:image" content="http://jiangyuan.me/blog/2016/11/01/vscode-autocomplete/3.gif">
+<meta property="og:updated_time" content="2016-11-01T11:30:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bash 的 Test">
-<meta name="twitter:description" content="bash 中的 test 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。">
+<meta name="twitter:title" content="VS Code 中的自动完成">
+<meta name="twitter:description" content="vscode 1.6.x 发布了，有一系列的新特性，我个人比较开心见到 ts/js 语法着色有提升，我还专门搞了个 issue  吐槽过这个。当然今天不是扯 vscode 的更新节奏很快的梗，而是扒一扒它的自动完成，上一篇文章已经介绍过，自动完成和 typings 紧密相关。">
 
 
 
@@ -86,7 +89,7 @@
   };
 </script>
 
-  <title> bash 的 Test | 源小神写字的地方 </title>
+  <title> VS Code 中的自动完成 | 源小神写字的地方 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +239,7 @@
             
             
               
-                bash 的 Test
+                VS Code 中的自动完成
               
             
           </h1>
@@ -248,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T21:38:54+08:00" content="2016-05-30">
-              2016-05-30
+            <time itemprop="dateCreated" datetime="2016-11-01T22:59:22+08:00" content="2016-11-01">
+              2016-11-01
             </time>
           </span>
 
@@ -259,8 +262,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/05/30/bash-test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/bash-test/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/11/01/vscode-autocomplete/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/vscode-autocomplete/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -281,102 +284,28 @@
       
 
       
-        <p><code>bash</code> 中的 <code>test</code> 确实是一个让初学者迷糊的概念，但是理解了之后，发现它并没有深奥的地方。<br><a id="more"></a></p>
-<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"/Users/jero/.nvm"</span></span><br><span class="line">[ <span class="operator">-s</span> <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> ] &amp;&amp; . <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span>  <span class="comment"># This loads nvm</span></span><br></pre></td></tr></table></figure>
-<p>上面是我 <code>~/.zshrc</code> 文件中的一段，作用是引入 <code>nvm</code> 脚本。其中中括号的内容就是一个<strong>测试</strong>。<br>再看一段：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$(uname)</span>"</span> == <span class="string">'Darwin'</span> ]; <span class="keyword">then</span></span><br><span class="line">  OS=<span class="string">'Mac'</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$(expr substr $(uname -s)</span> 1 5)"</span> == <span class="string">'Linux'</span> ]; <span class="keyword">then</span></span><br><span class="line">  OS=<span class="string">'Linux'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Your platform (<span class="variable">$(uname -a)</span>) is not supported."</span></span><br><span class="line">  <span class="built_in">exit</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>如果使用过 <code>Atom</code> 编辑器，那么会知道这是 <code>/usr/local/bin/atom</code> 中的一段脚本，作用是判断你都机器是哪种系统。其中 <code>if</code> 后面中括号的内容，就是测试。</p>
-<p>从上面大致可以看出，测试就是其他语言中很常见的<strong>真假</strong>判断。实际上， <code>[</code> 是一个内置命令，你可以 <code>man [</code> 查看使用说明。</p>
-<h2 id="test-和"><a href="#test-和" class="headerlink" title="test 和 ["></a>test 和 [</h2><p><code>[</code> 命令根据表达式 <code>expr</code> 求值的结果返回 <strong>0（真）或 1 （假）</strong>。注意返回的结果，写多了 <code>js</code> 的人通常会在这里跑坑里去。<br><code>expr</code> 也是一个 <code>bash</code> 命令，你可以 <code>man expr</code> 来查看使用手册。简单的讲，这个命令执行表达式，并将结果写到标准输出。<br><code>[ expr ]</code> 和 <code>test expr</code> 是等价的。<br>我们来几个实例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span> <span class="number">3</span> <span class="operator">-gt</span> <span class="number">4</span> &amp;&amp; <span class="built_in">echo</span> True || <span class="built_in">echo</span> False <span class="comment"># False</span></span><br><span class="line">[ <span class="number">3</span> <span class="operator">-gt</span> <span class="number">4</span> ] &amp;&amp; <span class="built_in">echo</span> True || <span class="built_in">echo</span> False <span class="comment"># False</span></span><br><span class="line">[ <span class="string">'abc'</span> != <span class="string">'def'</span> ]; <span class="built_in">echo</span> $? <span class="comment"># 0</span></span><br></pre></td></tr></table></figure></p>
-<p><code>$?</code> 是上条命令的结果，不清楚的可以参见<a href="http://jiangyuan.me/blog/2016/01/27/bash-variables-and-parameters/">这篇文章</a>。<br><code>-gt</code> 是比较操作符，表示大于。数值比较的相关操作，总结如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">操作符</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>-gt</code></td>
-<td style="text-align:left">大于</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-ge</code></td>
-<td style="text-align:left">大于等于</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-eq</code></td>
-<td style="text-align:left">等于</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-ne</code></td>
-<td style="text-align:left">不等于</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-lt</code></td>
-<td style="text-align:left">小于</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-le</code></td>
-<td style="text-align:left">小于等于</td>
-</tr>
-</tbody>
-</table>
-<p>来看个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="number">3</span> <span class="operator">-gt</span> <span class="number">4</span> ]; <span class="built_in">echo</span> $?; <span class="comment"># 1</span></span><br><span class="line">[ <span class="number">3</span> &gt; <span class="number">4</span> ]; <span class="built_in">echo</span> $?; <span class="comment"># 0</span></span><br></pre></td></tr></table></figure></p>
-<p>这个当然是假的，但是用 <code>&gt;</code> 比较返回了 <code>0</code> ，再看一组对比：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ 3 &#62; 4 ]; echo $?; # 0&#10;[[ 3 &#62; 4 ]]; echo $?; # 1</span><br></pre></td></tr></table></figure></p>
-<p><code>[[</code> 的结果符合我们的预期，事实证明 <code>&amp;&amp;, ||, &gt;, &lt;</code> 在 <code>[]</code> 中有些问题，这也是为什么有 <code>[[</code> 的原因。</p>
-<h2 id=""><a href="#" class="headerlink" title="[["></a><code>[[</code></h2><p><code>[[</code> 是关键字，而不是一个命令，它的操作更接近 C 系语言的风格。 <code>[[</code> 的用法和 <code>[</code> 差不多，来几组例子：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[ (<span class="operator">-d</span> <span class="string">"<span class="variable">$HOME</span>"</span>) &amp;&amp; ( -w <span class="string">"<span class="variable">$HOME</span>"</span>) ]]; <span class="built_in">echo</span> $?; <span class="comment">#0</span></span><br><span class="line">[[ (<span class="operator">-d</span> <span class="string">"<span class="variable">$HOME</span>"</span>) &amp;&amp; ( -w <span class="string">"<span class="variable">$HOME</span>"</span>) ]] &amp;&amp; <span class="built_in">echo</span> <span class="string">'home is a writable directory'</span> <span class="comment"># home is a writable directory</span></span><br><span class="line">[[ <span class="string">"abc def .d,x--"</span> == a[abc]*\ ?d* ]]; <span class="built_in">echo</span> $? <span class="comment">#0</span></span><br><span class="line">[[ <span class="string">"abc def c"</span> == a[abc]*\ ?d* ]]; <span class="built_in">echo</span> $? <span class="comment">#1</span></span><br></pre></td></tr></table></figure>
-<p>上面的几个例子有字符串的匹配，有单目操作符的比较，比如 <code>-d</code>。</p>
-<h2 id="常见的单目操作符"><a href="#常见的单目操作符" class="headerlink" title="常见的单目操作符"></a>常见的单目操作符</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">操作符</th>
-<th style="text-align:left">意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>-z</code></td>
-<td style="text-align:left">测试 null 字符串</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-n</code></td>
-<td style="text-align:left">字符串是否非空</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-d</code></td>
-<td style="text-align:left">目录</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-e</code></td>
-<td style="text-align:left">存在</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-f</code></td>
-<td style="text-align:left">普通文件</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-r</code></td>
-<td style="text-align:left">可读</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-w</code></td>
-<td style="text-align:left">可写</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-N</code></td>
-<td style="text-align:left">从上次读取之后做过修改</td>
-</tr>
-</tbody>
-</table>
-<p>除了 <code>-z</code> 和 <code>-n</code> ，其他都是和文件相关的操作。</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title="(())"></a><code>(())</code></h2><p>这其实是一个相当强大的结构(structrue)，这里主要说说和测试相关的特性。<br>看组例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(( <span class="number">0</span> )); <span class="built_in">echo</span> $? <span class="comment">#0</span></span><br><span class="line">(( <span class="number">3</span> &gt; <span class="number">4</span> )); <span class="built_in">echo</span> $? <span class="comment">#0</span></span><br><span class="line">(( <span class="number">0</span> &amp;&amp; <span class="number">1</span> )); <span class="built_in">echo</span> $? <span class="comment">#0</span></span><br><span class="line">(( <span class="number">0</span> || <span class="number">1</span> )); <span class="built_in">echo</span> $? <span class="comment">#1</span></span><br><span class="line">(( <span class="number">100</span> &amp;&amp; <span class="number">11</span> )); <span class="built_in">echo</span> $? <span class="comment">#1</span></span><br></pre></td></tr></table></figure></p>
-<p>双括号结构一般都是用在数值的计算上，起返回的结果取决于计算的结果，结果为 0，返回 1（假）；结果为非 0，返回 0（真）。</p>
+        <p><code>vscode</code> <code>1.6.x</code> 发布了，有一系列的新特性，我个人比较开心见到 <code>ts/js</code> <a href="https://code.visualstudio.com/updates#_preview-typescript-javascript-grammar" target="_blank" rel="external">语法着色</a>有提升，我还专门搞了个 <a href="https://github.com/Microsoft/vscode/issues/12362" target="_blank" rel="external">issue</a>  吐槽过这个。<br>当然今天不是扯 <code>vscode</code> 的更新节奏很快的梗，而是扒一扒它的<em>自动完成</em>，<a href="http://jiangyuan.me/blog/2016/09/24/vscode/">上一篇文章</a>已经介绍过，<em>自动完成</em>和 <code>typings</code> 紧密相关。</p>
+<a id="more"></a>
+<p><code>typings</code> <a href="https://github.com/typings/typings" target="_blank" rel="external">官网</a>描述：</p>
+<blockquote>
+<p>The TypeScript Definition Manager.</p>
+</blockquote>
+<p>显然是要扯到 <code>typescript</code> 了，有些哥们发誓说这辈子都不用 <code>typescript</code> ，忍一忍，一会就要说到 <code>js</code> 了。</p>
+<h2 id="Typescript-Definition"><a href="#Typescript-Definition" class="headerlink" title="Typescript Definition"></a>Typescript Definition</h2><p><code>Typescript Definition</code> 是啥？<a href="http://definitelytyped.org/" target="_blank" rel="external">官网</a> 上也没瞧出个所以然来，不了解 <code>ts</code> 显然不能理解这鬼。这个时候就该我出场了。<br>随意搞点 <code>ts</code> 的代码：<br><img src="/blog/2016/11/01/vscode-autocomplete/1.png" alt="1.png" title=""><br>报错了，设置严格一点，甚至编译不会通过。想象下如果 <code>abcde</code> 是第三方库如 <code>jQuery</code> 等就尴尬了。<br><img src="/blog/2016/11/01/vscode-autocomplete/2.png" alt="2.png" title=""></p>
+<p>如上图，简单地 <code>declare</code> 下就能解决这个问题，这个过程可以称作 <code>define</code> ,将上述 <code>declare</code> 代码抽到一个 <code>.d.ts</code> 结尾的文件中单独维护，这个文件叫<strong>声明文件(declaration file)</strong>，也可以称之为 <code>definition</code> 。<br>报错的问题解决了，现在有新的问题，一大堆第三方库的 <code>definition</code> 怎样维护更新？怎样查找安装？</p>
+<h2 id="管理-definition"><a href="#管理-definition" class="headerlink" title="管理 definition"></a>管理 definition</h2><p>最早的一款工具叫 <a href="https://github.com/DefinitelyTyped/tsd" target="_blank" rel="external">tsd</a> ，因为它只能安装<a href="https://my.oschina.net/fenying/blog/747184" target="_blank" rel="external">全局类型声明</a>，于是就被抛弃了。<br>这个时候我们的 <code>typings</code> 隆重登场，它可以解决几乎所有 <code>definition</code> 的问题，唯一蛋疼的地方是要安装一下，以及各种奇怪的命令行参数。<br><code>ts 2.0</code> 之后，可以用 <code>npm</code> 来管理 <code>definition</code> ，你只需这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @types/jquery -S</span><br></pre></td></tr></table></figure>
+<p>详情可以参阅<a href="http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx" target="_blank" rel="external">这篇文章</a>。</p>
+<h2 id="VS-Code-中的-definition"><a href="#VS-Code-中的-definition" class="headerlink" title="VS Code 中的 definition"></a>VS Code 中的 <code>definition</code></h2><p><code>definition</code> 的作用当然远不止给 <code>ts</code> 本身来用，编辑器可以利用它来做非常强大的代码提示。<br>下图就是安装 <code>definition</code> 之前和之后的效果。<br><img src="/blog/2016/11/01/vscode-autocomplete/3.gif" alt="3.gif" title=""></p>
+<p><code>definition</code> 当然在其他编辑器中也有类似的实现，但体验没有哪个能比得上 <code>vscode</code> 。</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="http://www.ibm.com/developerworks/cn/linux/l-bash-test.html" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/linux/l-bash-test.html</a></li>
-<li><a href="http://tldp.org/LDP/abs/html/testconstructs.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/testconstructs.html</a></li>
-<li><a href="http://tldp.org/LDP/abs/html/dblparens.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/dblparens.html</a></li>
+<li><a href="https://github.com/typings/typings" target="_blank" rel="external">https://github.com/typings/typings</a></li>
+<li><a href="https://github.com/typings/typings/issues/72" target="_blank" rel="external">https://github.com/typings/typings/issues/72</a></li>
+<li><a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank" rel="external">https://github.com/DefinitelyTyped/DefinitelyTyped</a></li>
+<li><a href="https://github.com/DefinitelyTyped/tsd" target="_blank" rel="external">https://github.com/DefinitelyTyped/tsd</a></li>
+<li><a href="http://stackoverflow.com/questions/39907142/what-is-definitelytyped" target="_blank" rel="external">http://stackoverflow.com/questions/39907142/what-is-definitelytyped</a></li>
+<li><a href="https://my.oschina.net/fenying/blog/748805" target="_blank" rel="external">https://my.oschina.net/fenying/blog/748805</a></li>
+<li><a href="http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx" target="_blank" rel="external">http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx</a></li>
 </ul>
 
       
@@ -386,11 +315,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/bash/" rel="tag">#bash</a>
+            <a href="/blog/tags/vscode/" rel="tag">#vscode</a>
           
-            <a href="/blog/tags/mac/" rel="tag">#mac</a>
-          
-            <a href="/blog/tags/shell/" rel="tag">#shell</a>
+            <a href="/blog/tags/编辑器/" rel="tag">#编辑器</a>
           
         </div>
       
@@ -399,17 +326,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/03/29/bash-string-and-array/" rel="next" title="bash 的字符串和数组">
-                <i class="fa fa-chevron-left"></i> bash 的字符串和数组
+              <a href="/blog/2016/09/24/vscode/" rel="next" title="vs code 初上手">
+                <i class="fa fa-chevron-left"></i> vs code 初上手
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/06/28/bash-for-and-condition/" rel="prev" title="bash 的条件和循环">
-                bash 的条件和循环 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,8 +358,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/30/bash-test/"
-           data-title="bash 的 Test" data-url="http://jiangyuan.me/2016/05/30/bash-test/">
+      <div class="ds-thread" data-thread-key="2016/11/01/vscode-autocomplete/"
+           data-title="VS Code 中的自动完成" data-url="http://jiangyuan.me/2016/11/01/vscode-autocomplete/">
       </div>
     
   </div>
@@ -534,7 +457,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实际场景"><span class="nav-number">1.</span> <span class="nav-text">实际场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test-和"><span class="nav-number">2.</span> <span class="nav-text">test 和 [</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">[[</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的单目操作符"><span class="nav-number">4.</span> <span class="nav-text">常见的单目操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">5.</span> <span class="nav-text">(())</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Typescript-Definition"><span class="nav-number">1.</span> <span class="nav-text">Typescript Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理-definition"><span class="nav-number">2.</span> <span class="nav-text">管理 definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VS-Code-中的-definition"><span class="nav-number">3.</span> <span class="nav-text">VS Code 中的 definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

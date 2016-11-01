@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://jiangyuan.me/"/>
-  <updated>2016-09-24T15:03:47.000Z</updated>
+  <updated>2016-11-01T11:30:34.000Z</updated>
   <id>http://jiangyuan.me/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VS Code 中的自动完成</title>
+    <link href="http://jiangyuan.me/2016/11/01/vscode-autocomplete/"/>
+    <id>http://jiangyuan.me/2016/11/01/vscode-autocomplete/</id>
+    <published>2016-11-01T14:59:22.000Z</published>
+    <updated>2016-11-01T11:30:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;code&gt;vscode&lt;/code&gt; &lt;code&gt;1.6.x&lt;/code&gt; 发布了，有一系列的新特性，我个人比较开心见到 &lt;code&gt;ts/js&lt;/code&gt; &lt;a href=&quot;https://code.visualstudio.com/updates#_preview-typescript-javascript-grammar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;语法着色&lt;/a&gt;有提升，我还专门搞了个 &lt;a href=&quot;https://github.com/Microsoft/vscode/issues/12362&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;issue&lt;/a&gt;  吐槽过这个。&lt;br&gt;当然今天不是扯 &lt;code&gt;vscode&lt;/code&gt; 的更新节奏很快的梗，而是扒一扒它的&lt;em&gt;自动完成&lt;/em&gt;，&lt;a href=&quot;http://jiangyuan.me/blog/2016/09/24/vscode/&quot;&gt;上一篇文章&lt;/a&gt;已经介绍过，&lt;em&gt;自动完成&lt;/em&gt;和 &lt;code&gt;typings&lt;/code&gt; 紧密相关。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;code&gt;typings&lt;/code&gt; &lt;a href=&quot;https://github.com/typings/typings&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;描述：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The TypeScript Definition Manager.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;显然是要扯到 &lt;code&gt;typescript&lt;/code&gt; 了，有些哥们发誓说这辈子都不用 &lt;code&gt;typescript&lt;/code&gt; ，忍一忍，一会就要说到 &lt;code&gt;js&lt;/code&gt; 了。&lt;/p&gt;
+&lt;h2 id=&quot;Typescript-Definition&quot;&gt;&lt;a href=&quot;#Typescript-Definition&quot; class=&quot;headerlink&quot; title=&quot;Typescript Definition&quot;&gt;&lt;/a&gt;Typescript Definition&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Typescript Definition&lt;/code&gt; 是啥？&lt;a href=&quot;http://definitelytyped.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt; 上也没瞧出个所以然来，不了解 &lt;code&gt;ts&lt;/code&gt; 显然不能理解这鬼。这个时候就该我出场了。&lt;br&gt;随意搞点 &lt;code&gt;ts&lt;/code&gt; 的代码：&lt;br&gt;&lt;img src=&quot;/blog/2016/11/01/vscode-autocomplete/1.png&quot; alt=&quot;1.png&quot; title=&quot;&quot;&gt;&lt;br&gt;报错了，设置严格一点，甚至编译不会通过。想象下如果 &lt;code&gt;abcde&lt;/code&gt; 是第三方库如 &lt;code&gt;jQuery&lt;/code&gt; 等就尴尬了。&lt;br&gt;&lt;img src=&quot;/blog/2016/11/01/vscode-autocomplete/2.png&quot; alt=&quot;2.png&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如上图，简单地 &lt;code&gt;declare&lt;/code&gt; 下就能解决这个问题，这个过程可以称作 &lt;code&gt;define&lt;/code&gt; ,将上述 &lt;code&gt;declare&lt;/code&gt; 代码抽到一个 &lt;code&gt;.d.ts&lt;/code&gt; 结尾的文件中单独维护，这个文件叫&lt;strong&gt;声明文件(declaration file)&lt;/strong&gt;，也可以称之为 &lt;code&gt;definition&lt;/code&gt; 。&lt;br&gt;报错的问题解决了，现在有新的问题，一大堆第三方库的 &lt;code&gt;definition&lt;/code&gt; 怎样维护更新？怎样查找安装？&lt;/p&gt;
+&lt;h2 id=&quot;管理-definition&quot;&gt;&lt;a href=&quot;#管理-definition&quot; class=&quot;headerlink&quot; title=&quot;管理 definition&quot;&gt;&lt;/a&gt;管理 definition&lt;/h2&gt;&lt;p&gt;最早的一款工具叫 &lt;a href=&quot;https://github.com/DefinitelyTyped/tsd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tsd&lt;/a&gt; ，因为它只能安装&lt;a href=&quot;https://my.oschina.net/fenying/blog/747184&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;全局类型声明&lt;/a&gt;，于是就被抛弃了。&lt;br&gt;这个时候我们的 &lt;code&gt;typings&lt;/code&gt; 隆重登场，它可以解决几乎所有 &lt;code&gt;definition&lt;/code&gt; 的问题，唯一蛋疼的地方是要安装一下，以及各种奇怪的命令行参数。&lt;br&gt;&lt;code&gt;ts 2.0&lt;/code&gt; 之后，可以用 &lt;code&gt;npm&lt;/code&gt; 来管理 &lt;code&gt;definition&lt;/code&gt; ，你只需这样：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install @types/jquery -S&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;详情可以参阅&lt;a href=&quot;http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇文章&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;VS-Code-中的-definition&quot;&gt;&lt;a href=&quot;#VS-Code-中的-definition&quot; class=&quot;headerlink&quot; title=&quot;VS Code 中的 definition&quot;&gt;&lt;/a&gt;VS Code 中的 &lt;code&gt;definition&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;definition&lt;/code&gt; 的作用当然远不止给 &lt;code&gt;ts&lt;/code&gt; 本身来用，编辑器可以利用它来做非常强大的代码提示。&lt;br&gt;下图就是安装 &lt;code&gt;definition&lt;/code&gt; 之前和之后的效果。&lt;br&gt;&lt;img src=&quot;/blog/2016/11/01/vscode-autocomplete/3.gif&quot; alt=&quot;3.gif&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;definition&lt;/code&gt; 当然在其他编辑器中也有类似的实现，但体验没有哪个能比得上 &lt;code&gt;vscode&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/typings/typings&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/typings/typings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/typings/typings/issues/72&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/typings/typings/issues/72&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/DefinitelyTyped/DefinitelyTyped&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/DefinitelyTyped/tsd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/DefinitelyTyped/tsd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/39907142/what-is-definitelytyped&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/39907142/what-is-definitelytyped&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://my.oschina.net/fenying/blog/748805&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://my.oschina.net/fenying/blog/748805&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.miniasp.com/post/2016/08/22/TypeScript-Future-Declaration-Files.aspx&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;vscode&lt;/code&gt; &lt;code&gt;1.6.x&lt;/code&gt; 发布了，有一系列的新特性，我个人比较开心见到 &lt;code&gt;ts/js&lt;/code&gt; &lt;a href=&quot;https://code.visualstudio.com/updates#_preview-typescript-javascript-grammar&quot;&gt;语法着色&lt;/a&gt;有提升，我还专门搞了个 &lt;a href=&quot;https://github.com/Microsoft/vscode/issues/12362&quot;&gt;issue&lt;/a&gt;  吐槽过这个。&lt;br&gt;当然今天不是扯 &lt;code&gt;vscode&lt;/code&gt; 的更新节奏很快的梗，而是扒一扒它的&lt;em&gt;自动完成&lt;/em&gt;，&lt;a href=&quot;http://jiangyuan.me/blog/2016/09/24/vscode/&quot;&gt;上一篇文章&lt;/a&gt;已经介绍过，&lt;em&gt;自动完成&lt;/em&gt;和 &lt;code&gt;typings&lt;/code&gt; 紧密相关。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vscode" scheme="http://jiangyuan.me/tags/vscode/"/>
+    
+      <category term="编辑器" scheme="http://jiangyuan.me/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>vs code 初上手</title>
